@@ -50,6 +50,8 @@ public:
     void alg_Laplace(cufftDoubleComplex* _d_psi, cufftDoubleComplex* _d_hpsi);
     void alg_updatePsi(cufftDoubleComplex* _d_psi, cufftDoubleComplex* _d_psi_new, cufftDoubleComplex* _d_psi_old, cufftDoubleComplex* _d_hpsi, const double &mu, double &dt, double &beta);
     void alg_addVPx(cufftDoubleComplex* _d_psi, cufftDoubleComplex* _d_aux, cufftDoubleComplex* _d_hpsi, cufftDoubleComplex* _d_hpsi_en, const double &_lm);
+    void alg_addOmegaLz(cufftDoubleComplex* _d_psi, cufftDoubleComplex* _d_aux, cufftDoubleComplex* _d_hpsi, cufftDoubleComplex* _d_hpsi_en, const double &_lm);
+
 
     void alg_calcNorm(double *norm, cufftDoubleComplex* _d_psi);
     void alg_calcPx(double *px, cufftDoubleComplex* _d_psi, cufftDoubleComplex* _d_Pxpsi);

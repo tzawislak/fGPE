@@ -3,7 +3,7 @@
 
 #include "header.hpp"
 
-
+// Error handling function for CUDA functions
 void CCE(cudaError_t error, const char* msg) ;
 
 
@@ -61,6 +61,7 @@ public:
     double *d_y;
     double *d_z;
 
+
     // Constructor: Allocate memory on the device
     Cuda(): isTwoComponent(false), size(0), noThreads(NTHREADS) {};
     Cuda(const int *NX, int nth,  bool _is2comp);
@@ -117,6 +118,8 @@ __global__ void Laplace( cufftDoubleComplex* v1, double* kx,  double* ky, double
 __global__ void Laplace_2( cufftDoubleComplex* v1, cufftDoubleComplex* v2, double* kx,  double* ky, double* kz, cufftDoubleComplex* result1, cufftDoubleComplex* result2, int N, int NX, int NY, int NZ); 
 
 __global__ void BECVPx( cufftDoubleComplex* v1, double* kx, cufftDoubleComplex* result, int N, int NX);
+__global__ void BECOmegaLz( cufftDoubleComplex* v1, double* kx, double* ky, cufftDoubleComplex* result, int N, int NX, int NY);
+
 cufftDoubleComplex complexSqrt(cufftDoubleComplex z);
 
 __global__ void NormalizePsi(cufftDoubleComplex *input, double *output, int N);
@@ -136,6 +139,8 @@ __global__ void SquareArray( cufftDoubleComplex* in, cufftDoubleComplex* out, in
 __global__ void SquareArray( cufftDoubleComplex *in, double *out, int N);
 __global__ void MultiplyArrays(cufftDoubleComplex* a, cufftDoubleComplex* b, cufftDoubleComplex* result, int N);
 __global__ void MultiplyArrays(double* a, double* b, double* result, int N);
+__global__ void MultiplyArraysX(cufftDoubleComplex* a, double* b, cufftDoubleComplex* result, int N, int NX);
+__global__ void MultiplyArraysY(cufftDoubleComplex* a, double* b, cufftDoubleComplex* result, int N, int NX, int NY);
 
 __global__ void SumArrays( cufftDoubleComplex* vout, cufftDoubleComplex* v2, cufftDoubleComplex a, cufftDoubleComplex* v1, int N);
 __global__ void SumRK4( cufftDoubleComplex* psi_out, cufftDoubleComplex* psi_in, cufftDoubleComplex* k1, cufftDoubleComplex* k2, cufftDoubleComplex* k3, cufftDoubleComplex* k4, int N);

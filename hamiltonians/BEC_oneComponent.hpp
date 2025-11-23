@@ -37,8 +37,9 @@ public:
         
 };
 
-__global__ void BECHamiltonian  ( cufftDoubleComplex* psi, cufftDoubleComplex* KEpsi,  cufftDoubleComplex* vext, cufftDoubleComplex* h_en, cufftDoubleComplex* h_mu, int N, double* a);
-__global__ void BECHamiltonianMU( cufftDoubleComplex* psi, cufftDoubleComplex* KEpsi,  cufftDoubleComplex* vext, cufftDoubleComplex* h_mu, int N, double* a);
+__global__ void BECHamiltonian  ( double time, cufftDoubleComplex* psi, cufftDoubleComplex* KEpsi,  cufftDoubleComplex* vext, cufftDoubleComplex* h_en, cufftDoubleComplex* h_mu, int N, double* a);
+__global__ void BECHamiltonianMU( double time, cufftDoubleComplex* psi, cufftDoubleComplex* KEpsi,  cufftDoubleComplex* vext, cufftDoubleComplex* h_mu, int N, double* a);
+__device__ double d_quench_as(double time, double* prms);
 
 
 #endif

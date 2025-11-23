@@ -251,6 +251,29 @@ __global__ void MultiplyArrays(cufftDoubleComplex* a, cufftDoubleComplex* b, cuf
     }
 }
 
+// !!!!!!!!!!!!!!!!!!!! NOT READY !!!!!!!!!!!!!!!!!!!!!!
+__global__ void MultiplyArraysX(cufftDoubleComplex* a, double* b, cufftDoubleComplex* result, int N, int NX) {
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    int iX = idx % NX;
+
+    if ( (idx < N) && (iX < NX) ) {
+        result[idx].x = a[idx].x * b[iX];
+        result[idx].y = a[idx].y * b[iX];
+    }
+}
+
+__global__ void MultiplyArraysY(cufftDoubleComplex* a, double* b, cufftDoubleComplex* result, int N, int NX, int NY) {
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    int iX = idx % NX;
+    int iY = (idx / NX) % NY;
+
+    if ( (idx < N) && (iX < NX) && (iY < NY) ) {
+        result[idx].x = a[idx].x * b[iY];
+        result[idx].y = a[idx].y * b[iY];
+    }
+}
+
+
 
 
 __global__ void MultiplyArrays(double* a, double* b, double* result, int N) {
@@ -377,6 +400,19 @@ __global__ void BECVPx( cufftDoubleComplex* v1, double* kx, cufftDoubleComplex* 
         result[idx].y = v1[idx].y * kx[iX]; 
     }
 }
+
+__global__ void BECOmegaLz( cufftDoubleComplex* v1, double* kx, double* ky, cufftDoubleComplex* result, int N, int NX, int NY) {
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    int iX = idx % NX;
+    int iY = (idx / NX) % NY;
+    
+    if ( (idx < N) && (iX < NX) && (iY < NY)) {
+        // kx \rho - ky \rho
+        result[idx].x = kx[iX] * v1[idx].x - ky[iY] * v1[idx].x;
+        result[idx].y = kx[iX] * v1[idx].y - ky[iY] * v1[idx].y; 
+    }
+}
+
 
 __global__ void BECUpdatePsi( cufftDoubleComplex* psi, cufftDoubleComplex* newpsi,  cufftDoubleComplex* oldpsi, cufftDoubleComplex* hpsi, double mu, double dt, double beta, int N ){
 

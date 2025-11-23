@@ -1,0 +1,27 @@
+var classwdat__plot_1_1Wdat =
+[
+    [ "__init__", "classwdat__plot_1_1Wdat.html#a71de1e6842e9d639f90349a64f26ac11", null ],
+    [ "__str__", "classwdat__plot_1_1Wdat.html#a98029e11a18a9cac0cbbc7963943c7c1", null ],
+    [ "CalcXYGrad", "classwdat__plot_1_1Wdat.html#a51edb7576fd16bd3d449c96574d86998", null ],
+    [ "Cut3D", "classwdat__plot_1_1Wdat.html#abab1f47fe8de5eacebcceb86f11f5028", null ],
+    [ "Integrate2D", "classwdat__plot_1_1Wdat.html#a8855838c107f557a39528cbbe7e279df", null ],
+    [ "Integrate3D", "classwdat__plot_1_1Wdat.html#a5701fe7ec9c09ea6c9f638da83219304", null ],
+    [ "NumericalVolume", "classwdat__plot_1_1Wdat.html#a61cddffb8a3982aaf659b869b449564e", null ],
+    [ "read", "classwdat__plot_1_1Wdat.html#af9b273d7f258be24b221b22f0437ef95", null ],
+    [ "readConsts", "classwdat__plot_1_1Wdat.html#a9ba62f3ee66985ecf945442dd9a60580", null ],
+    [ "readD", "classwdat__plot_1_1Wdat.html#abbea0d77b63dd925b0530478f39c685c", null ],
+    [ "readd", "classwdat__plot_1_1Wdat.html#a0b6387cefcd3eadbc9352a198cf2a77d", null ],
+    [ "readN", "classwdat__plot_1_1Wdat.html#a1f7d80db50c286a88375725dfc9eed82", null ],
+    [ "readn", "classwdat__plot_1_1Wdat.html#a77b0d8b0b1ce61987f8bc9049fe66dbe", null ],
+    [ "readOthers", "classwdat__plot_1_1Wdat.html#abdb7a2f3b704d8ed22b1e984d2375118", null ],
+    [ "readVars", "classwdat__plot_1_1Wdat.html#ad393d0f4f110744b6d90a5ebc65cbc70", null ],
+    [ "ReIm2AbsArg", "classwdat__plot_1_1Wdat.html#a038d3666e1f7e6bbd8dfffdef15f7208", null ],
+    [ "ReIm3AbsArg", "classwdat__plot_1_1Wdat.html#af61caa86c70f7cab9aa625bddc7ff804", null ],
+    [ "ReturnDensityScale", "classwdat__plot_1_1Wdat.html#a5722f726dda7b8da8b82ecc6c05e3f1d", null ],
+    [ "ReturnPsiScale", "classwdat__plot_1_1Wdat.html#a11912d6c68809f006531f53695cad907", null ],
+    [ "ReturnPsiScale0", "classwdat__plot_1_1Wdat.html#a21ef22e03ee428f8145875bbcfd43fb2", null ],
+    [ "ReturnScale", "classwdat__plot_1_1Wdat.html#a3515b26dea78cd9485c887bbc2ece547", null ],
+    [ "ReturnVextScale", "classwdat__plot_1_1Wdat.html#a48d0779a0977d720eabf454ecd1bfd6f", null ],
+    [ "ReturnXYGrad", "classwdat__plot_1_1Wdat.html#a4969bd39fc589e2ba08870e5f0233703", null ],
+    [ "Section", "classwdat__plot_1_1Wdat.html#ab249fdb4c4c8b0ce4fc836235158d4d8", null ]
+];

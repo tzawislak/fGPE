@@ -222,6 +222,86 @@ void BaseHamiltonian::alg_addVPx(cufftDoubleComplex* _d_psi, cufftDoubleComplex*
 
 
 
+
+void BaseHamiltonian::alg_addOmegaLz(cufftDoubleComplex* _d_psi, cufftDoubleComplex* _d_aux, cufftDoubleComplex* _d_hpsi, cufftDoubleComplex* _d_hpsi_en, const double &_lm){
+//void BaseHamiltonian::alg_addOmegaLz(cufftDoubleComplex* _d_psi, cufftDoubleComplex* _d_aux, cufftDoubleComplex* _d_hpsi, cufftDoubleComplex* _d_hpsi_en, const double &_lm){
+    // 1. -y\partial_x
+    // rho (k)
+    if (cufftExecZ2Z(planForward, _d_psi, _d_aux, CUFFT_FORWARD) != CUFFT_SUCCESS) {   std::cerr << "CUFFT error: Forward FFT failed" << std::endl; }
+
+    // calculate \partial_x \rho
+    BECVPx<<<gridSize, noThreads>>>(_d_aux, d_kx, _d_aux, pars->Npoints, pars->NX[0]);
+    CCE(cudaGetLastError(), "BECVPx kernel launch failed");
+
+    // calculate y * (\partial_x \rho)
+    MultiplyArraysY<<<gridSize, noThreads>>>(_d_aux, d_y, _d_aux, pars->Npoints, pars->NX[0], pars->NX[1] );
+    CCE(cudaGetLastError(), "MultiplyArrays kernel launch failed");
+
+    // add to the hamiltonian
+    if( cufftExecZ2Z(planBackward, _d_aux, _d_aux, CUFFT_INVERSE) != CUFFT_SUCCESS) { std::cerr << "CUFFT error: Inverse FFT failed" << std::endl; }
+    AppendArray<<<gridSize, noThreads>>>( _d_hpsi,    _lm/pars->Npoints, _d_aux, pars->Npoints);
+    AppendArray<<<gridSize, noThreads>>>( _d_hpsi_en, _lm/pars->Npoints, _d_aux, pars->Npoints);
+
+
+    // 2. x\partial_y
+    // rho (k)
+    if (cufftExecZ2Z(planForward, _d_psi, _d_aux, CUFFT_FORWARD) != CUFFT_SUCCESS) {   std::cerr << "CUFFT error: Forward FFT failed" << std::endl; }
+
+    // calculate \partial_y \rho
+    BECVPx<<<gridSize, noThreads>>>(_d_aux, d_ky, _d_aux, pars->Npoints, pars->NX[1]);
+    CCE(cudaGetLastError(), "BECVPx kernel launch failed");
+
+    // calculate x * (\partial_y \rho)
+    MultiplyArraysX<<<gridSize, noThreads>>>(_d_aux, d_x, _d_aux, pars->Npoints, pars->NX[0] );
+    CCE(cudaGetLastError(), "MultiplyArrays kernel launch failed");
+
+    // add to the hamiltonian
+    if( cufftExecZ2Z(planBackward, _d_aux, _d_aux, CUFFT_INVERSE) != CUFFT_SUCCESS) { std::cerr << "CUFFT error: Inverse FFT failed" << std::endl; }
+    AppendArray<<<gridSize, noThreads>>>( _d_hpsi,    (-1)*_lm/pars->Npoints, _d_aux, pars->Npoints);
+    AppendArray<<<gridSize, noThreads>>>( _d_hpsi_en, (-1)*_lm/pars->Npoints, _d_aux, pars->Npoints);  
+
+}
+
+    // 1. -y\partial_x
+    // rho (k)
+    //if (cufftExecZ2Z(planForward, _d_psi, _d_aux, CUFFT_FORWARD) != CUFFT_SUCCESS) {   std::cerr << "CUFFT error: Forward FFT failed" << std::endl; }
+
+    // calculate \partial_x \rho
+    //BECVPx<<<gridSize, noThreads>>>(_d_aux, d_kx, _d_aux, pars->Npoints, pars->NX[0]);
+    //CCE(cudaGetLastError(), "BECVPx kernel launch failed");
+
+    // calculate y * (\partial_x \rho)
+    //MultiplyArraysY<<<gridSize, noThreads>>>(_d_aux, d_y, _d_aux, pars->Npoints, pars->NX[0], pars->NX[1] );
+    //CCE(cudaGetLastError(), "MultiplyArrays kernel launch failed");
+
+    // add to the hamiltonian
+    //if( cufftExecZ2Z(planBackward, _d_aux, _d_aux, CUFFT_INVERSE) != CUFFT_SUCCESS) { std::cerr << "CUFFT error: Inverse FFT failed" << std::endl; }
+    //AppendArray<<<gridSize, noThreads>>>( _d_hpsi,    _lm/pars->Npoints, _d_aux, pars->Npoints);
+    //AppendArray<<<gridSize, noThreads>>>( _d_hpsi_en, _lm/pars->Npoints, _d_aux, pars->Npoints);
+
+
+    // 2. x\partial_y
+    // rho (k)
+    //if (cufftExecZ2Z(planForward, _d_psi, _d_aux, CUFFT_FORWARD) != CUFFT_SUCCESS) {   std::cerr << "CUFFT error: Forward FFT failed" << std::endl; }
+
+    // calculate \partial_y \rho
+    //BECVPx<<<gridSize, noThreads>>>(_d_aux, d_ky, _d_aux, pars->Npoints, pars->NX[1]);
+    //CCE(cudaGetLastError(), "BECVPx kernel launch failed");
+
+    // calculate x * (\partial_y \rho)
+    //MultiplyArraysX<<<gridSize, noThreads>>>(_d_aux, d_x, _d_aux, pars->Npoints, pars->NX[0] );
+    //CCE(cudaGetLastError(), "MultiplyArrays kernel launch failed");
+
+    // add to the hamiltonian
+    //if( cufftExecZ2Z(planBackward, _d_aux, _d_aux, CUFFT_INVERSE) != CUFFT_SUCCESS) { std::cerr << "CUFFT error: Inverse FFT failed" << std::endl; }
+   // AppendArray<<<gridSize, noThreads>>>( _d_hpsi,    (-1)*_lm/pars->Npoints, _d_aux, pars->Npoints);
+   // AppendArray<<<gridSize, noThreads>>>( _d_hpsi_en, (-1)*_lm/pars->Npoints, _d_aux, pars->Npoints);
+    
+
+//}/
+
+
+
 // normalizes the wavefunction
 void BaseHamiltonian::alg_updateWavefunctions(double norm, cufftDoubleComplex* _d_psi_old, cufftDoubleComplex* _d_psi, cufftDoubleComplex* _d_psi_new){
 

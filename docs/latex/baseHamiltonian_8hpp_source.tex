@@ -1,0 +1,82 @@
+\doxysection{base\+Hamiltonian.\+hpp}
+\hypertarget{baseHamiltonian_8hpp_source}{}\label{baseHamiltonian_8hpp_source}\index{baseHamiltonian.hpp@{baseHamiltonian.hpp}}
+\doxymbox{\hyperlink{baseHamiltonian_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_base\_hamiltonian\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_base\_hamiltonian\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{params_8hpp}{params.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{output_8hpp}{output.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{parallel_8hpp}{parallel.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{header_8hpp}{header.hpp}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classBaseHamiltonian_a3d0b3460673f948928d9b8ffc6df3435}{BaseHamiltonian}}:\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{classCuda_ad660ac32e9921f93d73959e9c8ecff4a}{Cuda}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \doxymbox{\hyperlink{classParamsBase}{ParamsBase}}*\ \doxymbox{\hyperlink{classBaseHamiltonian_ae641e3204726602e3d2bcd70001e55f2}{pars}};}
+\DoxyCodeLine{00020\ \ \ \ \ \doxymbox{\hyperlink{classOutput}{Output}}\ \doxymbox{\hyperlink{classBaseHamiltonian_a4c1557f1e3be79266a59a6f445baa9d8}{output}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{double}\ *\doxymbox{\hyperlink{classBaseHamiltonian_acbe3172aec5ce557b245c090be3729f4}{x}},\ *\doxymbox{\hyperlink{classBaseHamiltonian_a9b99976857a892c9ecd8caa08d397fb3}{y}},\ *\doxymbox{\hyperlink{classBaseHamiltonian_a76b7e612157624caae7e55491c40b774}{z}};\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{double}\ *\doxymbox{\hyperlink{classBaseHamiltonian_aa64ab93a3d87c53433bf8550a3a0541e}{kx}},\ *\doxymbox{\hyperlink{classBaseHamiltonian_a6f3df2519ce84e5f458d509b3a6d561b}{ky}},\ *\doxymbox{\hyperlink{classBaseHamiltonian_a716d1299427d6abe2127d422439c31e3}{kz}};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{classBaseHamiltonian_a3d0b3460673f948928d9b8ffc6df3435}{BaseHamiltonian}}(\doxymbox{\hyperlink{classParamsBase}{ParamsBase}}*\ par);}
+\DoxyCodeLine{00026\ \ \ \ \ \doxymbox{\hyperlink{classOutput}{Output}}\ \doxymbox{\hyperlink{classBaseHamiltonian_aa093ea4675e2ec317c29a9cb04a0b127}{getOutput}}()\ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classBaseHamiltonian_a4c1557f1e3be79266a59a6f445baa9d8}{output}};\ \ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{classBaseHamiltonian_abbf175abcbc65a60ff6150f13b80e645}{iX}}(\textcolor{keywordtype}{int}\ index\ )\ \{\ \textcolor{keywordflow}{return}\ index\ \%\ \doxymbox{\hyperlink{classBaseHamiltonian_ae641e3204726602e3d2bcd70001e55f2}{pars}}-\/>NX[0];\ \};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{classBaseHamiltonian_a66577b1ac9c92a8bf5d2763e72b778f2}{iY}}(\textcolor{keywordtype}{int}\ index\ )\ \{\ \textcolor{keywordflow}{return}\ (index\ /\ \doxymbox{\hyperlink{classBaseHamiltonian_ae641e3204726602e3d2bcd70001e55f2}{pars}}-\/>NX[0])\ \%\ \doxymbox{\hyperlink{classBaseHamiltonian_ae641e3204726602e3d2bcd70001e55f2}{pars}}-\/>NX[1];\ \};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{classBaseHamiltonian_ae473355f42f30ff03d377f4212a4376f}{iZ}}(\textcolor{keywordtype}{int}\ index\ )\ \{\ \textcolor{keywordflow}{return}\ index\ /\ (\doxymbox{\hyperlink{classBaseHamiltonian_ae641e3204726602e3d2bcd70001e55f2}{pars}}-\/>NX[0]*\doxymbox{\hyperlink{classBaseHamiltonian_ae641e3204726602e3d2bcd70001e55f2}{pars}}-\/>NX[1]);\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a021844932e3652743a3b9b348e680e0f}{InitializeKspace}}();}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a4e4b40360f95a2b9e74eea8c245c9eaa}{InitializeSpace}}();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\doxymbox{\hyperlink{classBaseHamiltonian_a3d0b3460673f948928d9b8ffc6df3435}{BaseHamiltonian}}::*\doxymbox{\hyperlink{classBaseHamiltonian_a1c5d729f0ceb9e8d5bde8dd21ec79e55}{ReductionFuncPtr}})(\textcolor{keywordtype}{double}*);}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\doxymbox{\hyperlink{classBaseHamiltonian_a3d0b3460673f948928d9b8ffc6df3435}{BaseHamiltonian}}::*\doxymbox{\hyperlink{classBaseHamiltonian_a85cb6b79cd81720d6fe11815367020f0}{Reduction2FuncPtr}})(\textcolor{keywordtype}{double}*,\ \textcolor{keywordtype}{double}*,\ double);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \doxymbox{\hyperlink{classBaseHamiltonian_a1c5d729f0ceb9e8d5bde8dd21ec79e55}{ReductionFuncPtr}}\ \doxymbox{\hyperlink{classBaseHamiltonian_a7854a3f58cc78306c56427d846b6abeb}{reduction}};}
+\DoxyCodeLine{00040\ \ \ \ \ \doxymbox{\hyperlink{classBaseHamiltonian_a85cb6b79cd81720d6fe11815367020f0}{Reduction2FuncPtr}}\ \doxymbox{\hyperlink{classBaseHamiltonian_ae41b9f928d1098fc0a270d998e6b6ac6}{reduction2}};}
+\DoxyCodeLine{00041\ \ \ \ \ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a64f412c32122f136244c0a5b9d179e35}{\_simple\_reduction}}(\textcolor{keywordtype}{double}*\ norm);}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a941c803e68d426f4190fbe999a34700c}{\_simple\_reduction2}}(\textcolor{keywordtype}{double}*\ o1,\ \textcolor{keywordtype}{double}*\ o2,\ \textcolor{keywordtype}{double}\ norm);}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a239adb979a992c1def58e70eb3fb927a}{\_parallel\_reduction}}(\textcolor{keywordtype}{double}*\ norm);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a5752d06ebc49b26e2d6f924f4746f608}{\_parallel\_reduction2}}(\textcolor{keywordtype}{double}*\ o1,\ \textcolor{keywordtype}{double}*\ o2,\ \textcolor{keywordtype}{double}\ norm);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a3057c0408ae20a220f4cf777e0bcd386}{alg\_Laplace}}(\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_psi,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_hpsi);}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a04fb4c96811568553a9d510ee0915398}{alg\_updatePsi}}(\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_psi,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_psi\_new,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_psi\_old,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_hpsi,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&mu,\ \textcolor{keywordtype}{double}\ \&dt,\ \textcolor{keywordtype}{double}\ \&beta);}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a66c62ede9861d8a380602268f3ae73e3}{alg\_addVPx}}(\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_psi,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_aux,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_hpsi,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_hpsi\_en,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&\_lm);}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a7a9c008f4be885af216ff87590cbd751}{alg\_addOmegaLz}}(\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_psi,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_aux,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_hpsi,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_hpsi\_en,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&\_lm);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_aa962e19e3c9026d8568fe196fe39cc75}{alg\_calcNorm}}(\textcolor{keywordtype}{double}\ *norm,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_psi);}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a39df95011eda65a8b27d1b0d5ce48d52}{alg\_calcPx}}(\textcolor{keywordtype}{double}\ *px,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_psi,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_Pxpsi);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a647a9daaa79b71ca483c6d3b26d950f1}{alg\_updateWavefunctions}}(\textcolor{keywordtype}{double}\ norm,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_psi\_old,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_psi,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_psi\_new);}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a04512e52d6b637049e43d7fc3679ffdc}{alg\_calc2Observables}}(\textcolor{keywordtype}{double}\ norm,\ \textcolor{keywordtype}{double}\ *\_o1,\ \textcolor{keywordtype}{double}\ *\_o2,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_psi,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_o1psi,\ \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufftDoubleComplex}}*\ \_d\_o2psi\ );}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a4ac4090c000159185ede4e13a5a8f481}{runImagTimeEvol}}();}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a5cf283ad86ae68f04bdc964c5fd9e22e}{runRealTimeEvol}}();}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classBaseHamiltonian_a82ff1bcd0e293b8e379c11754ba9886d}{runRealTimeEvolCPU}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Virtual\ destructor\ to\ allow\ proper\ cleanup\ when\ deleting\ derived\ objects}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{classBaseHamiltonian_a7b6a266911e32f50b8bf299a9b28caec}{\string~BaseHamiltonian}}()\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

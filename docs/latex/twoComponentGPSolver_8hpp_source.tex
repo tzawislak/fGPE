@@ -1,0 +1,71 @@
+\doxysection{two\+Component\+GPSolver.\+hpp}
+\hypertarget{twoComponentGPSolver_8hpp_source}{}\label{twoComponentGPSolver_8hpp_source}\index{twoComponentGPSolver.hpp@{twoComponentGPSolver.hpp}}
+\doxymbox{\hyperlink{twoComponentGPSolver_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_two\_component\_GP\_solver\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_two\_component\_GP\_solver\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{psi_8hpp}{psi.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{vext_8hpp}{vext.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{output_8hpp}{output.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{baseHamiltonian_8hpp}{baseHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Derived\ class}}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classTwoComponentGPSolver_a88a2cd4ac104fcb24b838c63409e3514}{TwoComponentGPSolver}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{classBaseHamiltonian_a3d0b3460673f948928d9b8ffc6df3435}{BaseHamiltonian}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00015\ \ \ \ \ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}*\ \doxymbox{\hyperlink{classTwoComponentGPSolver_ac1d012a485fdc06df4eae459f7000531}{psi1}};}
+\DoxyCodeLine{00016\ \ \ \ \ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}*\ \doxymbox{\hyperlink{classTwoComponentGPSolver_afcd461d44e03409bd0fe2687c0636c05}{psi2}};}
+\DoxyCodeLine{00017\ \ \ \ \ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}*\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a8a4c2e29491ab05b75e2e4d3ff8f3315}{vext1}};}
+\DoxyCodeLine{00018\ \ \ \ \ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}*\ \doxymbox{\hyperlink{classTwoComponentGPSolver_aa5f47d9f22ef913061de66b8b2f99bea}{vext2}};}
+\DoxyCodeLine{00019\ \ \ \ \ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \doxymbox{\hyperlink{classParams2}{Params2}}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_aff6f33435fbbbdfe6400da9b5a707de2}{p}};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ variables\ used\ during\ \ time\ evolutions}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_ac50d9b4b3136c43db928af7c4ff81862}{PARS}}[64]\ =\ \{0.0\};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{enum}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521}{Variables}}\ \{\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521afdc5f9c8f126e4aa19803eed68f7d19a}{EN1}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521ad1113a155589bd1c427d568aa6844623}{EN2}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a6f6de0b420d3c2a1dc9a4371f40e224d}{MU1}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a64aff3c772c57a56e458e177581d62bb}{MU2}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a20d11886cabfeae7ba3563615a05bec0}{NORM1}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a1b00f885ac7ec55f28fa38b9cf24da93}{NORM2}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521ab36b419d83c56b47f631074248533601}{PX1}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521afc0c191541153b7abf31f8158442ae65}{PX2}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a53856b35233a9d6cb22a79bc2a5214c6}{EN1\_PREV}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a193094884dcbd4071079f2765f675d11}{EN2\_PREV}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a231fa9f152d7a39cd06afd65edc99060}{AVG\_TIME}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a7f9ce1a226b2081bbcd5a484f6be3453}{ITER}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a5e018471718e1f97c6c997a8ed3b196b}{ITER\_TIME}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521af965ecb815586574a6bb1f4771c0adb2}{EN1\_0}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a135ca863ca4fb8459b708bec1c361707}{EN2\_0}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521aaf7ad94c5cace092703d0429dbda4745}{MU1\_0}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521acbf96d9830a97b51837a4e2b6027c8bf}{MU2\_0}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521ac0bd1bdb0851c4edf9205622dffec11f}{NCYCLES}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a0d2dbb0ecd205028c9660924417c4469}{AUX1\_1}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a6908c66f1eed52c1828e0b0f46c91d29}{AUX2\_1}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521acb10bbcb16e37aaec7d093cb2b8d7c77}{AUX3\_1}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521af37e8c4688040e217dee88199c4ac72b}{AUX4\_1}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521ae2c12ef06f52d252c3fc9221ac0adf8b}{AUX5\_1}}\ ,\doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a3e62aed6178be4b68b0fb957d04c0864}{AUX1\_2}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521ac4728c4bb4b6bf7c15b72eceb121643e}{AUX2\_2}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521ada72ae87ae77d10fac9efe49180ddfb5}{AUX3\_2}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a11c9a6cbdb62a6507742effda20384b7}{AUX4\_2}},\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a3aad88b814dc0567947004ac0f92e521a909ce4d243388ead5ff281556f11cf12}{AUX5\_2}}\}\ ;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \doxymbox{\hyperlink{classTwoComponentGPSolver_a88a2cd4ac104fcb24b838c63409e3514}{TwoComponentGPSolver}}(\doxymbox{\hyperlink{classParams2}{Params2}}\ \&par);}
+\DoxyCodeLine{00028\ \ \ \ \ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}*\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a848d0079da677fb9427ed906426a7c62}{getPsi}}(\textcolor{keywordtype}{int}\ i)\ \{\ \textcolor{keywordflow}{return}\ (i==1)\ ?\ \doxymbox{\hyperlink{classTwoComponentGPSolver_ac1d012a485fdc06df4eae459f7000531}{psi1}}\ :\ \doxymbox{\hyperlink{classTwoComponentGPSolver_afcd461d44e03409bd0fe2687c0636c05}{psi2}};\ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}*\ \doxymbox{\hyperlink{classTwoComponentGPSolver_ab23c3065563a81da8735e568ebea8e55}{getVext}}(\textcolor{keywordtype}{int}\ i)\ \{\ \textcolor{keywordflow}{return}\ (i==1)\ ?\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a8a4c2e29491ab05b75e2e4d3ff8f3315}{vext1}}\ :\ \doxymbox{\hyperlink{classTwoComponentGPSolver_aa5f47d9f22ef913061de66b8b2f99bea}{vext2}};\ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a9aa8b6426aff897cfcc0dd3ebcdf5340}{runImagTimeEvol}}();}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a61b38d91d136186fed14b49d5e8d904c}{runRealTimeEvol}}();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a5bd38ad507a2ac61b8f0685587430083}{alg\_calcHpsi}}()\ =\ 0;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_aa5341b5a9032fdec5b8258217edd83c8}{alg\_calcHpsiMU}}()\ =\ 0;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_ab097b3cfaa85d147edcd551f3a266060}{call\_IM\_init}}()\ =\ 0;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a57f512f7afe1a3b76a9ca440147aaf20}{call\_IM\_loop\_before\_step}}()\ =\ 0;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a07752f399030c39c6c0bba99b796f893}{call\_IM\_loop\_after\_step}}()\ =\ 0;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_aa56e64675a9d1e134e0b3ddcc9c2536c}{call\_IM\_loop\_convergence}}()\ =\ 0;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_ac215f704152d59d96cc8223806874626}{call\_IM\_end}}()\ =\ 0;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a0a1be72c4345eed3470fab9133add0b2}{call\_RE\_init}}()\ =\ 0;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a1273d68b0c343a0ada0283801e451b4a}{call\_RE\_loop\_before\_step}}()\ =\ 0;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a52dfcf6e8e147f312bff5e5a152bac49}{call\_RE\_loop\_after\_step}}()\ =\ 0;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_a57892c9374d9f49657174ab8497a0d72}{call\_RE\_end}}()\ =\ 0;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{classTwoComponentGPSolver_abdb4e768ae409a147fa0a9ccef44a611}{\string~TwoComponentGPSolver}}()\ \{}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classTwoComponentGPSolver_ac1d012a485fdc06df4eae459f7000531}{psi1}});}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classTwoComponentGPSolver_afcd461d44e03409bd0fe2687c0636c05}{psi2}});}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classTwoComponentGPSolver_a8a4c2e29491ab05b75e2e4d3ff8f3315}{vext1}});\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classTwoComponentGPSolver_aa5f47d9f22ef913061de66b8b2f99bea}{vext2}});\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classBaseHamiltonian_aa64ab93a3d87c53433bf8550a3a0541e}{kx}});}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classBaseHamiltonian_a6f3df2519ce84e5f458d509b3a6d561b}{ky}});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classBaseHamiltonian_a716d1299427d6abe2127d422439c31e3}{kz}});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classBaseHamiltonian_acbe3172aec5ce557b245c090be3729f4}{x}});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classBaseHamiltonian_a9b99976857a892c9ecd8caa08d397fb3}{y}});}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classBaseHamiltonian_a76b7e612157624caae7e55491c40b774}{z}});}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

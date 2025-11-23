@@ -11,7 +11,12 @@ BEConeComponent::BEConeComponent(Params &par): OneComponentGPSolver(par)
     /*
         Define parameters entering your Hamiltonian
     */
-    h_params[0] = p.a;
+    h_params[0] = p.a; // init a
+    h_params[1] = p.a*1.02; // 1 final a
+    h_params[2] = p.a; // 2 final a
+    h_params[3] = 1; // 1 time 
+    h_params[4] = 1000; // 2 time
+    h_params[5] = 2000; // 3 time 
     CCE(cudaMemcpy(this->d_h_params, h_params, NO_HAMIL_PARAMS * sizeof(double), cudaMemcpyHostToDevice), "CUDA error at memcpy: d_h_params");
     
 
@@ -110,11 +115,11 @@ void BEConeComponent::alg_calcHpsi(){
 
     this->alg_Laplace(this->d_psi, this->d_hpsi);
 
-    BECHamiltonian<<<gridSize, noThreads>>>( this->d_psi, this->d_hpsi, this->d_vext, this->d_hpsi_en, this->d_hpsi, p.Npoints, this->d_h_params);
-    
+    BECHamiltonian<<<gridSize, noThreads>>>( PARS[T],this->d_psi, this->d_hpsi, this->d_vext, this->d_hpsi_en, this->d_hpsi, p.Npoints, this->d_h_params);
+
     if( p.getBool("trotate") )
     {
-        this->alg_addVPx( this->d_psi, this->d_aux, this->d_hpsi, this->d_hpsi_en, 2*pi*p.getDouble("omega")/(p.omho*p.aho) );
+        this->alg_addVPx( this->d_psi, this->d_aux, this->d_hpsi, this->d_hpsi_en, 2*pi*p.getDouble("omega")/(p.omho*p.aho) ); // this aho may be only due to compatibility with previous analysis
     }
     CCE(cudaGetLastError(), "BEC Hamiltonian Kernel launch failed");
 }
@@ -123,7 +128,7 @@ void BEConeComponent::alg_calcHpsiMU(){
 
     this->alg_Laplace(this->d_psi, this->d_hpsi);
 
-    BECHamiltonianMU<<<gridSize, noThreads>>>( this->d_psi, this->d_hpsi, this->d_vext, this->d_hpsi, p.Npoints, this->d_h_params);
+    BECHamiltonianMU<<<gridSize, noThreads>>>( PARS[T], this->d_psi, this->d_hpsi, this->d_vext, this->d_hpsi, p.Npoints, this->d_h_params);
     CCE(cudaGetLastError(), "BEC Hamiltonian Kernel launch failed");
 }
 
@@ -143,13 +148,14 @@ void BEConeComponent::alg_calcCos(double *_avgcos, cufftDoubleComplex* _psi ){
 // ------------------------------------ 
 //            CUDA kernels
 // ------------------------------------
-__global__ void BECHamiltonian( cufftDoubleComplex* psi, cufftDoubleComplex* KEpsi,  cufftDoubleComplex* vext, cufftDoubleComplex* h_en, cufftDoubleComplex* h_mu, int N, double* prms){
+__global__ void BECHamiltonian( double time, cufftDoubleComplex* psi, cufftDoubleComplex* KEpsi,  cufftDoubleComplex* vext, cufftDoubleComplex* h_en, cufftDoubleComplex* h_mu, int N, double* prms){
     /* AUXILLIARY VARIABLES */
     int ix = blockIdx.x * blockDim.x + threadIdx.x;
     double rX=0.0;
     double rY=0.0;
     /* PARAMETERS */
-    double a = prms[0];
+    //double a = prms[0];
+    double a = d_quench_as( time, prms );
 
     if (ix < N) {
         /* CALC H_EN */
@@ -165,18 +171,32 @@ __global__ void BECHamiltonian( cufftDoubleComplex* psi, cufftDoubleComplex* KEp
     }
 }
 
-__global__ void BECHamiltonianMU( cufftDoubleComplex* psi, cufftDoubleComplex* KEpsi,  cufftDoubleComplex* vext, cufftDoubleComplex* h_mu, int N, double* prms){
+__global__ void BECHamiltonianMU( double time, cufftDoubleComplex* psi, cufftDoubleComplex* KEpsi,  cufftDoubleComplex* vext, cufftDoubleComplex* h_mu, int N, double* prms){
 
     int ix = blockIdx.x * blockDim.x + threadIdx.x;
     double rX=0.0;
     double rY=0.0;
-    double a = prms[0];
+    //double a = prms[0];
+    double a = d_quench_as(time, prms);
     if (ix < N) {
         rX = (vext[ix].x + 4*pi*a*( psi[ix].x*psi[ix].x + psi[ix].y*psi[ix].y ));
         rY = (vext[ix].y);
         h_mu[ix].x = KEpsi[ix].x  +  rX*psi[ix].x - rY*psi[ix].y;
         h_mu[ix].y = KEpsi[ix].y  +  rX*psi[ix].y + rY*psi[ix].x;
     }      
+}
+
+__device__ double d_quench_as(double time, double* prms){
+    double a0 = prms[0]; // init a
+    double a1 = prms[1]; // 1 final a
+    double a2 = prms[2]; // 2 final a
+    double t1 = prms[3]; // 1 time 
+    double t2 = prms[4]; // 2 time
+    double t3 = prms[5]; // 3 time 
+    if ( 0  < time && time <= t1 ) return a0 + (a1 - a0)/(t1) *time;
+    if ( t1 < time && time <= t2 ) return a1;
+    if ( t2 < time && time <= t3 ) return a1 + (a2 - a1)/(t3-t2)* (time - t2);
+    return a2;
 }
 
 
@@ -252,9 +272,9 @@ void BEConeComponent::call_IM_loop_convergence()
     static char status_buffer[256];
 
     this->alg_calcPx( &PARS[PX], this->d_psi, this->d_aux);
-    PARS[PX] /= PARS[NORM]/p.aho;
+    PARS[PX] /= PARS[NORM]/p.aho*hbar;
 
-    sprintf(status_buffer, "%-7d %-10.4f %-10.1f %-15.12f %-15.12f %-10.3E %-15.12f\n", (int)PARS[ITER], PARS[ITER_TIME], PARS[NORM], PARS[MU], PARS[EN], PARS[EN_PREV]-PARS[EN], PARS[PX]/hbar);
+    sprintf(status_buffer, "%-7d %-10.4f %-10.1f %-15.12f %-15.12f %-10.3E %-15.12f\n", (int)PARS[ITER], PARS[ITER_TIME], PARS[NORM], PARS[MU], PARS[EN], PARS[EN_PREV]-PARS[EN], PARS[PX]);
     output.WriteStatus(status_buffer);
     std::cout << "Convergence reached: dE = " << PARS[EN_PREV]-PARS[EN] << std::endl;
 }
@@ -358,6 +378,18 @@ void BEConeComponent::call_RE_loop_after_step()
         sprintf(status_buffer, "%-15.5f %-10.4f %-10.1f %-15.12f %-15.12f %-15.12f %-15.12f %-10.3E\n", time, PARS[ITER_TIME], PARS[NORM], PARS[MU], PARS[EN], PARS[PX], PARS[AUX1], PARS[EN]-PARS[EN_0]);
         output.WriteStatusReal(status_buffer);
 
+        double a0 = p.a; // init a
+        double a1 = p.a*1.02; // 1 final a
+        double a2 = p.a; // 2 final a
+        double t1 = 1; // 1 time 
+        double t2 = 1; // 2 time
+        double t3 = 2; // 3 time 
+        double aaa=a2;
+        if ( 0  < PARS[T] && PARS[T] <= t1 ) aaa= a0 + (a1 - a0)/(t1) *PARS[T];
+        if ( t1 < PARS[T] && PARS[T] <= t2 ) aaa= a1;
+        if ( t2 < PARS[T] && PARS[T] <= t3 ) aaa= a1 + (a2 - a1)/(t3-t2)* (PARS[T] - t2);
+
+        std::cout << "a: " << aaa/abohr*p.aho << "  Ediff: " << PARS[MU]-PARS[MU_0] << std::endl;
         // TODO:Add energy conservation termination
     }
 

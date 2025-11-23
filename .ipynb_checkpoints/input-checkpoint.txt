@@ -1,0 +1,78 @@
+inprefix        "/home/tomasz.zawislak/data/temp/test_cin_w0_"
+treal           false
+treadvext       false
+vprefix         "../traps/thr_ring_256.wdat"
+
+read_psi        false
+rprefix         "/home/tzawislak/Desktop/PhD/work/analysis/doppler_plots/system/t_a94.6_N160000k_f27_PI1.00_w2.57_"
+tharmonic       true
+
+npart           160000
+mass            163.929170
+omp_parallel            1
+
+tvseed          false
+nseed           1 
+aseed           0.01
+dseed           0
+initpin         0
+
+a               94.4
+a_dd            132.0
+tlhy            true
+
+omx             0.0
+omy             100.0
+omz             100.0
+
+tring           false
+ringRho         15
+
+xmax            48.0
+ymax            18.0
+zmax            20.0
+tRcutoff        -1.
+nx              384
+ny              64
+nz              64
+
+dt              0.0020
+niter           45000
+epsilon_e       1E-34
+
+itmod           1500000
+time0           0.0
+iter0           0
+
+rand_pct        0.010
+crand_pct       0.20
+
+
+trotate         true
+trotateVext     false
+omega           2.570
+tlz             false
+tlz_xy          false
+tfixangmom      false
+AfLZ            0.0
+fLZ             0.0
+
+tpi_soliton     false
+tpi_vortex      true
+api_prc         0.0
+
+tramp           false
+af              94.0
+tf              100.0
+
+tvortex         false
+omegaf          0.0
+
+dipole_x        0.0 
+dipole_y        0.0
+dipole_z        1.0
+
+
+beta            0.90
+npot            2
+rndseed         367

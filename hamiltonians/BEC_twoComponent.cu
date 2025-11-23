@@ -400,7 +400,7 @@ void BECtwoComponent::call_RE_init()
 
     // calculate initial observable values     
     this->alg_calcHpsi();
-    this->alg_calc2Observables(PARS[NORM1], &PARS[MU1_0], &PARS[EN1_0], this->d_psi, this->d_hpsi, this->d_hpsi_en );
+    this->alg_calc2Observables(PARS[NORM1], &PARS[MU1_0], &PARS[EN1_0], this->d_psi,  this->d_hpsi,  this->d_hpsi_en );
     this->alg_calc2Observables(PARS[NORM2], &PARS[MU2_0], &PARS[EN2_0], this->d_psi2, this->d_hpsi2, this->d_hpsi2_en );
     this->alg_calcNorm(&PARS[NORM1], this->d_psi);
     this->alg_calcNorm(&PARS[NORM2], this->d_psi2);
@@ -408,7 +408,7 @@ void BECtwoComponent::call_RE_init()
     PARS[AUX1_1] /= PARS[NORM1];
     this->alg_calcCos( &PARS[AUX1_2], this->d_psi2);
     PARS[AUX1_2] /= PARS[NORM2];
-    this->alg_calcPx( &PARS[PX1], this->d_psi, this->d_aux);
+    this->alg_calcPx( &PARS[PX1], this->d_psi,  this->d_aux);
     this->alg_calcPx( &PARS[PX2], this->d_psi2, this->d_aux2);
     PARS[PX1] /= (PARS[NORM1]*hbar)/p.aho1;
     PARS[PX2] /= (PARS[NORM2]*hbar)/p.aho1;

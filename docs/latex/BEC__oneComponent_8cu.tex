@@ -1,0 +1,35 @@
+\doxysection{BEC\+\_\+one\+Component.\+cu File Reference}
+\hypertarget{BEC__oneComponent_8cu}{}\label{BEC__oneComponent_8cu}\index{BEC\_oneComponent.cu@{BEC\_oneComponent.cu}}
+{\ttfamily \+\#include "{}BEC\+\_\+one\+Component.\+hpp"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{BEC__oneComponent_8cu_afcabe6eb5b6554bef3ea787821bfd081}{BECHamiltonian}} (double time, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}KEpsi, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}vext, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}h\+\_\+en, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}h\+\_\+mu, int N, double \texorpdfstring{$\ast$}{*}prms)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{BEC__oneComponent_8cu_a7e09ebacf61439a88142bec259624ee1}{BECHamiltonian\+MU}} (double time, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}KEpsi, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}vext, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}h\+\_\+mu, int N, double \texorpdfstring{$\ast$}{*}prms)
+\item 
+\+\_\+\+\_\+device\+\_\+\+\_\+ double \doxymbox{\hyperlink{BEC__oneComponent_8cu_ae09f0775fff05b8a9c829ee80b8438ac}{d\+\_\+quench\+\_\+as}} (double time, double \texorpdfstring{$\ast$}{*}prms)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{BEC__oneComponent_8cu_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{BEC__oneComponent_8cu_afcabe6eb5b6554bef3ea787821bfd081}\index{BEC\_oneComponent.cu@{BEC\_oneComponent.cu}!BECHamiltonian@{BECHamiltonian}}
+\index{BECHamiltonian@{BECHamiltonian}!BEC\_oneComponent.cu@{BEC\_oneComponent.cu}}
+\doxysubsubsection{\texorpdfstring{BECHamiltonian()}{BECHamiltonian()}}
+{\footnotesize\ttfamily \label{BEC__oneComponent_8cu_afcabe6eb5b6554bef3ea787821bfd081} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void BECHamiltonian (\begin{DoxyParamCaption}\item[{double}]{time}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{KEpsi}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{vext}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{h\+\_\+en}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{h\+\_\+mu}{, }\item[{int}]{N}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{prms}{}\end{DoxyParamCaption})}
+
+\Hypertarget{BEC__oneComponent_8cu_a7e09ebacf61439a88142bec259624ee1}\index{BEC\_oneComponent.cu@{BEC\_oneComponent.cu}!BECHamiltonianMU@{BECHamiltonianMU}}
+\index{BECHamiltonianMU@{BECHamiltonianMU}!BEC\_oneComponent.cu@{BEC\_oneComponent.cu}}
+\doxysubsubsection{\texorpdfstring{BECHamiltonianMU()}{BECHamiltonianMU()}}
+{\footnotesize\ttfamily \label{BEC__oneComponent_8cu_a7e09ebacf61439a88142bec259624ee1} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void BECHamiltonian\+MU (\begin{DoxyParamCaption}\item[{double}]{time}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{KEpsi}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{vext}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{h\+\_\+mu}{, }\item[{int}]{N}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{prms}{}\end{DoxyParamCaption})}
+
+\Hypertarget{BEC__oneComponent_8cu_ae09f0775fff05b8a9c829ee80b8438ac}\index{BEC\_oneComponent.cu@{BEC\_oneComponent.cu}!d\_quench\_as@{d\_quench\_as}}
+\index{d\_quench\_as@{d\_quench\_as}!BEC\_oneComponent.cu@{BEC\_oneComponent.cu}}
+\doxysubsubsection{\texorpdfstring{d\_quench\_as()}{d\_quench\_as()}}
+{\footnotesize\ttfamily \label{BEC__oneComponent_8cu_ae09f0775fff05b8a9c829ee80b8438ac} 
+\+\_\+\+\_\+device\+\_\+\+\_\+ double d\+\_\+quench\+\_\+as (\begin{DoxyParamCaption}\item[{double}]{time}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{prms}{}\end{DoxyParamCaption})}
+

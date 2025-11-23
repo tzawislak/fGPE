@@ -1,0 +1,3 @@
+# GPE solver
+
+Requires CUDA

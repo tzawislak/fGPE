@@ -1,0 +1,395 @@
+\doxysection{parallel.\+hpp File Reference}
+\hypertarget{parallel_8hpp}{}\label{parallel_8hpp}\index{parallel.hpp@{parallel.hpp}}
+{\ttfamily \+\#include "{}header.\+hpp"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classCuda}{Cuda}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{parallel_8hpp_a4500b15e78543101666ba7579cba64fe}{CCE}} (cuda\+Error\+\_\+t error, const char \texorpdfstring{$\ast$}{*}msg)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_ab5ac990e00ac262fd20c2bc4cd983889}{Laplace}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}v1, double \texorpdfstring{$\ast$}{*}kx, double \texorpdfstring{$\ast$}{*}ky, double \texorpdfstring{$\ast$}{*}kz, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}result, int N, int NX, int NY, int NZ)
+\begin{DoxyCompactList}\small\item\em Calculates Laplace of the input function. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a698ab04635869a45b9f88aa297ce8bb4}{Laplace\+\_\+2}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}v1, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}v2, double \texorpdfstring{$\ast$}{*}kx, double \texorpdfstring{$\ast$}{*}ky, double \texorpdfstring{$\ast$}{*}kz, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}result1, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}result2, int N, int NX, int NY, int NZ)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_aa016cadf3eb59050bb5ae89cc4f88557}{BECVPx}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}v1, double \texorpdfstring{$\ast$}{*}kx, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}result, int N, int NX)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_aebfc475b436252971c7f0520973eab71}{BECOmega\+Lz}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}v1, double \texorpdfstring{$\ast$}{*}kx, double \texorpdfstring{$\ast$}{*}ky, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}result, int N, int NX, int NY)
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \doxymbox{\hyperlink{parallel_8hpp_a2d876a97e85bb3f0af2428f4d515d0a1}{complex\+Sqrt}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} z)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a6338305298219c6ea489906933aabbe2}{Normalize\+Psi}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}input, double \texorpdfstring{$\ast$}{*}output, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_ab076cab0282bef7bb2dbccbc0cca0aa1}{Calculate\+Observable}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}Opsi, double \texorpdfstring{$\ast$}{*}output, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a4a236f8fec58cc66b45265a6c9b8b7b6}{Calculate2\+Observables}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}O1psi, double \texorpdfstring{$\ast$}{*}output1, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}O2psi, double \texorpdfstring{$\ast$}{*}output2, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a1e2c7240af1d2040877b2f5970540d7d}{Calc\+Average\+Cos}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi1, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi2, double \texorpdfstring{$\ast$}{*}x, double \texorpdfstring{$\ast$}{*}output, double L, int NX, int N, int sign=1)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a792e9b073642469a4333b30c75592492}{Calc\+Average\+Cos}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi, double \texorpdfstring{$\ast$}{*}x, double \texorpdfstring{$\ast$}{*}output, double L, int NX, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a0ca5f33a02394eb673aaf3580062e06b}{Scalar\+Multiply}} (double \texorpdfstring{$\ast$}{*}v1, double a, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a15908181174e0bed3ac760ca5b4fcbc3}{Scalar\+Multiply}} (double \texorpdfstring{$\ast$}{*}vout, double \texorpdfstring{$\ast$}{*}vin, double a, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a484665e01b7a721e51df114eefa5f977}{Scalar\+Multiply}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}v1, double a, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_aaefd9784d5bff5395fa2b62d5759c888}{Scalar\+Multiply}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}vin, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}vout, double a, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_ad365d99af36a2a1ef9741457d2664526}{Scalar\+Multiply}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}vin, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}vout, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} a, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_abde90d7436caed4c9c08bdc4652000de}{Append\+Array}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}v2, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} a, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}v1, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a20485969425a17fa114d379fa7140c92}{Append\+Array}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}vout, double a, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}v1, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_ac2a5197f3ee4a5e05a37a01e29433902}{Square\+Array}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}in, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}out, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a41f80efd17092953c8a0d230542c4525}{Square\+Array}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}in, double \texorpdfstring{$\ast$}{*}out, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a2fa43c3ad61b71f9182eee5cc63dfd4d}{Multiply\+Arrays}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}a, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}b, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}result, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a14a67e334ab8dcb8e4c99624276d8a7c}{Multiply\+Arrays}} (double \texorpdfstring{$\ast$}{*}a, double \texorpdfstring{$\ast$}{*}b, double \texorpdfstring{$\ast$}{*}result, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_abd4214feaa6a14473500bae5b7e5bb8a}{Multiply\+ArraysX}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}a, double \texorpdfstring{$\ast$}{*}b, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}result, int N, int NX)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_add1fa5becf8b141c42a7d3131328d006}{Multiply\+ArraysY}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}a, double \texorpdfstring{$\ast$}{*}b, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}result, int N, int NX, int NY)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_aac657026a9c6206f49ca6d3c1af63588}{Sum\+Arrays}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}vout, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}v2, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} a, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}v1, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_afe86811e3f519392cf6fb270b3c7c038}{Sum\+RK4}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi\+\_\+out, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi\+\_\+in, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}k1, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}k2, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}k3, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}k4, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_adcf0b862378de34cea12a19d79b85918}{CalcK}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}k, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}hpsi, double dt, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_af79f55e29cdad66ac680f459cb3b3dc8}{Update\+RKStep}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi\+\_\+old, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}k, double sc, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a533c9413e097b08a0e37bc6eb5137753}{Update\+RKStep}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi\+\_\+old, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}hpsi, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} n\+Idt, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a384d4dd3e442d037fc9ae798a1cac2f2}{Final\+RKStep}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi\+\_\+old, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}\+\_\+k, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}hpsi, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} n\+Idt, int N)
+\begin{DoxyCompactList}\small\item\em Sums all RK4 steps to a new wavefunction for a spin mixture. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a55329103e694a495b4888545292d4077}{BECUpdate\+Psi}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}newpsi, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}oldpsi, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}hpsi, double mu, double dt, double beta, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a7fa0e2b98e400fc346e31da15f36d663}{sum\+Reduction\+Kernel}} (double \texorpdfstring{$\ast$}{*}input, double \texorpdfstring{$\ast$}{*}output, int size)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a33d9cef305c2c474df7b399259f615a3}{Dipole\+Dipole\+Interaction}} (double \texorpdfstring{$\ast$}{*}kx, double \texorpdfstring{$\ast$}{*}ky, double \texorpdfstring{$\ast$}{*}kz, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}vdd, double a\+\_\+dd, double d\+\_\+x, double d\+\_\+y, double d\+\_\+z, int N, int NX, int NY, int NZ)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a2938f39c0f3cfa6f76a83886b2e5cd3b}{Soft\+Core\+Interaction\+\_\+1D}} (double \texorpdfstring{$\ast$}{*}kx, double \texorpdfstring{$\ast$}{*}ky, double \texorpdfstring{$\ast$}{*}kz, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}vtilde, int N, int NX, int NY, int NZ, double \texorpdfstring{$\ast$}{*}params)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a2809b646119de3f8efa32477fb45821d}{Soft\+Core\+Interaction\+\_\+2D}} (double \texorpdfstring{$\ast$}{*}kx, double \texorpdfstring{$\ast$}{*}ky, double \texorpdfstring{$\ast$}{*}kz, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}vtilde, int N, int NX, int NY, int NZ, double \texorpdfstring{$\ast$}{*}params)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_ae83f56d6d615cf42daeefebbff3f55ec}{Soft\+Core\+Interaction\+\_\+3D}} (double \texorpdfstring{$\ast$}{*}kx, double \texorpdfstring{$\ast$}{*}ky, double \texorpdfstring{$\ast$}{*}kz, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}vtilde, int N, int NX, int NY, int NZ, double \texorpdfstring{$\ast$}{*}params)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a1ce673950dababbf55941590d544a9ed}{Calculate\+Relative\+Phase}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi1, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi2, double \texorpdfstring{$\ast$}{*}output, int N)
+\item 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void \doxymbox{\hyperlink{parallel_8hpp_a8634dec613afa25ada6b72a82c9ef4b8}{Calculate\+Dsz\+Dt}} (\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi1, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}psi2, double \texorpdfstring{$\ast$}{*}output, int N)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{parallel_8hpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{parallel_8hpp_abde90d7436caed4c9c08bdc4652000de}\index{parallel.hpp@{parallel.hpp}!AppendArray@{AppendArray}}
+\index{AppendArray@{AppendArray}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{AppendArray()}{AppendArray()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_abde90d7436caed4c9c08bdc4652000de} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Append\+Array (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{v2}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}}]{a}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{v1}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a20485969425a17fa114d379fa7140c92}\index{parallel.hpp@{parallel.hpp}!AppendArray@{AppendArray}}
+\index{AppendArray@{AppendArray}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{AppendArray()}{AppendArray()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a20485969425a17fa114d379fa7140c92} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Append\+Array (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{vout}{, }\item[{double}]{a}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{v1}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_aebfc475b436252971c7f0520973eab71}\index{parallel.hpp@{parallel.hpp}!BECOmegaLz@{BECOmegaLz}}
+\index{BECOmegaLz@{BECOmegaLz}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{BECOmegaLz()}{BECOmegaLz()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_aebfc475b436252971c7f0520973eab71} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void BECOmega\+Lz (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{v1}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{kx}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{ky}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{int}]{N}{, }\item[{int}]{NX}{, }\item[{int}]{NY}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a55329103e694a495b4888545292d4077}\index{parallel.hpp@{parallel.hpp}!BECUpdatePsi@{BECUpdatePsi}}
+\index{BECUpdatePsi@{BECUpdatePsi}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{BECUpdatePsi()}{BECUpdatePsi()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a55329103e694a495b4888545292d4077} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void BECUpdate\+Psi (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{newpsi}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{oldpsi}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{hpsi}{, }\item[{double}]{mu}{, }\item[{double}]{dt}{, }\item[{double}]{beta}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_aa016cadf3eb59050bb5ae89cc4f88557}\index{parallel.hpp@{parallel.hpp}!BECVPx@{BECVPx}}
+\index{BECVPx@{BECVPx}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{BECVPx()}{BECVPx()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_aa016cadf3eb59050bb5ae89cc4f88557} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void BECVPx (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{v1}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{kx}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{int}]{N}{, }\item[{int}]{NX}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a792e9b073642469a4333b30c75592492}\index{parallel.hpp@{parallel.hpp}!CalcAverageCos@{CalcAverageCos}}
+\index{CalcAverageCos@{CalcAverageCos}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{CalcAverageCos()}{CalcAverageCos()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a792e9b073642469a4333b30c75592492} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Calc\+Average\+Cos (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{x}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{double}]{L}{, }\item[{int}]{NX}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a1e2c7240af1d2040877b2f5970540d7d}\index{parallel.hpp@{parallel.hpp}!CalcAverageCos@{CalcAverageCos}}
+\index{CalcAverageCos@{CalcAverageCos}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{CalcAverageCos()}{CalcAverageCos()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a1e2c7240af1d2040877b2f5970540d7d} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Calc\+Average\+Cos (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi1}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi2}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{x}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{double}]{L}{, }\item[{int}]{NX}{, }\item[{int}]{N}{, }\item[{int}]{sign}{ = {\ttfamily 1}}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_adcf0b862378de34cea12a19d79b85918}\index{parallel.hpp@{parallel.hpp}!CalcK@{CalcK}}
+\index{CalcK@{CalcK}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{CalcK()}{CalcK()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_adcf0b862378de34cea12a19d79b85918} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void CalcK (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{k}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{hpsi}{, }\item[{double}]{dt}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a4a236f8fec58cc66b45265a6c9b8b7b6}\index{parallel.hpp@{parallel.hpp}!Calculate2Observables@{Calculate2Observables}}
+\index{Calculate2Observables@{Calculate2Observables}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{Calculate2Observables()}{Calculate2Observables()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a4a236f8fec58cc66b45265a6c9b8b7b6} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Calculate2\+Observables (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{O1psi}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{output1}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{O2psi}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{output2}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a8634dec613afa25ada6b72a82c9ef4b8}\index{parallel.hpp@{parallel.hpp}!CalculateDszDt@{CalculateDszDt}}
+\index{CalculateDszDt@{CalculateDszDt}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{CalculateDszDt()}{CalculateDszDt()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a8634dec613afa25ada6b72a82c9ef4b8} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Calculate\+Dsz\+Dt (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi1}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi2}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_ab076cab0282bef7bb2dbccbc0cca0aa1}\index{parallel.hpp@{parallel.hpp}!CalculateObservable@{CalculateObservable}}
+\index{CalculateObservable@{CalculateObservable}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{CalculateObservable()}{CalculateObservable()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_ab076cab0282bef7bb2dbccbc0cca0aa1} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Calculate\+Observable (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{Opsi}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a1ce673950dababbf55941590d544a9ed}\index{parallel.hpp@{parallel.hpp}!CalculateRelativePhase@{CalculateRelativePhase}}
+\index{CalculateRelativePhase@{CalculateRelativePhase}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{CalculateRelativePhase()}{CalculateRelativePhase()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a1ce673950dababbf55941590d544a9ed} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Calculate\+Relative\+Phase (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi1}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi2}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a4500b15e78543101666ba7579cba64fe}\index{parallel.hpp@{parallel.hpp}!CCE@{CCE}}
+\index{CCE@{CCE}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{CCE()}{CCE()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a4500b15e78543101666ba7579cba64fe} 
+void CCE (\begin{DoxyParamCaption}\item[{cuda\+Error\+\_\+t}]{error}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a2d876a97e85bb3f0af2428f4d515d0a1}\index{parallel.hpp@{parallel.hpp}!complexSqrt@{complexSqrt}}
+\index{complexSqrt@{complexSqrt}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{complexSqrt()}{complexSqrt()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a2d876a97e85bb3f0af2428f4d515d0a1} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} complex\+Sqrt (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}}]{z}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a33d9cef305c2c474df7b399259f615a3}\index{parallel.hpp@{parallel.hpp}!DipoleDipoleInteraction@{DipoleDipoleInteraction}}
+\index{DipoleDipoleInteraction@{DipoleDipoleInteraction}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{DipoleDipoleInteraction()}{DipoleDipoleInteraction()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a33d9cef305c2c474df7b399259f615a3} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Dipole\+Dipole\+Interaction (\begin{DoxyParamCaption}\item[{double \texorpdfstring{$\ast$}{*}}]{kx}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{ky}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{kz}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{vdd}{, }\item[{double}]{a\+\_\+dd}{, }\item[{double}]{d\+\_\+x}{, }\item[{double}]{d\+\_\+y}{, }\item[{double}]{d\+\_\+z}{, }\item[{int}]{N}{, }\item[{int}]{NX}{, }\item[{int}]{NY}{, }\item[{int}]{NZ}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a384d4dd3e442d037fc9ae798a1cac2f2}\index{parallel.hpp@{parallel.hpp}!FinalRKStep@{FinalRKStep}}
+\index{FinalRKStep@{FinalRKStep}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{FinalRKStep()}{FinalRKStep()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a384d4dd3e442d037fc9ae798a1cac2f2} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Final\+RKStep (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi\+\_\+old}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{\+\_\+k}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{hpsi}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}}]{n\+Idt}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+
+
+Sums all RK4 steps to a new wavefunction for a spin mixture. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em psi} & New wavefunction (type:\+ (cufft\+Double\+Complex\texorpdfstring{$\ast$}{*}, cufft\+Double\+Complex\texorpdfstring{$\ast$}{*}) ) \\
+\hline
+{\em psi\+\_\+old} & Old wavefunction (type:\+ (cufft\+Double\+Complex\texorpdfstring{$\ast$}{*}, cufft\+Double\+Complex\texorpdfstring{$\ast$}{*}) ) \\
+\hline
+{\em hpsi} & Last H\texorpdfstring{$\vert$}{|}psi\texorpdfstring{$>$}{>} to be added as the fourth step of RK (type:\+ cufft\+Double\+Complex\texorpdfstring{$\ast$}{*})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Here h12 is meant to be -\/\textbackslash{}hbar\textbackslash{}\+Omega/\+2 -- a real number. To introduce other coupling, one needs to replace the double h12 with a complex arrays (one for h12 and the other for h21) 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Warnings about misuse, performance issues, or other concerns. 
+\end{DoxyWarning}
+\begin{DoxyPrecond}{Precondition}
+Precondition that must hold true before calling the function. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Postcondition that will be true after calling the function.
+\end{DoxyPostcond}
+Sums all RK4 steps to a new wavefunction
+
+
+\begin{DoxyParams}{Parameters}
+{\em psi} & New wavefunction (type:\+ cufft\+Double\+Complex\texorpdfstring{$\ast$}{*}) \\
+\hline
+{\em psi\+\_\+old} & Old wavefunction (type:\+ cufft\+Double\+Complex\texorpdfstring{$\ast$}{*}) \\
+\hline
+{\em \+\_\+k} & Sum of previous RK steps (1-\/3) yet to be multiplied by I (type:\+ cufft\+Double\+Complex\texorpdfstring{$\ast$}{*}) \\
+\hline
+{\em hpsi} & Last H\texorpdfstring{$\vert$}{|}psi\texorpdfstring{$>$}{>} to be added as the fourth step of RK (type:\+ cufft\+Double\+Complex\texorpdfstring{$\ast$}{*})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Additional notes or caveats about the function. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Warnings about misuse, performance issues, or other concerns. 
+\end{DoxyWarning}
+\begin{DoxyPrecond}{Precondition}
+Precondition that must hold true before calling the function. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Postcondition that will be true after calling the function. 
+\end{DoxyPostcond}
+\Hypertarget{parallel_8hpp_ab5ac990e00ac262fd20c2bc4cd983889}\index{parallel.hpp@{parallel.hpp}!Laplace@{Laplace}}
+\index{Laplace@{Laplace}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{Laplace()}{Laplace()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_ab5ac990e00ac262fd20c2bc4cd983889} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Laplace (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{v1}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{kx}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{ky}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{kz}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{int}]{N}{, }\item[{int}]{NX}{, }\item[{int}]{NY}{, }\item[{int}]{NZ}{}\end{DoxyParamCaption})}
+
+
+
+Calculates Laplace of the input function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em v1} & 3D function (type:\+ cufft\+Double\+Complex\texorpdfstring{$\ast$}{*}) \\
+\hline
+kx & {\em \$x,\$} & component of the \$k\$ vector represented by an array of length NX (type:\+ double\texorpdfstring{$\ast$}{*}) \\
+\hline
+ky & {\em \$y,\$} & component of the \$k\$ vector represented by an array of length NY (type:\+ double\texorpdfstring{$\ast$}{*}) \\
+\hline
+kz & {\em \$z,\$} & component of the \$k\$ vector represented by an array of length NZ (type:\+ double\texorpdfstring{$\ast$}{*}) \\
+\hline
+ & {\em result} & 3D Laplace of the input function (type:\+ cufft\+Double\+Complex\texorpdfstring{$\ast$}{*}) \\
+\hline
+ & {\em N} & number of mesh points (NX\$\textbackslash{}cdot\$\+NY\$\textbackslash{}cdot\$\+NZ) (type:\+ int) \\
+\hline
+ & {\em NX} & number of mesh points in \$x\$ direction (type:\+ int) \\
+\hline
+ & {\em NY} & number of mesh points in \$y\$ direction (type:\+ int) \\
+\hline
+ & {\em NZ} & number of mesh points in \$z\$ direction (type:\+ int) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{parallel_8hpp_a698ab04635869a45b9f88aa297ce8bb4}\index{parallel.hpp@{parallel.hpp}!Laplace\_2@{Laplace\_2}}
+\index{Laplace\_2@{Laplace\_2}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{Laplace\_2()}{Laplace\_2()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a698ab04635869a45b9f88aa297ce8bb4} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Laplace\+\_\+2 (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{v1}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{v2}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{kx}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{ky}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{kz}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{result1}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{result2}{, }\item[{int}]{N}{, }\item[{int}]{NX}{, }\item[{int}]{NY}{, }\item[{int}]{NZ}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a2fa43c3ad61b71f9182eee5cc63dfd4d}\index{parallel.hpp@{parallel.hpp}!MultiplyArrays@{MultiplyArrays}}
+\index{MultiplyArrays@{MultiplyArrays}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{MultiplyArrays()}{MultiplyArrays()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a2fa43c3ad61b71f9182eee5cc63dfd4d} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Multiply\+Arrays (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{a}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{b}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a14a67e334ab8dcb8e4c99624276d8a7c}\index{parallel.hpp@{parallel.hpp}!MultiplyArrays@{MultiplyArrays}}
+\index{MultiplyArrays@{MultiplyArrays}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{MultiplyArrays()}{MultiplyArrays()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a14a67e334ab8dcb8e4c99624276d8a7c} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Multiply\+Arrays (\begin{DoxyParamCaption}\item[{double \texorpdfstring{$\ast$}{*}}]{a}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{b}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_abd4214feaa6a14473500bae5b7e5bb8a}\index{parallel.hpp@{parallel.hpp}!MultiplyArraysX@{MultiplyArraysX}}
+\index{MultiplyArraysX@{MultiplyArraysX}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{MultiplyArraysX()}{MultiplyArraysX()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_abd4214feaa6a14473500bae5b7e5bb8a} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Multiply\+ArraysX (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{a}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{b}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{int}]{N}{, }\item[{int}]{NX}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_add1fa5becf8b141c42a7d3131328d006}\index{parallel.hpp@{parallel.hpp}!MultiplyArraysY@{MultiplyArraysY}}
+\index{MultiplyArraysY@{MultiplyArraysY}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{MultiplyArraysY()}{MultiplyArraysY()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_add1fa5becf8b141c42a7d3131328d006} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Multiply\+ArraysY (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{a}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{b}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{int}]{N}{, }\item[{int}]{NX}{, }\item[{int}]{NY}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a6338305298219c6ea489906933aabbe2}\index{parallel.hpp@{parallel.hpp}!NormalizePsi@{NormalizePsi}}
+\index{NormalizePsi@{NormalizePsi}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{NormalizePsi()}{NormalizePsi()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a6338305298219c6ea489906933aabbe2} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Normalize\+Psi (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{input}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a484665e01b7a721e51df114eefa5f977}\index{parallel.hpp@{parallel.hpp}!ScalarMultiply@{ScalarMultiply}}
+\index{ScalarMultiply@{ScalarMultiply}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{ScalarMultiply()}{ScalarMultiply()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a484665e01b7a721e51df114eefa5f977} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Scalar\+Multiply (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{v1}{, }\item[{double}]{a}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_ad365d99af36a2a1ef9741457d2664526}\index{parallel.hpp@{parallel.hpp}!ScalarMultiply@{ScalarMultiply}}
+\index{ScalarMultiply@{ScalarMultiply}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{ScalarMultiply()}{ScalarMultiply()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_ad365d99af36a2a1ef9741457d2664526} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Scalar\+Multiply (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{vin}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{vout}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}}]{a}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_aaefd9784d5bff5395fa2b62d5759c888}\index{parallel.hpp@{parallel.hpp}!ScalarMultiply@{ScalarMultiply}}
+\index{ScalarMultiply@{ScalarMultiply}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{ScalarMultiply()}{ScalarMultiply()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_aaefd9784d5bff5395fa2b62d5759c888} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Scalar\+Multiply (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{vin}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{vout}{, }\item[{double}]{a}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a0ca5f33a02394eb673aaf3580062e06b}\index{parallel.hpp@{parallel.hpp}!ScalarMultiply@{ScalarMultiply}}
+\index{ScalarMultiply@{ScalarMultiply}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{ScalarMultiply()}{ScalarMultiply()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a0ca5f33a02394eb673aaf3580062e06b} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Scalar\+Multiply (\begin{DoxyParamCaption}\item[{double \texorpdfstring{$\ast$}{*}}]{v1}{, }\item[{double}]{a}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a15908181174e0bed3ac760ca5b4fcbc3}\index{parallel.hpp@{parallel.hpp}!ScalarMultiply@{ScalarMultiply}}
+\index{ScalarMultiply@{ScalarMultiply}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{ScalarMultiply()}{ScalarMultiply()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a15908181174e0bed3ac760ca5b4fcbc3} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Scalar\+Multiply (\begin{DoxyParamCaption}\item[{double \texorpdfstring{$\ast$}{*}}]{vout}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{vin}{, }\item[{double}]{a}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a2938f39c0f3cfa6f76a83886b2e5cd3b}\index{parallel.hpp@{parallel.hpp}!SoftCoreInteraction\_1D@{SoftCoreInteraction\_1D}}
+\index{SoftCoreInteraction\_1D@{SoftCoreInteraction\_1D}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{SoftCoreInteraction\_1D()}{SoftCoreInteraction\_1D()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a2938f39c0f3cfa6f76a83886b2e5cd3b} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Soft\+Core\+Interaction\+\_\+1D (\begin{DoxyParamCaption}\item[{double \texorpdfstring{$\ast$}{*}}]{kx}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{ky}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{kz}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{vtilde}{, }\item[{int}]{N}{, }\item[{int}]{NX}{, }\item[{int}]{NY}{, }\item[{int}]{NZ}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{params}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a2809b646119de3f8efa32477fb45821d}\index{parallel.hpp@{parallel.hpp}!SoftCoreInteraction\_2D@{SoftCoreInteraction\_2D}}
+\index{SoftCoreInteraction\_2D@{SoftCoreInteraction\_2D}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{SoftCoreInteraction\_2D()}{SoftCoreInteraction\_2D()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a2809b646119de3f8efa32477fb45821d} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Soft\+Core\+Interaction\+\_\+2D (\begin{DoxyParamCaption}\item[{double \texorpdfstring{$\ast$}{*}}]{kx}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{ky}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{kz}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{vtilde}{, }\item[{int}]{N}{, }\item[{int}]{NX}{, }\item[{int}]{NY}{, }\item[{int}]{NZ}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{params}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_ae83f56d6d615cf42daeefebbff3f55ec}\index{parallel.hpp@{parallel.hpp}!SoftCoreInteraction\_3D@{SoftCoreInteraction\_3D}}
+\index{SoftCoreInteraction\_3D@{SoftCoreInteraction\_3D}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{SoftCoreInteraction\_3D()}{SoftCoreInteraction\_3D()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_ae83f56d6d615cf42daeefebbff3f55ec} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Soft\+Core\+Interaction\+\_\+3D (\begin{DoxyParamCaption}\item[{double \texorpdfstring{$\ast$}{*}}]{kx}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{ky}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{kz}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{vtilde}{, }\item[{int}]{N}{, }\item[{int}]{NX}{, }\item[{int}]{NY}{, }\item[{int}]{NZ}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{params}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_ac2a5197f3ee4a5e05a37a01e29433902}\index{parallel.hpp@{parallel.hpp}!SquareArray@{SquareArray}}
+\index{SquareArray@{SquareArray}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{SquareArray()}{SquareArray()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_ac2a5197f3ee4a5e05a37a01e29433902} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Square\+Array (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{in}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{out}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a41f80efd17092953c8a0d230542c4525}\index{parallel.hpp@{parallel.hpp}!SquareArray@{SquareArray}}
+\index{SquareArray@{SquareArray}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{SquareArray()}{SquareArray()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a41f80efd17092953c8a0d230542c4525} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Square\+Array (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{in}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{out}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_aac657026a9c6206f49ca6d3c1af63588}\index{parallel.hpp@{parallel.hpp}!SumArrays@{SumArrays}}
+\index{SumArrays@{SumArrays}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{SumArrays()}{SumArrays()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_aac657026a9c6206f49ca6d3c1af63588} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Sum\+Arrays (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{vout}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{v2}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}}]{a}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{v1}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a7fa0e2b98e400fc346e31da15f36d663}\index{parallel.hpp@{parallel.hpp}!sumReductionKernel@{sumReductionKernel}}
+\index{sumReductionKernel@{sumReductionKernel}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{sumReductionKernel()}{sumReductionKernel()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a7fa0e2b98e400fc346e31da15f36d663} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void sum\+Reduction\+Kernel (\begin{DoxyParamCaption}\item[{double \texorpdfstring{$\ast$}{*}}]{input}{, }\item[{double \texorpdfstring{$\ast$}{*}}]{output}{, }\item[{int}]{size}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_afe86811e3f519392cf6fb270b3c7c038}\index{parallel.hpp@{parallel.hpp}!SumRK4@{SumRK4}}
+\index{SumRK4@{SumRK4}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{SumRK4()}{SumRK4()}}
+{\footnotesize\ttfamily \label{parallel_8hpp_afe86811e3f519392cf6fb270b3c7c038} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Sum\+RK4 (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi\+\_\+out}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi\+\_\+in}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{k1}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{k2}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{k3}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{k4}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_a533c9413e097b08a0e37bc6eb5137753}\index{parallel.hpp@{parallel.hpp}!UpdateRKStep@{UpdateRKStep}}
+\index{UpdateRKStep@{UpdateRKStep}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{UpdateRKStep()}{UpdateRKStep()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_a533c9413e097b08a0e37bc6eb5137753} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Update\+RKStep (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi\+\_\+old}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{hpsi}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}}]{n\+Idt}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+\Hypertarget{parallel_8hpp_af79f55e29cdad66ac680f459cb3b3dc8}\index{parallel.hpp@{parallel.hpp}!UpdateRKStep@{UpdateRKStep}}
+\index{UpdateRKStep@{UpdateRKStep}!parallel.hpp@{parallel.hpp}}
+\doxysubsubsection{\texorpdfstring{UpdateRKStep()}{UpdateRKStep()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{parallel_8hpp_af79f55e29cdad66ac680f459cb3b3dc8} 
+\+\_\+\+\_\+global\+\_\+\+\_\+ void Update\+RKStep (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{psi\+\_\+old}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{k}{, }\item[{double}]{sc}{, }\item[{int}]{N}{}\end{DoxyParamCaption})}
+

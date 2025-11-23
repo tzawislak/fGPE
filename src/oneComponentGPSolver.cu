@@ -39,13 +39,14 @@ void OneComponentGPSolver::runImagTimeEvol(){
     //
     //  Imaginary time evolution loop
     //
+    //PARS[AVG_TIME]=0;
     for (int iteration = 0; iteration < p.niter; ++iteration)
     {
         // begin time measurement
         auto start = std::chrono::high_resolution_clock::now();
 
         PARS[EN_PREV] = PARS[EN];
-
+        PARS[T] = iteration * dt;
         // Execute code before the step
         this->call_IM_loop_before_step();
         /*
@@ -127,13 +128,12 @@ void OneComponentGPSolver::runRealTimeEvol(){
     // rename an array pointer
     cufftDoubleComplex *d_k = this->d_psi_new;  
 
-
     double dt=p.dt*p.omho/1000;
 
     // auxilliary numbers
     cufftDoubleComplex m05Idt = {0.0, -0.5*dt}; 
     cufftDoubleComplex mIdt =   {0.0, -1.0*dt}; 
-    cufftDoubleComplex m16Idt =   {0.0, (-1.0*dt)/6.0}; 
+    cufftDoubleComplex m16Idt = {0.0, (-1.0*dt)/6.0}; 
 
     // Execute code before the RETE loop
     this->call_RE_init();
@@ -141,11 +141,16 @@ void OneComponentGPSolver::runRealTimeEvol(){
     //
     //  Run real time evolution
     //
-    for ( int iteration = 1; iteration < p.niter; ++iteration)
+    
+    PARS[T] = 0;
+    PARS[AVG_TIME] = 0;
+    for ( int iteration = 0; iteration < p.niter; ++iteration)
     {
 
         auto start = std::chrono::high_resolution_clock::now();
-
+        // update the current time of the evolution
+        //PARS[T] = iteration * dt; // in the code units
+        PARS[ITER]++;
         // Execute code before the step
         this->call_RE_loop_before_step();
         /*
@@ -157,12 +162,14 @@ void OneComponentGPSolver::runRealTimeEvol(){
         CCE(cudaMemcpy(this->d_psi_old, this->d_psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at memcpy: psi_old");
         
         //
-        // RK4 steps (I think the current implementation is only for time-independent H (see RK4 ))
+        // RK4 steps (I think the current implementation is only for time-independent H (see RK4 ) ---> Add another variable to PARS to keep the current time for the partial steps in RK4)
         // 
         this->alg_calcHpsiMU();
-        CCE(cudaMemcpy(d_k, this->d_hpsi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at memcpy: psi_old");
+        CCE(cudaMemcpy(d_k, this->d_hpsi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at memcpy: d_k");
         UpdateRKStep<<<gridSize, noThreads>>>( this->d_psi, this->d_psi_old, this->d_hpsi, m05Idt, p.Npoints);
 
+
+        PARS[T] = (iteration + 0.5)* dt; 
         this->alg_calcHpsiMU();
         UpdateRKStep<<<gridSize, noThreads>>>( d_k, d_k, this->d_hpsi, 2.0 , p.Npoints);
         UpdateRKStep<<<gridSize, noThreads>>>( this->d_psi, this->d_psi_old, this->d_hpsi, m05Idt, p.Npoints);
@@ -171,7 +178,9 @@ void OneComponentGPSolver::runRealTimeEvol(){
         UpdateRKStep<<<gridSize, noThreads>>>( d_k, d_k, this->d_hpsi, 2.0 , p.Npoints);
         UpdateRKStep<<<gridSize, noThreads>>>( this->d_psi, this->d_psi_old, this->d_hpsi, mIdt, p.Npoints);
      
+        PARS[T] = (iteration + 1)* dt; 
         this->alg_calcHpsi();
+        // The last step of the RK4 is within FinalRKStep
         FinalRKStep<<<gridSize, noThreads>>>( this->d_psi, this->d_psi_old, d_k, this->d_hpsi, mIdt, p.Npoints);
     
         // Do not normalize the state after the real time evolution
@@ -186,11 +195,11 @@ void OneComponentGPSolver::runRealTimeEvol(){
         std::chrono::duration<double, std::milli> iter_time = end - start;
         PARS[AVG_TIME] += iter_time.count();
         PARS[ITER_TIME] = iter_time.count();
-
+        //std::cout << iteration << " " << iter_time.count() << "  " << PARS[ITER_TIME] << std::endl; 
         // Execute code after the step
         this->call_RE_loop_after_step();
 
-        PARS[ITER]++;
+        
 
 
     } // END of the real time evolution

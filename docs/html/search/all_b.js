@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['laplace_0',['Laplace',['../parallel_8hpp.html#ab5ac990e00ac262fd20c2bc4cd983889',1,'Laplace(cufftDoubleComplex *v1, double *kx, double *ky, double *kz, cufftDoubleComplex *result, int N, int NX, int NY, int NZ):&#160;parallel.cu'],['../parallel_8cu.html#ab5ac990e00ac262fd20c2bc4cd983889',1,'Laplace(cufftDoubleComplex *v1, double *kx, double *ky, double *kz, cufftDoubleComplex *result, int N, int NX, int NY, int NZ):&#160;parallel.cu']]],
+  ['laplace_5f2_1',['Laplace_2',['../parallel_8hpp.html#a698ab04635869a45b9f88aa297ce8bb4',1,'Laplace_2(cufftDoubleComplex *v1, cufftDoubleComplex *v2, double *kx, double *ky, double *kz, cufftDoubleComplex *result1, cufftDoubleComplex *result2, int N, int NX, int NY, int NZ):&#160;parallel.cu'],['../parallel_8cu.html#a698ab04635869a45b9f88aa297ce8bb4',1,'Laplace_2(cufftDoubleComplex *v1, cufftDoubleComplex *v2, double *kx, double *ky, double *kz, cufftDoubleComplex *result1, cufftDoubleComplex *result2, int N, int NX, int NY, int NZ):&#160;parallel.cu']]],
+  ['lz_2',['LZ',['../classOneComponentGPSolver.html#ad13244911289b08178cb172ce353decea9f84f182eff62d66b122acf8dc4a98c2',1,'OneComponentGPSolver']]]
+];

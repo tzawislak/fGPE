@@ -1,0 +1,351 @@
+\doxysection{Cuda Class Reference}
+\hypertarget{classCuda}{}\label{classCuda}\index{Cuda@{Cuda}}
+
+
+{\ttfamily \+\#include $<$parallel.\+hpp$>$}
+
+Inheritance diagram for Cuda:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classCuda}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classCuda_ad660ac32e9921f93d73959e9c8ecff4a}{Cuda}} ()
+\item 
+\doxymbox{\hyperlink{classCuda_a3e11291c10ea32f65b62e968ae904dbd}{Cuda}} (const int \texorpdfstring{$\ast$}{*}NX, int nth, bool \+\_\+is2comp)
+\item 
+void \doxymbox{\hyperlink{classCuda_a92b6d98cbc896d3901e124d6f7c0a7ce}{Print\+GPUInfo}} ()
+\item 
+\doxymbox{\hyperlink{classCuda_a41110b12fb33a25921242039d223d246}{\texorpdfstring{$\sim$}{\string~}\+Cuda}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+cufft\+Handle \doxymbox{\hyperlink{classCuda_a92aa85394f93c2df2b9adc526ea67f90}{plan\+Forward}}
+\item 
+cufft\+Handle \doxymbox{\hyperlink{classCuda_a98a927ee86884adbd4cdc38f01de56ad}{plan\+Backward}}
+\item 
+const int \doxymbox{\hyperlink{classCuda_a9fac6c909d21b3b5d397dd9556ff4695}{is\+Two\+Component}}
+\item 
+int \doxymbox{\hyperlink{classCuda_a262f91ffe328ef67e80c31f93939ae1c}{size}}
+\item 
+int \doxymbox{\hyperlink{classCuda_a8e1bfa310e754c793b0b5f0de366dd6c}{no\+Threads}}
+\item 
+int \doxymbox{\hyperlink{classCuda_a6d69ef3ba9e9528eb977df07129e665a}{grid\+Size}}
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_ab93253f19917125e9f8e0dcd339166f7}{d\+\_\+psi\+\_\+old}}
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a51d05d8c5a870beff125e12e790ab6bc}{d\+\_\+psi}}
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_ad85cf9bc06a0e50ffc853d5ed1f0bb73}{d\+\_\+psi\+\_\+new}}
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_ad9a3e8d70b8499c40db7880029e23363}{d\+\_\+hpsi}}
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_aab915034fb58bd195d1765a81ce28939}{d\+\_\+hpsi\+\_\+en}}
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a386eae4f461827528f254c69135d0ee8}{d\+\_\+vext}}
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a634d5c85471f7f45a76fc07fe9f4d1fe}{d\+\_\+aux}}
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_aa1658bebb0109d85f8f67a19f26012e9}{d\+\_\+psi2\+\_\+old}}
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_ab18e215e71cb3dc5067973c7bd0b50fc}{d\+\_\+psi2}}
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a41d4b3dbd6040b246f66f8f65f21be66}{d\+\_\+psi2\+\_\+new}}
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a531e6661d59d36ee234fa190aa0e1bb1}{d\+\_\+hpsi2}}
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a6797cf87504aff546ebd996f59ea2254}{d\+\_\+hpsi2\+\_\+en}}
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a6065a507fa46a08eb4ddd0223908fc31}{d\+\_\+vext2}}
+\item 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_ad22f55834e7ed0e4049e80d4247bb307}{d\+\_\+aux2}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a978bd2125350efd50b3e763d58032141}{d\+\_\+h\+\_\+params}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a0c2a78869d75d04ec68fba2ba4b6bd16}{d\+\_\+partial}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a773b5ec6a175118de7e0afea8808e495}{d\+\_\+partial2}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_af62d310e422688cc84513b97876ec4b2}{d\+\_\+final}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a6bfff28667b925c051195cfadc54f187}{d\+\_\+final2}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_ac34c71635d282f5d6d7ecfe571c1c3ea}{h\+\_\+final}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_ab1058fbd6a3de7c9d7643c3a6f4b85ef}{h\+\_\+final2}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a4783458defd1dbc079fd0b7f8c39cc8f}{h\+\_\+partial\+Sums}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a0fb6a08e2bda4d6b4e768892380d3319}{h\+\_\+partial\+Sums2}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a7a73704357eb3b7c05ae6c63bbfdd43a}{d\+\_\+kx}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a2b16ff2ba0d93014816aece9fa5b6471}{d\+\_\+ky}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a0ff94b46b3d30921b0784abc76db0f6c}{d\+\_\+kz}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a4d7567e14133c90845893e4126a4dccc}{d\+\_\+x}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_af1c6390a9f9e55af7fbeeb871e2cd89f}{d\+\_\+y}}
+\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classCuda_a42bd6944be4c0a81b7342c82c30dc0c4}{d\+\_\+z}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classCuda_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCuda_ad660ac32e9921f93d73959e9c8ecff4a}\index{Cuda@{Cuda}!Cuda@{Cuda}}
+\index{Cuda@{Cuda}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{Cuda()}{Cuda()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classCuda_ad660ac32e9921f93d73959e9c8ecff4a} 
+Cuda::\+\+Cuda (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classCuda_a3e11291c10ea32f65b62e968ae904dbd}\index{Cuda@{Cuda}!Cuda@{Cuda}}
+\index{Cuda@{Cuda}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{Cuda()}{Cuda()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classCuda_a3e11291c10ea32f65b62e968ae904dbd} 
+Cuda::\+\+Cuda (\begin{DoxyParamCaption}\item[{const int \texorpdfstring{$\ast$}{*}}]{NX}{, }\item[{int}]{nth}{, }\item[{bool}]{\+\_\+is2comp}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classCuda_a41110b12fb33a25921242039d223d246}\index{Cuda@{Cuda}!````~Cuda@{\texorpdfstring{$\sim$}{\string~}Cuda}}
+\index{````~Cuda@{\texorpdfstring{$\sim$}{\string~}Cuda}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Cuda()}{\string~Cuda()}}
+{\footnotesize\ttfamily \label{classCuda_a41110b12fb33a25921242039d223d246} 
+Cuda::\+\texorpdfstring{$\sim$}{\string~}\+Cuda (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classCuda_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCuda_a92b6d98cbc896d3901e124d6f7c0a7ce}\index{Cuda@{Cuda}!PrintGPUInfo@{PrintGPUInfo}}
+\index{PrintGPUInfo@{PrintGPUInfo}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{PrintGPUInfo()}{PrintGPUInfo()}}
+{\footnotesize\ttfamily \label{classCuda_a92b6d98cbc896d3901e124d6f7c0a7ce} 
+void Cuda::\+\+Print\+GPUInfo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classCuda_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classCuda_a634d5c85471f7f45a76fc07fe9f4d1fe}\index{Cuda@{Cuda}!d\_aux@{d\_aux}}
+\index{d\_aux@{d\_aux}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_aux}{d\_aux}}
+{\footnotesize\ttfamily \label{classCuda_a634d5c85471f7f45a76fc07fe9f4d1fe} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+aux}
+
+\Hypertarget{classCuda_ad22f55834e7ed0e4049e80d4247bb307}\index{Cuda@{Cuda}!d\_aux2@{d\_aux2}}
+\index{d\_aux2@{d\_aux2}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_aux2}{d\_aux2}}
+{\footnotesize\ttfamily \label{classCuda_ad22f55834e7ed0e4049e80d4247bb307} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+aux2}
+
+\Hypertarget{classCuda_af62d310e422688cc84513b97876ec4b2}\index{Cuda@{Cuda}!d\_final@{d\_final}}
+\index{d\_final@{d\_final}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_final}{d\_final}}
+{\footnotesize\ttfamily \label{classCuda_af62d310e422688cc84513b97876ec4b2} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+final}
+
+\Hypertarget{classCuda_a6bfff28667b925c051195cfadc54f187}\index{Cuda@{Cuda}!d\_final2@{d\_final2}}
+\index{d\_final2@{d\_final2}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_final2}{d\_final2}}
+{\footnotesize\ttfamily \label{classCuda_a6bfff28667b925c051195cfadc54f187} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+final2}
+
+\Hypertarget{classCuda_a978bd2125350efd50b3e763d58032141}\index{Cuda@{Cuda}!d\_h\_params@{d\_h\_params}}
+\index{d\_h\_params@{d\_h\_params}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_h\_params}{d\_h\_params}}
+{\footnotesize\ttfamily \label{classCuda_a978bd2125350efd50b3e763d58032141} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+h\+\_\+params}
+
+\Hypertarget{classCuda_ad9a3e8d70b8499c40db7880029e23363}\index{Cuda@{Cuda}!d\_hpsi@{d\_hpsi}}
+\index{d\_hpsi@{d\_hpsi}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_hpsi}{d\_hpsi}}
+{\footnotesize\ttfamily \label{classCuda_ad9a3e8d70b8499c40db7880029e23363} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+hpsi}
+
+\Hypertarget{classCuda_a531e6661d59d36ee234fa190aa0e1bb1}\index{Cuda@{Cuda}!d\_hpsi2@{d\_hpsi2}}
+\index{d\_hpsi2@{d\_hpsi2}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_hpsi2}{d\_hpsi2}}
+{\footnotesize\ttfamily \label{classCuda_a531e6661d59d36ee234fa190aa0e1bb1} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+hpsi2}
+
+\Hypertarget{classCuda_a6797cf87504aff546ebd996f59ea2254}\index{Cuda@{Cuda}!d\_hpsi2\_en@{d\_hpsi2\_en}}
+\index{d\_hpsi2\_en@{d\_hpsi2\_en}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_hpsi2\_en}{d\_hpsi2\_en}}
+{\footnotesize\ttfamily \label{classCuda_a6797cf87504aff546ebd996f59ea2254} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+hpsi2\+\_\+en}
+
+\Hypertarget{classCuda_aab915034fb58bd195d1765a81ce28939}\index{Cuda@{Cuda}!d\_hpsi\_en@{d\_hpsi\_en}}
+\index{d\_hpsi\_en@{d\_hpsi\_en}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_hpsi\_en}{d\_hpsi\_en}}
+{\footnotesize\ttfamily \label{classCuda_aab915034fb58bd195d1765a81ce28939} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+hpsi\+\_\+en}
+
+\Hypertarget{classCuda_a7a73704357eb3b7c05ae6c63bbfdd43a}\index{Cuda@{Cuda}!d\_kx@{d\_kx}}
+\index{d\_kx@{d\_kx}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_kx}{d\_kx}}
+{\footnotesize\ttfamily \label{classCuda_a7a73704357eb3b7c05ae6c63bbfdd43a} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+kx}
+
+\Hypertarget{classCuda_a2b16ff2ba0d93014816aece9fa5b6471}\index{Cuda@{Cuda}!d\_ky@{d\_ky}}
+\index{d\_ky@{d\_ky}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_ky}{d\_ky}}
+{\footnotesize\ttfamily \label{classCuda_a2b16ff2ba0d93014816aece9fa5b6471} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+ky}
+
+\Hypertarget{classCuda_a0ff94b46b3d30921b0784abc76db0f6c}\index{Cuda@{Cuda}!d\_kz@{d\_kz}}
+\index{d\_kz@{d\_kz}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_kz}{d\_kz}}
+{\footnotesize\ttfamily \label{classCuda_a0ff94b46b3d30921b0784abc76db0f6c} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+kz}
+
+\Hypertarget{classCuda_a0c2a78869d75d04ec68fba2ba4b6bd16}\index{Cuda@{Cuda}!d\_partial@{d\_partial}}
+\index{d\_partial@{d\_partial}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_partial}{d\_partial}}
+{\footnotesize\ttfamily \label{classCuda_a0c2a78869d75d04ec68fba2ba4b6bd16} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+partial}
+
+\Hypertarget{classCuda_a773b5ec6a175118de7e0afea8808e495}\index{Cuda@{Cuda}!d\_partial2@{d\_partial2}}
+\index{d\_partial2@{d\_partial2}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_partial2}{d\_partial2}}
+{\footnotesize\ttfamily \label{classCuda_a773b5ec6a175118de7e0afea8808e495} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+partial2}
+
+\Hypertarget{classCuda_a51d05d8c5a870beff125e12e790ab6bc}\index{Cuda@{Cuda}!d\_psi@{d\_psi}}
+\index{d\_psi@{d\_psi}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_psi}{d\_psi}}
+{\footnotesize\ttfamily \label{classCuda_a51d05d8c5a870beff125e12e790ab6bc} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+psi}
+
+\Hypertarget{classCuda_ab18e215e71cb3dc5067973c7bd0b50fc}\index{Cuda@{Cuda}!d\_psi2@{d\_psi2}}
+\index{d\_psi2@{d\_psi2}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_psi2}{d\_psi2}}
+{\footnotesize\ttfamily \label{classCuda_ab18e215e71cb3dc5067973c7bd0b50fc} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+psi2}
+
+\Hypertarget{classCuda_a41d4b3dbd6040b246f66f8f65f21be66}\index{Cuda@{Cuda}!d\_psi2\_new@{d\_psi2\_new}}
+\index{d\_psi2\_new@{d\_psi2\_new}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_psi2\_new}{d\_psi2\_new}}
+{\footnotesize\ttfamily \label{classCuda_a41d4b3dbd6040b246f66f8f65f21be66} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+psi2\+\_\+new}
+
+\Hypertarget{classCuda_aa1658bebb0109d85f8f67a19f26012e9}\index{Cuda@{Cuda}!d\_psi2\_old@{d\_psi2\_old}}
+\index{d\_psi2\_old@{d\_psi2\_old}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_psi2\_old}{d\_psi2\_old}}
+{\footnotesize\ttfamily \label{classCuda_aa1658bebb0109d85f8f67a19f26012e9} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+psi2\+\_\+old}
+
+\Hypertarget{classCuda_ad85cf9bc06a0e50ffc853d5ed1f0bb73}\index{Cuda@{Cuda}!d\_psi\_new@{d\_psi\_new}}
+\index{d\_psi\_new@{d\_psi\_new}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_psi\_new}{d\_psi\_new}}
+{\footnotesize\ttfamily \label{classCuda_ad85cf9bc06a0e50ffc853d5ed1f0bb73} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+psi\+\_\+new}
+
+\Hypertarget{classCuda_ab93253f19917125e9f8e0dcd339166f7}\index{Cuda@{Cuda}!d\_psi\_old@{d\_psi\_old}}
+\index{d\_psi\_old@{d\_psi\_old}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_psi\_old}{d\_psi\_old}}
+{\footnotesize\ttfamily \label{classCuda_ab93253f19917125e9f8e0dcd339166f7} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+psi\+\_\+old}
+
+\Hypertarget{classCuda_a386eae4f461827528f254c69135d0ee8}\index{Cuda@{Cuda}!d\_vext@{d\_vext}}
+\index{d\_vext@{d\_vext}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_vext}{d\_vext}}
+{\footnotesize\ttfamily \label{classCuda_a386eae4f461827528f254c69135d0ee8} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+vext}
+
+\Hypertarget{classCuda_a6065a507fa46a08eb4ddd0223908fc31}\index{Cuda@{Cuda}!d\_vext2@{d\_vext2}}
+\index{d\_vext2@{d\_vext2}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_vext2}{d\_vext2}}
+{\footnotesize\ttfamily \label{classCuda_a6065a507fa46a08eb4ddd0223908fc31} 
+\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}}\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+vext2}
+
+\Hypertarget{classCuda_a4d7567e14133c90845893e4126a4dccc}\index{Cuda@{Cuda}!d\_x@{d\_x}}
+\index{d\_x@{d\_x}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_x}{d\_x}}
+{\footnotesize\ttfamily \label{classCuda_a4d7567e14133c90845893e4126a4dccc} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+x}
+
+\Hypertarget{classCuda_af1c6390a9f9e55af7fbeeb871e2cd89f}\index{Cuda@{Cuda}!d\_y@{d\_y}}
+\index{d\_y@{d\_y}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_y}{d\_y}}
+{\footnotesize\ttfamily \label{classCuda_af1c6390a9f9e55af7fbeeb871e2cd89f} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+y}
+
+\Hypertarget{classCuda_a42bd6944be4c0a81b7342c82c30dc0c4}\index{Cuda@{Cuda}!d\_z@{d\_z}}
+\index{d\_z@{d\_z}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{d\_z}{d\_z}}
+{\footnotesize\ttfamily \label{classCuda_a42bd6944be4c0a81b7342c82c30dc0c4} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+d\+\_\+z}
+
+\Hypertarget{classCuda_a6d69ef3ba9e9528eb977df07129e665a}\index{Cuda@{Cuda}!gridSize@{gridSize}}
+\index{gridSize@{gridSize}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{gridSize}{gridSize}}
+{\footnotesize\ttfamily \label{classCuda_a6d69ef3ba9e9528eb977df07129e665a} 
+int Cuda::\+grid\+Size}
+
+\Hypertarget{classCuda_ac34c71635d282f5d6d7ecfe571c1c3ea}\index{Cuda@{Cuda}!h\_final@{h\_final}}
+\index{h\_final@{h\_final}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{h\_final}{h\_final}}
+{\footnotesize\ttfamily \label{classCuda_ac34c71635d282f5d6d7ecfe571c1c3ea} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+h\+\_\+final}
+
+\Hypertarget{classCuda_ab1058fbd6a3de7c9d7643c3a6f4b85ef}\index{Cuda@{Cuda}!h\_final2@{h\_final2}}
+\index{h\_final2@{h\_final2}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{h\_final2}{h\_final2}}
+{\footnotesize\ttfamily \label{classCuda_ab1058fbd6a3de7c9d7643c3a6f4b85ef} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+h\+\_\+final2}
+
+\Hypertarget{classCuda_a4783458defd1dbc079fd0b7f8c39cc8f}\index{Cuda@{Cuda}!h\_partialSums@{h\_partialSums}}
+\index{h\_partialSums@{h\_partialSums}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{h\_partialSums}{h\_partialSums}}
+{\footnotesize\ttfamily \label{classCuda_a4783458defd1dbc079fd0b7f8c39cc8f} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+h\+\_\+partial\+Sums}
+
+\Hypertarget{classCuda_a0fb6a08e2bda4d6b4e768892380d3319}\index{Cuda@{Cuda}!h\_partialSums2@{h\_partialSums2}}
+\index{h\_partialSums2@{h\_partialSums2}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{h\_partialSums2}{h\_partialSums2}}
+{\footnotesize\ttfamily \label{classCuda_a0fb6a08e2bda4d6b4e768892380d3319} 
+double\texorpdfstring{$\ast$}{*} Cuda::\+h\+\_\+partial\+Sums2}
+
+\Hypertarget{classCuda_a9fac6c909d21b3b5d397dd9556ff4695}\index{Cuda@{Cuda}!isTwoComponent@{isTwoComponent}}
+\index{isTwoComponent@{isTwoComponent}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{isTwoComponent}{isTwoComponent}}
+{\footnotesize\ttfamily \label{classCuda_a9fac6c909d21b3b5d397dd9556ff4695} 
+const int Cuda::\+is\+Two\+Component}
+
+\Hypertarget{classCuda_a8e1bfa310e754c793b0b5f0de366dd6c}\index{Cuda@{Cuda}!noThreads@{noThreads}}
+\index{noThreads@{noThreads}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{noThreads}{noThreads}}
+{\footnotesize\ttfamily \label{classCuda_a8e1bfa310e754c793b0b5f0de366dd6c} 
+int Cuda::\+no\+Threads}
+
+\Hypertarget{classCuda_a98a927ee86884adbd4cdc38f01de56ad}\index{Cuda@{Cuda}!planBackward@{planBackward}}
+\index{planBackward@{planBackward}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{planBackward}{planBackward}}
+{\footnotesize\ttfamily \label{classCuda_a98a927ee86884adbd4cdc38f01de56ad} 
+cufft\+Handle Cuda::\+plan\+Backward}
+
+\Hypertarget{classCuda_a92aa85394f93c2df2b9adc526ea67f90}\index{Cuda@{Cuda}!planForward@{planForward}}
+\index{planForward@{planForward}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{planForward}{planForward}}
+{\footnotesize\ttfamily \label{classCuda_a92aa85394f93c2df2b9adc526ea67f90} 
+cufft\+Handle Cuda::\+plan\+Forward}
+
+\Hypertarget{classCuda_a262f91ffe328ef67e80c31f93939ae1c}\index{Cuda@{Cuda}!size@{size}}
+\index{size@{size}!Cuda@{Cuda}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily \label{classCuda_a262f91ffe328ef67e80c31f93939ae1c} 
+int Cuda::\+size}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{parallel_8hpp}{parallel.\+hpp}}\item 
+\doxymbox{\hyperlink{parallel_8cu}{parallel.\+cu}}\end{DoxyCompactItemize}

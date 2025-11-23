@@ -1,0 +1,59 @@
+treal           false
+treadvext       false
+
+read_psi        false
+tharmonic       true
+
+npart           160000
+mass            163.929170
+
+tvseed          false
+nseed           1 
+aseed           0.01
+dseed           0
+initpin         0
+
+tlhy            true
+
+
+tring           false
+ringRho         15
+
+
+
+
+
+
+
+rand_pct        0.010
+crand_pct       0.20
+
+
+trotate         true
+trotateVext     false
+omega           2.570
+tlz             false
+tlz_xy          false
+tfixangmom      false
+AfLZ            0.0
+fLZ             0.0
+
+tpi_soliton     false
+tpi_vortex      true
+api_prc         0.0
+
+tramp           false
+af              94.0
+tf              100.0
+
+tvortex         false
+omegaf          0.0
+
+dipole_x        0.0 
+dipole_y        0.0
+dipole_z        1.0
+
+
+beta            0.90
+npot            2
+rndseed         367
