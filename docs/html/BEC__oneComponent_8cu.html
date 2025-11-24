@@ -17,6 +17,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -96,8 +103,11 @@ $(function(){initNavTree('BEC__oneComponent_8cu.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:afcabe6eb5b6554bef3ea787821bfd081" id="r_afcabe6eb5b6554bef3ea787821bfd081"><td class="memItemLeft" align="right" valign="top">__global__ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcabe6eb5b6554bef3ea787821bfd081">BECHamiltonian</a> (double time, <a class="el" href="header_8hpp.html#a108ce1b6016f34ef088beba5409f43ca">cufftDoubleComplex</a> *psi, <a class="el" href="header_8hpp.html#a108ce1b6016f34ef088beba5409f43ca">cufftDoubleComplex</a> *KEpsi, <a class="el" href="header_8hpp.html#a108ce1b6016f34ef088beba5409f43ca">cufftDoubleComplex</a> *vext, <a class="el" href="header_8hpp.html#a108ce1b6016f34ef088beba5409f43ca">cufftDoubleComplex</a> *h_en, <a class="el" href="header_8hpp.html#a108ce1b6016f34ef088beba5409f43ca">cufftDoubleComplex</a> *h_mu, int N, double *prms)</td></tr>
+<tr class="memdesc:afcabe6eb5b6554bef3ea787821bfd081"><td class="mdescLeft">&#160;</td><td class="mdescRight">CUDA kernel that specifies the hamiltonian of the system \(\mathcal{H}\) and the energy density functional \(\mathcal{E}\).  <br /></td></tr>
 <tr class="memitem:a7e09ebacf61439a88142bec259624ee1" id="r_a7e09ebacf61439a88142bec259624ee1"><td class="memItemLeft" align="right" valign="top">__global__ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e09ebacf61439a88142bec259624ee1">BECHamiltonianMU</a> (double time, <a class="el" href="header_8hpp.html#a108ce1b6016f34ef088beba5409f43ca">cufftDoubleComplex</a> *psi, <a class="el" href="header_8hpp.html#a108ce1b6016f34ef088beba5409f43ca">cufftDoubleComplex</a> *KEpsi, <a class="el" href="header_8hpp.html#a108ce1b6016f34ef088beba5409f43ca">cufftDoubleComplex</a> *vext, <a class="el" href="header_8hpp.html#a108ce1b6016f34ef088beba5409f43ca">cufftDoubleComplex</a> *h_mu, int N, double *prms)</td></tr>
+<tr class="memdesc:a7e09ebacf61439a88142bec259624ee1"><td class="mdescLeft">&#160;</td><td class="mdescRight">CUDA kernel that specifies the hamiltonian of the system \(\mathcal{H}\).  <br /></td></tr>
 <tr class="memitem:ae09f0775fff05b8a9c829ee80b8438ac" id="r_ae09f0775fff05b8a9c829ee80b8438ac"><td class="memItemLeft" align="right" valign="top">__device__ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae09f0775fff05b8a9c829ee80b8438ac">d_quench_as</a> (double time, double *prms)</td></tr>
+<tr class="memdesc:ae09f0775fff05b8a9c829ee80b8438ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Example: a CUDA kernel that can be called from the Hamiltonian CUDA kernels.  <br /></td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="afcabe6eb5b6554bef3ea787821bfd081" name="afcabe6eb5b6554bef3ea787821bfd081"></a>
@@ -144,10 +154,29 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>prms</em></span>&#160;)</td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>CUDA kernel that specifies the hamiltonian of the system \(\mathcal{H}\) and the energy density functional \(\mathcal{E}\). </p>
+<p>Calculates \(\mathcal{H}|\psi\rangle\) and \(\mathcal{E}[\psi]\) </p><dl class="section warning"><dt>Warning</dt><dd>This CUDA kernel implements the hamiltonian and the energy density functional of the problem. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>current time </td></tr>
+    <tr><td class="paramname">psi</td><td>the wavefunction \(\psi\) </td></tr>
+    <tr><td class="paramname">KEpsi</td><td>kinetic operator term \(\nabla^2 \psi\) </td></tr>
+    <tr><td class="paramname">vext</td><td>external potential \(V_{ext}\) </td></tr>
+    <tr><td class="paramname">h_en</td><td>a pointer to the array where \(\mathcal{E}[\psi]\psi\) will be stored </td></tr>
+    <tr><td class="paramname">h_mu</td><td>a pointer to the array where \(\mathcal{H}\psi\) will be stored </td></tr>
+    <tr><td class="paramname">N</td><td>the length of the wavefunction \(\psi\) array </td></tr>
+    <tr><td class="paramname">a</td><td>parameter array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>h_en energy density functional \(\mathcal{E}\) </dd>
+<dd>
+h_mu vector \(\mathcal{H}|\psi\rangle\) </dd></dl>
 
 </div>
 </div>
@@ -190,10 +219,26 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>prms</em></span>&#160;)</td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>CUDA kernel that specifies the hamiltonian of the system \(\mathcal{H}\). </p>
+<p>Calculates \(\mathcal{H}|\psi\rangle\) </p><dl class="section warning"><dt>Warning</dt><dd>This CUDA kernel implements the hamiltonian of the problem. Must be defined alongside BECHamiltonian&lt;&gt; CUDA kernel </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>current time </td></tr>
+    <tr><td class="paramname">psi</td><td>the wavefunction \(\psi\) </td></tr>
+    <tr><td class="paramname">KEpsi</td><td>kinetic operator term \(\nabla^2 \psi\) </td></tr>
+    <tr><td class="paramname">vext</td><td>external potential \(V_{ext}\) </td></tr>
+    <tr><td class="paramname">h_mu</td><td>a pointer to the array where \(\mathcal{H}\psi\) will be stored </td></tr>
+    <tr><td class="paramname">N</td><td>the length of the wavefunction \(\psi\) array </td></tr>
+    <tr><td class="paramname">a</td><td>parameter array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>h_mu vector \(\mathcal{H}|\psi\rangle\) </dd></dl>
 
 </div>
 </div>
@@ -215,6 +260,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Example: a CUDA kernel that can be called from the Hamiltonian CUDA kernels. </p>
+<p>Calculates the scattering length at a given time </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>current time </td></tr>
+    <tr><td class="paramname">prms</td><td>parameter arra </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a the scattering length </dd></dl>
 
 </div>
 </div>

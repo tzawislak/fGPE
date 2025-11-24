@@ -20,6 +20,6 @@ var searchData=
   ['getx_17',['getX',['../classPsi.html#ac78e0e5f3726029e96c19b3921f23bb0',1,'Psi::getX()'],['../classVext.html#a5936b80e7f632d9536dc7b6ac3df982e',1,'Vext::getX()']]],
   ['gety_18',['getY',['../classPsi.html#aa9a75db3ab23fcf71ef3191ae7c5b252',1,'Psi::getY()'],['../classVext.html#a6ab6fabbe71366dfbc00fda7a0915cd9',1,'Vext::getY()']]],
   ['getz_19',['getZ',['../classPsi.html#aa15d18ff2cf779acc1d2bcd9e6499491',1,'Psi::getZ()'],['../classVext.html#a0136926a37be160897700348aebc3014',1,'Vext::getZ()']]],
-  ['gpe_20solver_20',['GPE solver',['../index.html',1,'']]],
-  ['gridsize_21',['gridSize',['../classCuda.html#a6d69ef3ba9e9528eb977df07129e665a',1,'Cuda']]]
+  ['gridsize_20',['gridSize',['../classCuda.html#a6d69ef3ba9e9528eb977df07129e665a',1,'Cuda']]],
+  ['gross–pitaevskii_20equation_20solver_21',['fGPE — A Fast Gross–Pitaevskii Equation Solver',['../index.html',1,'']]]
 ];

@@ -17,6 +17,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -92,6 +99,9 @@ $(function(){initNavTree('classBEConeComponent.html','','classBEConeComponent-me
 </div><!--header-->
 <div class="contents">
 
+<p>single-component, ordinary BEC hamiltonian class  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="BEC__oneComponent_8hpp_source.html">BEC_oneComponent.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for BEConeComponent:</div>
@@ -109,24 +119,33 @@ Inheritance diagram for BEConeComponent:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:afbda97922aa9c77560f53f6e1cc0c2e9" id="r_afbda97922aa9c77560f53f6e1cc0c2e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbda97922aa9c77560f53f6e1cc0c2e9">BEConeComponent</a> (<a class="el" href="classParams.html">Params</a> &amp;<a class="el" href="#af4b3884e8fb75644bc4130bbb1f5e6d2">p</a>)</td></tr>
 <tr class="memitem:a676af718df659245ccc841fc950e4024" id="r_a676af718df659245ccc841fc950e4024"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPsi.html">Psi</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a676af718df659245ccc841fc950e4024">InitPsi</a> ()</td></tr>
+<tr class="memdesc:a676af718df659245ccc841fc950e4024"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the wavefunction \(\psi\).  <br /></td></tr>
 <tr class="memitem:a696f61899ad843d4a2e9346f6499019c" id="r_a696f61899ad843d4a2e9346f6499019c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classVext.html">Vext</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a696f61899ad843d4a2e9346f6499019c">InitVext</a> ()</td></tr>
+<tr class="memdesc:a696f61899ad843d4a2e9346f6499019c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the external potential \(V_{ext}\).  <br /></td></tr>
 <tr class="memitem:a3e6be3911d8d502553c9c608cf47d562" id="r_a3e6be3911d8d502553c9c608cf47d562"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e6be3911d8d502553c9c608cf47d562">alg_calcHpsi</a> () override</td></tr>
+<tr class="memdesc:a3e6be3911d8d502553c9c608cf47d562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates both \(\hat{\mathcal{H}}|\psi\rangle\) and \(\mathcal{E}[\psi]\).  <br /></td></tr>
 <tr class="memitem:a5a15c38352faf09a01a85bf9b2b5cb60" id="r_a5a15c38352faf09a01a85bf9b2b5cb60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a15c38352faf09a01a85bf9b2b5cb60">alg_calcHpsiMU</a> () override</td></tr>
+<tr class="memdesc:a5a15c38352faf09a01a85bf9b2b5cb60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates \(\hat{\mathcal{H}}|\psi\rangle\).  <br /></td></tr>
 <tr class="memitem:ac83bc74b0cd7fd383a44b01a1565bba8" id="r_ac83bc74b0cd7fd383a44b01a1565bba8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac83bc74b0cd7fd383a44b01a1565bba8">call_IM_init</a> () override</td></tr>
-<tr class="memdesc:ac83bc74b0cd7fd383a44b01a1565bba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls user-defined code before the imaginary time evolution loop.  <br /></td></tr>
+<tr class="memdesc:ac83bc74b0cd7fd383a44b01a1565bba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executed before the imaginary time evolution.  <br /></td></tr>
 <tr class="memitem:a48539eb491121b2d9defce011e02596f" id="r_a48539eb491121b2d9defce011e02596f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48539eb491121b2d9defce011e02596f">call_IM_loop_before_step</a> () override</td></tr>
-<tr class="memdesc:a48539eb491121b2d9defce011e02596f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls user-defined code before every IMTE step.  <br /></td></tr>
+<tr class="memdesc:a48539eb491121b2d9defce011e02596f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executed before the imaginary time step.  <br /></td></tr>
 <tr class="memitem:a59363055885fa08f4a5feccbc43f2a4c" id="r_a59363055885fa08f4a5feccbc43f2a4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59363055885fa08f4a5feccbc43f2a4c">call_IM_loop_after_step</a> () override</td></tr>
-<tr class="memdesc:a59363055885fa08f4a5feccbc43f2a4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls user-defined code after every single IMTE step.  <br /></td></tr>
+<tr class="memdesc:a59363055885fa08f4a5feccbc43f2a4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executed after the imaginary time step.  <br /></td></tr>
 <tr class="memitem:a1b60ad4610723087953da8f70041db98" id="r_a1b60ad4610723087953da8f70041db98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b60ad4610723087953da8f70041db98">call_IM_loop_convergence</a> () override</td></tr>
-<tr class="memdesc:a1b60ad4610723087953da8f70041db98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls user-defined code when convergence is met.  <br /></td></tr>
+<tr class="memdesc:a1b60ad4610723087953da8f70041db98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executed at the end of algorithm.  <br /></td></tr>
 <tr class="memitem:ac917576e8b09f23b7a8ee1259eda17c5" id="r_ac917576e8b09f23b7a8ee1259eda17c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac917576e8b09f23b7a8ee1259eda17c5">call_IM_end</a> () override</td></tr>
-<tr class="memdesc:ac917576e8b09f23b7a8ee1259eda17c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls user-defined code aftger the imaginary time evolution loop.  <br /></td></tr>
+<tr class="memdesc:ac917576e8b09f23b7a8ee1259eda17c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executed at the end of imaginary time evolution.  <br /></td></tr>
 <tr class="memitem:a9ed98c01e50a7169642296ba88689632" id="r_a9ed98c01e50a7169642296ba88689632"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ed98c01e50a7169642296ba88689632">call_RE_init</a> () override</td></tr>
+<tr class="memdesc:a9ed98c01e50a7169642296ba88689632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls user-defined code before real time evolution.  <br /></td></tr>
 <tr class="memitem:a1848ba1233d310c743bff5bc31801029" id="r_a1848ba1233d310c743bff5bc31801029"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1848ba1233d310c743bff5bc31801029">call_RE_loop_before_step</a> () override</td></tr>
+<tr class="memdesc:a1848ba1233d310c743bff5bc31801029"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls user-defined code before every single real time evolution step.  <br /></td></tr>
 <tr class="memitem:aa553ad166d194fb49796cee8555eb1d0" id="r_aa553ad166d194fb49796cee8555eb1d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa553ad166d194fb49796cee8555eb1d0">call_RE_loop_after_step</a> () override</td></tr>
+<tr class="memdesc:aa553ad166d194fb49796cee8555eb1d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls user-defined code after every single real time evolution step.  <br /></td></tr>
 <tr class="memitem:a35eac7dad1b21eee27a95d45e6b3e4dc" id="r_a35eac7dad1b21eee27a95d45e6b3e4dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35eac7dad1b21eee27a95d45e6b3e4dc">call_RE_end</a> () override</td></tr>
+<tr class="memdesc:a35eac7dad1b21eee27a95d45e6b3e4dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls user-defined code after real time evolution.  <br /></td></tr>
 <tr class="memitem:a649624755da1cb1951ffc17691a69aff" id="r_a649624755da1cb1951ffc17691a69aff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a649624755da1cb1951ffc17691a69aff">alg_calcCos</a> (double *_avgcos, <a class="el" href="header_8hpp.html#a108ce1b6016f34ef088beba5409f43ca">cufftDoubleComplex</a> *_psi)</td></tr>
+<tr class="memdesc:a649624755da1cb1951ffc17691a69aff"><td class="mdescLeft">&#160;</td><td class="mdescRight">An example of a user-defined function. Calculates an average cosine \(\int d\textbf{x}\psi^\dagger(\textbf{x}) cos(x) \psi(\textbf{x})\).  <br /></td></tr>
 <tr class="inherit_header pub_methods_classOneComponentGPSolver"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classOneComponentGPSolver')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classOneComponentGPSolver.html">OneComponentGPSolver</a></td></tr>
 <tr class="memitem:ad2a46a5b56f069d62cb4d1200a8daf0d inherit pub_methods_classOneComponentGPSolver" id="r_ad2a46a5b56f069d62cb4d1200a8daf0d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOneComponentGPSolver.html#ad2a46a5b56f069d62cb4d1200a8daf0d">OneComponentGPSolver</a> (<a class="el" href="classParams.html">Params</a> &amp;<a class="el" href="classOneComponentGPSolver.html#a2c8ea11f13f55d17b26e24ad53094b3c">p</a>)</td></tr>
 <tr class="memitem:a9215407df2a869da6ed75abb97c18087 inherit pub_methods_classOneComponentGPSolver" id="r_a9215407df2a869da6ed75abb97c18087"><td class="memItemLeft" align="right" valign="top"><a class="el" href="header_8hpp.html#a1c1b16cc02d518bbe753449171ab7033">complex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOneComponentGPSolver.html#a9215407df2a869da6ed75abb97c18087">getPsi</a> ()</td></tr>
@@ -168,6 +187,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:af4b3884e8fb75644bc4130bbb1f5e6d2" id="r_af4b3884e8fb75644bc4130bbb1f5e6d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classParams.html">Params</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4b3884e8fb75644bc4130bbb1f5e6d2">p</a></td></tr>
+<tr class="memdesc:af4b3884e8fb75644bc4130bbb1f5e6d2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classParams.html">Params</a> object that stores all input parameters.  <br /></td></tr>
 <tr class="inherit_header pub_attribs_classOneComponentGPSolver"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_classOneComponentGPSolver')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Attributes inherited from <a class="el" href="classOneComponentGPSolver.html">OneComponentGPSolver</a></td></tr>
 <tr class="memitem:a2c8ea11f13f55d17b26e24ad53094b3c inherit pub_attribs_classOneComponentGPSolver" id="r_a2c8ea11f13f55d17b26e24ad53094b3c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classParams.html">Params</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOneComponentGPSolver.html#a2c8ea11f13f55d17b26e24ad53094b3c">p</a></td></tr>
 <tr class="memitem:a4a18c2342b6e7f79a2aa8cb4b58eeb00 inherit pub_attribs_classOneComponentGPSolver" id="r_a4a18c2342b6e7f79a2aa8cb4b58eeb00"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOneComponentGPSolver.html#a4a18c2342b6e7f79a2aa8cb4b58eeb00">PARS</a> [32] = {0.0}</td></tr>
@@ -254,7 +274,33 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a352eb582dde8daddc7b31857cf6f0136 inherit pro_attribs_classOneComponentGPSolver" id="r_a352eb582dde8daddc7b31857cf6f0136"><td class="memItemLeft" align="right" valign="top"><a class="el" href="header_8hpp.html#a1c1b16cc02d518bbe753449171ab7033">complex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOneComponentGPSolver.html#a352eb582dde8daddc7b31857cf6f0136">psi</a></td></tr>
 <tr class="memitem:abfb6566059505a297830f938fc1dde81 inherit pro_attribs_classOneComponentGPSolver" id="r_abfb6566059505a297830f938fc1dde81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="header_8hpp.html#a1c1b16cc02d518bbe753449171ab7033">complex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOneComponentGPSolver.html#abfb6566059505a297830f938fc1dde81">vext</a></td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>single-component, ordinary BEC hamiltonian class </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>the <a class="el" href="classParams.html">Params</a> class objects (stores all parameters from the input file)</td></tr>
+  </table>
+  </dd>
+</dl>
+<h1 class="doxsection"><a class="anchor" id="usage"></a>
+Usage</h1>
+<ol type="1">
+<li><p class="startli">In constructor <a class="el" href="#afbda97922aa9c77560f53f6e1cc0c2e9">BEConeComponent()</a>, you can define up to NO_HAMIL_PARAMS parameters your CUDA kernel Hamiltonian will have access to at runtime.</p>
+</li>
+<li><p class="startli">Initialize your wavefunction in <a class="el" href="#a676af718df659245ccc841fc950e4024" title="Initializes the wavefunction .">InitPsi()</a>. You may write your own initialization as the class member function of <a class="el" href="classPsi.html">Psi</a>.</p>
+</li>
+<li><p class="startli">Initialize your external potential in <a class="el" href="#a696f61899ad843d4a2e9346f6499019c" title="Initializes the external potential .">InitVext()</a>. You may write your own initialization as the class member function of <a class="el" href="classVext.html">Vext</a>.</p>
+</li>
+<li><p class="startli">Write your CUDA kernel BECHamiltonian that will calculate the hamiltonian \(\mathcal{H}|\psi\rangle\) and energ density functional \(\mathcal{E}[\psi]\). The EDF is crucial in Imaginary time evolution and optional in real time evolution.</p>
+</li>
+<li><p class="startli">Write your CUDA kernel BECHamiltonianMU that will calculate the hamiltonian \(\mathcal{H}|\psi\rangle\). This is used only in real time evolution and is needed alongside BECHamiltonian kernel for time efficiency </p><dl class="section warning"><dt>Warning</dt><dd>Make sure your CUDA kernels BECHamiltonian and BECHamiltonianMU provide the same \(\mathcal{H}|\psi\rangle\).</dd></dl>
+</li>
+<li><p class="startli">You may use the member functions call_IM* to log the imaginary time evolution (see descriptions of each function).</p>
+</li>
+<li><p class="startli">You may use the member functions call_RE* to log the real time evolution (see descriptions of each function). </p>
+</li>
+</ol>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afbda97922aa9c77560f53f6e1cc0c2e9" name="afbda97922aa9c77560f53f6e1cc0c2e9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afbda97922aa9c77560f53f6e1cc0c2e9">&#9670;&#160;</a></span>BEConeComponent()</h2>
 
@@ -292,6 +338,15 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>An example of a user-defined function. Calculates an average cosine \(\int d\textbf{x}\psi^\dagger(\textbf{x}) cos(x) \psi(\textbf{x})\). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_avgcos</td><td>pointer to the double variable to which the result will be returned. </td></tr>
+    <tr><td class="paramname">_psi</td><td>the wavefunction \(\psi\) on which the operation will be done. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a3e6be3911d8d502553c9c608cf47d562" name="a3e6be3911d8d502553c9c608cf47d562"></a>
@@ -316,6 +371,9 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Calculates both \(\hat{\mathcal{H}}|\psi\rangle\) and \(\mathcal{E}[\psi]\). </p>
+<dl class="section note"><dt>Note</dt><dd>Requires hamiltonian-specific CUDA kernels to be implemented before (here BECHamiltonian) </dd></dl>
 
 <p>Implements <a class="el" href="classOneComponentGPSolver.html#a2939af5bfc25d6bfcb8a67b4579e5749">OneComponentGPSolver</a>.</p>
 
@@ -344,6 +402,9 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Calculates \(\hat{\mathcal{H}}|\psi\rangle\). </p>
+<dl class="section note"><dt>Note</dt><dd>Requires hamiltonian-specific CUDA kernels to be implemented before (here BECHamiltonianMU) </dd></dl>
+
 <p>Implements <a class="el" href="classOneComponentGPSolver.html#a908ad3b3d948fd3c4292e607063d65d5">OneComponentGPSolver</a>.</p>
 
 </div>
@@ -371,7 +432,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Calls user-defined code aftger the imaginary time evolution loop. </p>
+<p>Executed at the end of imaginary time evolution. </p>
+<p>Calls user-defined code aftger the imaginary time evolution loop.</p>
 <dl class="section note"><dt>Note</dt><dd>The user may access: </dd></dl>
 
 <p>Implements <a class="el" href="classOneComponentGPSolver.html#ad4b22163a96e58bd00258030f307f246">OneComponentGPSolver</a>.</p>
@@ -401,7 +463,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Calls user-defined code before the imaginary time evolution loop. </p>
+<p>Executed before the imaginary time evolution. </p>
+<p>Calls user-defined code before the imaginary time evolution loop.</p>
 <dl class="section note"><dt>Note</dt><dd>The user may access:<ul>
 <li><p class="startli">this-p (input params),</p>
 </li>
@@ -445,7 +508,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Calls user-defined code after every single IMTE step. </p>
+<p>Executed after the imaginary time step. </p>
+<p>Calls user-defined code after every single IMTE step.</p>
 <dl class="section note"><dt>Note</dt><dd>The user may access: </dd></dl>
 
 <p>Implements <a class="el" href="classOneComponentGPSolver.html#a28330d33f6a978e9db6be9afb6207ed9">OneComponentGPSolver</a>.</p>
@@ -475,7 +539,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Calls user-defined code before every IMTE step. </p>
+<p>Executed before the imaginary time step. </p>
+<p>Calls user-defined code before every IMTE step.</p>
 <dl class="section note"><dt>Note</dt><dd>The user may access: </dd></dl>
 
 <p>Implements <a class="el" href="classOneComponentGPSolver.html#a2bcd126debc2a301f6360c1485704590">OneComponentGPSolver</a>.</p>
@@ -505,7 +570,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Calls user-defined code when convergence is met. </p>
+<p>Executed at the end of algorithm. </p>
+<p>Calls user-defined code when convergence is met.</p>
 <dl class="section note"><dt>Note</dt><dd>The user may access: </dd></dl>
 
 <p>Implements <a class="el" href="classOneComponentGPSolver.html#a0a9b8fb24451b6ee3ef742b687391780">OneComponentGPSolver</a>.</p>
@@ -535,6 +601,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Calls user-defined code after real time evolution. </p>
+
 <p>Implements <a class="el" href="classOneComponentGPSolver.html#ad8c924c08399864fbf5f83314c348091">OneComponentGPSolver</a>.</p>
 
 </div>
@@ -561,6 +629,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Calls user-defined code before real time evolution. </p>
 
 <p>Implements <a class="el" href="classOneComponentGPSolver.html#aa87aca5820b682d45c50e9fc34307308">OneComponentGPSolver</a>.</p>
 
@@ -589,6 +659,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Calls user-defined code after every single real time evolution step. </p>
+
 <p>Implements <a class="el" href="classOneComponentGPSolver.html#a28aa1725f1856c344d974e012781beea">OneComponentGPSolver</a>.</p>
 
 </div>
@@ -616,6 +688,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Calls user-defined code before every single real time evolution step. </p>
+
 <p>Implements <a class="el" href="classOneComponentGPSolver.html#aca6bf12fef3178f85a8aeef2447694d8">OneComponentGPSolver</a>.</p>
 
 </div>
@@ -635,6 +709,8 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initializes the wavefunction \(\psi\). </p>
+
 </div>
 </div>
 <a id="a696f61899ad843d4a2e9346f6499019c" name="a696f61899ad843d4a2e9346f6499019c"></a>
@@ -652,6 +728,8 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initializes the external potential \(V_{ext}\). </p>
+
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
@@ -666,6 +744,8 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p><a class="el" href="classParams.html">Params</a> object that stores all input parameters. </p>
 
 </div>
 </div>

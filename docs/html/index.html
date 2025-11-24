@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GPE solver: GPE solver</title>
+<title>GPE solver: fGPE — A Fast Gross–Pitaevskii Equation Solver</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -17,6 +17,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -88,11 +95,58 @@ $(function(){initNavTree('index.html','',''); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">GPE solver </div></div>
+  <div class="headertitle"><div class="title">fGPE — A Fast Gross–Pitaevskii Equation Solver </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_gpe_2README"></a></p>
-<p>Requires CUDA </p>
+<p>version: 0.3</p>
+<p>fGPE is a high-performance solver for the <b>Gross–Pitaevskii equation (GPE)</b>, designed for fast and accurate simulation of Bose–Einstein condensates.</p>
+<p>The solver can be extended to user-specific Hamiltonians that include e.g. dipolar interactions of soft-core potential.</p>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Features</h1>
+<ul>
+<li><p class="startli">⚡ <b>High-performance GPE integration</b> using optimized numerical schemes <br  />
+</p>
+</li>
+<li><p class="startli">🧮 Supports <b>imaginary-time evolution</b> and <b>real-time dynamics</b> <br  />
+</p>
+</li>
+<li><p class="startli">📦 Modular architecture for extending potentials <br  />
+</p>
+</li>
+<li><p class="startli">📈 Stable for long-time simulations thanks to RK4 integration algorithm.</p>
+</li>
+<li><p class="startli">🔧 Easy configuration via input files</p>
+</li>
+</ul>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+Solvers</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+Imaginary-time evolution</h2>
+<p>The stationary solution of a given problem is found by minimizing the energy of a system defined with user-defined (or predefined) energy density functional \(\mathcal{E}\).</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Real-time evolution</h2>
+<p>The solver integrates the <b>time-dependent Gross–Pitaevskii equation</b>:</p>
+<p>\( i\hbar \frac{\partial \psi}{\partial t} = \left( -\frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r}) + g|\psi|^2 \right)\psi \)</p>
+<p>Includes options for:</p>
+<ul>
+<li><p class="startli">Harmonic, box, or custom potentials <br  />
+</p>
+</li>
+<li><p class="startli">Interaction strengths <br  />
+</p>
+</li>
+<li><p class="startli">Normalized wavefunctions <br  />
+</p>
+</li>
+<li><p class="startli">1D, 2D, or 3D domains (depending on your implementation)</p>
+</li>
+</ul>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+Build Instructions</h1>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

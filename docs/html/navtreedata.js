@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "GPE solver", "index.html", [
+    [ "fGPE — A Fast Gross–Pitaevskii Equation Solver", "index.html", "index" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -54,7 +55,7 @@ var NAVTREEINDEX =
 [
 "BEC__oneComponent_8cu.html",
 "classParams2.html#a8058b9f8dd0b86337c988102ee72d702",
-"output_8hpp_source.html"
+"main_8cu.html#a0ddf1224851353fc92bfbff6f499fa97"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

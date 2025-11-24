@@ -10,5 +10,7 @@ var searchData=
   ['en2_5fprev_7',['EN2_PREV',['../classTwoComponentGPSolver.html#a3aad88b814dc0567947004ac0f92e521a193094884dcbd4071079f2765f675d11',1,'TwoComponentGPSolver']]],
   ['en_5f0_8',['EN_0',['../classOneComponentGPSolver.html#ad13244911289b08178cb172ce353decea4a9823daab6f97f39415af4fce7dae0b',1,'OneComponentGPSolver']]],
   ['en_5fprev_9',['EN_PREV',['../classOneComponentGPSolver.html#ad13244911289b08178cb172ce353decea98ef6b245ce4a7072dd8f96ec7c624ba',1,'OneComponentGPSolver']]],
-  ['epsilon_5fe_10',['epsilon_e',['../classParamsBase.html#a6536f59ed9ae82cda6cbd8c3168b10a0',1,'ParamsBase']]]
+  ['epsilon_5fe_10',['epsilon_e',['../classParamsBase.html#a6536f59ed9ae82cda6cbd8c3168b10a0',1,'ParamsBase']]],
+  ['equation_20solver_11',['fGPE — A Fast Gross–Pitaevskii Equation Solver',['../index.html',1,'']]],
+  ['evolution_12',['evolution',['../index.html#autotoc_md5',1,'Imaginary-time evolution'],['../index.html#autotoc_md6',1,'Real-time evolution']]]
 ];

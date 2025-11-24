@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['solver_0',['GPE solver',['../index.html',1,'']]]
+  ['build_20instructions_0',['Build Instructions',['../index.html#autotoc_md8',1,'']]]
 ];

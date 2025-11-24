@@ -2,6 +2,11 @@
 \hypertarget{classBEConeComponent}{}\label{classBEConeComponent}\index{BEConeComponent@{BEConeComponent}}
 
 
+single-\/component, ordinary BEC hamiltonian class  
+
+
+
+
 {\ttfamily \+\#include $<$BEC\+\_\+one\+Component.\+hpp$>$}
 
 Inheritance diagram for BECone\+Component:\+\begin{figure}[H]
@@ -16,33 +21,33 @@ Inheritance diagram for BECone\+Component:\+\begin{figure}[H]
 \doxymbox{\hyperlink{classBEConeComponent_afbda97922aa9c77560f53f6e1cc0c2e9}{BECone\+Component}} (\doxymbox{\hyperlink{classParams}{Params}} \&\doxymbox{\hyperlink{classBEConeComponent_af4b3884e8fb75644bc4130bbb1f5e6d2}{p}})
 \item 
 \doxymbox{\hyperlink{classPsi}{Psi}} \doxymbox{\hyperlink{classBEConeComponent_a676af718df659245ccc841fc950e4024}{Init\+Psi}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initializes the wavefunction $\psi$. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{classVext}{Vext}} \doxymbox{\hyperlink{classBEConeComponent_a696f61899ad843d4a2e9346f6499019c}{Init\+Vext}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initializes the external potential $V_{ext}$. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{classBEConeComponent_a3e6be3911d8d502553c9c608cf47d562}{alg\+\_\+calc\+Hpsi}} () override
-\item 
+\begin{DoxyCompactList}\small\item\em Calculates both $\hat{\mathcal{H}}|\psi\rangle$ and $\mathcal{E}[\psi]$. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{classBEConeComponent_a5a15c38352faf09a01a85bf9b2b5cb60}{alg\+\_\+calc\+Hpsi\+MU}} () override
-\item 
+\begin{DoxyCompactList}\small\item\em Calculates $\hat{\mathcal{H}}|\psi\rangle$. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{classBEConeComponent_ac83bc74b0cd7fd383a44b01a1565bba8}{call\+\_\+\+IM\+\_\+init}} () override
-\begin{DoxyCompactList}\small\item\em Calls user-\/defined code before the imaginary time evolution loop. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Executed before the imaginary time evolution. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{classBEConeComponent_a48539eb491121b2d9defce011e02596f}{call\+\_\+\+IM\+\_\+loop\+\_\+before\+\_\+step}} () override
-\begin{DoxyCompactList}\small\item\em Calls user-\/defined code before every IMTE step. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Executed before the imaginary time step. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{classBEConeComponent_a59363055885fa08f4a5feccbc43f2a4c}{call\+\_\+\+IM\+\_\+loop\+\_\+after\+\_\+step}} () override
-\begin{DoxyCompactList}\small\item\em Calls user-\/defined code after every single IMTE step. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Executed after the imaginary time step. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{classBEConeComponent_a1b60ad4610723087953da8f70041db98}{call\+\_\+\+IM\+\_\+loop\+\_\+convergence}} () override
-\begin{DoxyCompactList}\small\item\em Calls user-\/defined code when convergence is met. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Executed at the end of algorithm. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{classBEConeComponent_ac917576e8b09f23b7a8ee1259eda17c5}{call\+\_\+\+IM\+\_\+end}} () override
-\begin{DoxyCompactList}\small\item\em Calls user-\/defined code aftger the imaginary time evolution loop. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Executed at the end of imaginary time evolution. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{classBEConeComponent_a9ed98c01e50a7169642296ba88689632}{call\+\_\+\+RE\+\_\+init}} () override
-\item 
+\begin{DoxyCompactList}\small\item\em Calls user-\/defined code before real time evolution. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{classBEConeComponent_a1848ba1233d310c743bff5bc31801029}{call\+\_\+\+RE\+\_\+loop\+\_\+before\+\_\+step}} () override
-\item 
+\begin{DoxyCompactList}\small\item\em Calls user-\/defined code before every single real time evolution step. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{classBEConeComponent_aa553ad166d194fb49796cee8555eb1d0}{call\+\_\+\+RE\+\_\+loop\+\_\+after\+\_\+step}} () override
-\item 
+\begin{DoxyCompactList}\small\item\em Calls user-\/defined code after every single real time evolution step. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{classBEConeComponent_a35eac7dad1b21eee27a95d45e6b3e4dc}{call\+\_\+\+RE\+\_\+end}} () override
-\item 
+\begin{DoxyCompactList}\small\item\em Calls user-\/defined code after real time evolution. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{classBEConeComponent_a649624755da1cb1951ffc17691a69aff}{alg\+\_\+calc\+Cos}} (double \texorpdfstring{$\ast$}{*}\+\_\+avgcos, \doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}\+\_\+psi)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em An example of a user-\/defined function. Calculates an average cosine $\int d\textbf{x}\psi^\dagger(\textbf{x}) cos(x) \psi(\textbf{x})$. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classOneComponentGPSolver}{One\+Component\+GPSolver}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -122,7 +127,7 @@ void \doxymbox{\hyperlink{classCuda_a92b6d98cbc896d3901e124d6f7c0a7ce}{Print\+GP
 \begin{DoxyCompactItemize}
 \item 
 \doxymbox{\hyperlink{classParams}{Params}} \doxymbox{\hyperlink{classBEConeComponent_af4b3884e8fb75644bc4130bbb1f5e6d2}{p}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classParams}{Params} object that stores all input parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classOneComponentGPSolver}{One\+Component\+GPSolver}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -271,6 +276,29 @@ typedef void(Base\+Hamiltonian::\+\texorpdfstring{$\ast$}{*} \doxymbox{\hyperlin
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+single-\/component, ordinary BEC hamiltonian class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & the \doxylink{classParams}{Params} class objects (stores all parameters from the input file)\\
+\hline
+\end{DoxyParams}
+\hypertarget{classBEConeComponent_usage}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{classBEConeComponent_usage}
+
+\begin{DoxyEnumerate}
+\item In constructor \doxylink{classBEConeComponent_afbda97922aa9c77560f53f6e1cc0c2e9}{BECone\+Component()}, you can define up to NO\+\_\+\+HAMIL\+\_\+\+PARAMS parameters your CUDA kernel Hamiltonian will have access to at runtime.
+\item Initialize your wavefunction in \doxylink{classBEConeComponent_a676af718df659245ccc841fc950e4024}{Init\+Psi()}. You may write your own initialization as the class member function of \doxylink{classPsi}{Psi}.
+\item Initialize your external potential in \doxylink{classBEConeComponent_a696f61899ad843d4a2e9346f6499019c}{Init\+Vext()}. You may write your own initialization as the class member function of \doxylink{classVext}{Vext}.
+\item Write your CUDA kernel BECHamiltonian that will calculate the hamiltonian $\mathcal{H}|\psi\rangle$ and energ density functional $\mathcal{E}[\psi]$. The EDF is crucial in Imaginary time evolution and optional in real time evolution.
+\item Write your CUDA kernel BECHamiltonian\+MU that will calculate the hamiltonian $\mathcal{H}|\psi\rangle$. This is used only in real time evolution and is needed alongside BECHamiltonian kernel for time efficiency \begin{DoxyWarning}{Warning}
+Make sure your CUDA kernels BECHamiltonian and BECHamiltonian\+MU provide the same $\mathcal{H}|\psi\rangle$.
+\end{DoxyWarning}
+
+\item You may use the member functions call\+\_\+\+IM\texorpdfstring{$\ast$}{*} to log the imaginary time evolution (see descriptions of each function).
+\item You may use the member functions call\+\_\+\+RE\texorpdfstring{$\ast$}{*} to log the real time evolution (see descriptions of each function). 
+\end{DoxyEnumerate}
+
 \label{doc-constructors}
 \Hypertarget{classBEConeComponent_doc-constructors}
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -291,12 +319,30 @@ BECone\+Component::\+\+BECone\+Component (\begin{DoxyParamCaption}\item[{\doxymb
 {\footnotesize\ttfamily \label{classBEConeComponent_a649624755da1cb1951ffc17691a69aff} 
 void BECone\+Component::\+alg\+\_\+calc\+Cos (\begin{DoxyParamCaption}\item[{double \texorpdfstring{$\ast$}{*}}]{\+\_\+avgcos}{, }\item[{\doxymbox{\hyperlink{header_8hpp_a108ce1b6016f34ef088beba5409f43ca}{cufft\+Double\+Complex}} \texorpdfstring{$\ast$}{*}}]{\+\_\+psi}{}\end{DoxyParamCaption})}
 
+
+
+An example of a user-\/defined function. Calculates an average cosine $\int d\textbf{x}\psi^\dagger(\textbf{x}) cos(x) \psi(\textbf{x})$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+avgcos} & pointer to the double variable to which the result will be returned. \\
+\hline
+{\em \+\_\+psi} & the wavefunction $\psi$ on which the operation will be done. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classBEConeComponent_a3e6be3911d8d502553c9c608cf47d562}\index{BEConeComponent@{BEConeComponent}!alg\_calcHpsi@{alg\_calcHpsi}}
 \index{alg\_calcHpsi@{alg\_calcHpsi}!BEConeComponent@{BEConeComponent}}
 \doxysubsubsection{\texorpdfstring{alg\_calcHpsi()}{alg\_calcHpsi()}}
 {\footnotesize\ttfamily \label{classBEConeComponent_a3e6be3911d8d502553c9c608cf47d562} 
 void BECone\+Component::\+alg\+\_\+calc\+Hpsi (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
+
+
+Calculates both $\hat{\mathcal{H}}|\psi\rangle$ and $\mathcal{E}[\psi]$. 
+
+\begin{DoxyNote}{Note}
+Requires hamiltonian-\/specific CUDA kernels to be implemented before (here BECHamiltonian) 
+\end{DoxyNote}
 
 
 Implements \doxymbox{\hyperlink{classOneComponentGPSolver_a2939af5bfc25d6bfcb8a67b4579e5749}{One\+Component\+GPSolver}}.
@@ -309,6 +355,13 @@ void BECone\+Component::\+alg\+\_\+calc\+Hpsi\+MU (\begin{DoxyParamCaption}{}{}\
 
 
 
+Calculates $\hat{\mathcal{H}}|\psi\rangle$. 
+
+\begin{DoxyNote}{Note}
+Requires hamiltonian-\/specific CUDA kernels to be implemented before (here BECHamiltonian\+MU) 
+\end{DoxyNote}
+
+
 Implements \doxymbox{\hyperlink{classOneComponentGPSolver_a908ad3b3d948fd3c4292e607063d65d5}{One\+Component\+GPSolver}}.
 
 \Hypertarget{classBEConeComponent_ac917576e8b09f23b7a8ee1259eda17c5}\index{BEConeComponent@{BEConeComponent}!call\_IM\_end@{call\_IM\_end}}
@@ -319,7 +372,9 @@ void BECone\+Component::\+call\+\_\+\+IM\+\_\+end (\begin{DoxyParamCaption}{}{}\
 
 
 
-Calls user-\/defined code aftger the imaginary time evolution loop. 
+Executed at the end of imaginary time evolution. 
+
+Calls user-\/defined code aftger the imaginary time evolution loop.
 
 \begin{DoxyNote}{Note}
 The user may access:\+ 
@@ -336,7 +391,9 @@ void BECone\+Component::\+call\+\_\+\+IM\+\_\+init (\begin{DoxyParamCaption}{}{}
 
 
 
-Calls user-\/defined code before the imaginary time evolution loop. 
+Executed before the imaginary time evolution. 
+
+Calls user-\/defined code before the imaginary time evolution loop.
 
 \begin{DoxyNote}{Note}
 The user may access:\+
@@ -361,7 +418,9 @@ void BECone\+Component::\+call\+\_\+\+IM\+\_\+loop\+\_\+after\+\_\+step (\begin{
 
 
 
-Calls user-\/defined code after every single IMTE step. 
+Executed after the imaginary time step. 
+
+Calls user-\/defined code after every single IMTE step.
 
 \begin{DoxyNote}{Note}
 The user may access:\+ 
@@ -378,7 +437,9 @@ void BECone\+Component::\+call\+\_\+\+IM\+\_\+loop\+\_\+before\+\_\+step (\begin
 
 
 
-Calls user-\/defined code before every IMTE step. 
+Executed before the imaginary time step. 
+
+Calls user-\/defined code before every IMTE step.
 
 \begin{DoxyNote}{Note}
 The user may access:\+ 
@@ -395,7 +456,9 @@ void BECone\+Component::\+call\+\_\+\+IM\+\_\+loop\+\_\+convergence (\begin{Doxy
 
 
 
-Calls user-\/defined code when convergence is met. 
+Executed at the end of algorithm. 
+
+Calls user-\/defined code when convergence is met.
 
 \begin{DoxyNote}{Note}
 The user may access:\+ 
@@ -412,6 +475,10 @@ void BECone\+Component::\+call\+\_\+\+RE\+\_\+end (\begin{DoxyParamCaption}{}{}\
 
 
 
+Calls user-\/defined code after real time evolution. 
+
+
+
 Implements \doxymbox{\hyperlink{classOneComponentGPSolver_ad8c924c08399864fbf5f83314c348091}{One\+Component\+GPSolver}}.
 
 \Hypertarget{classBEConeComponent_a9ed98c01e50a7169642296ba88689632}\index{BEConeComponent@{BEConeComponent}!call\_RE\_init@{call\_RE\_init}}
@@ -419,6 +486,10 @@ Implements \doxymbox{\hyperlink{classOneComponentGPSolver_ad8c924c08399864fbf5f8
 \doxysubsubsection{\texorpdfstring{call\_RE\_init()}{call\_RE\_init()}}
 {\footnotesize\ttfamily \label{classBEConeComponent_a9ed98c01e50a7169642296ba88689632} 
 void BECone\+Component::\+call\+\_\+\+RE\+\_\+init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calls user-\/defined code before real time evolution. 
 
 
 
@@ -432,6 +503,10 @@ void BECone\+Component::\+call\+\_\+\+RE\+\_\+loop\+\_\+after\+\_\+step (\begin{
 
 
 
+Calls user-\/defined code after every single real time evolution step. 
+
+
+
 Implements \doxymbox{\hyperlink{classOneComponentGPSolver_a28aa1725f1856c344d974e012781beea}{One\+Component\+GPSolver}}.
 
 \Hypertarget{classBEConeComponent_a1848ba1233d310c743bff5bc31801029}\index{BEConeComponent@{BEConeComponent}!call\_RE\_loop\_before\_step@{call\_RE\_loop\_before\_step}}
@@ -439,6 +514,10 @@ Implements \doxymbox{\hyperlink{classOneComponentGPSolver_a28aa1725f1856c344d974
 \doxysubsubsection{\texorpdfstring{call\_RE\_loop\_before\_step()}{call\_RE\_loop\_before\_step()}}
 {\footnotesize\ttfamily \label{classBEConeComponent_a1848ba1233d310c743bff5bc31801029} 
 void BECone\+Component::\+call\+\_\+\+RE\+\_\+loop\+\_\+before\+\_\+step (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calls user-\/defined code before every single real time evolution step. 
 
 
 
@@ -450,11 +529,19 @@ Implements \doxymbox{\hyperlink{classOneComponentGPSolver_aca6bf12fef3178f85a8ae
 {\footnotesize\ttfamily \label{classBEConeComponent_a676af718df659245ccc841fc950e4024} 
 \doxymbox{\hyperlink{classPsi}{Psi}} BECone\+Component::\+\+Init\+Psi (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
+
+
+Initializes the wavefunction $\psi$. 
+
 \Hypertarget{classBEConeComponent_a696f61899ad843d4a2e9346f6499019c}\index{BEConeComponent@{BEConeComponent}!InitVext@{InitVext}}
 \index{InitVext@{InitVext}!BEConeComponent@{BEConeComponent}}
 \doxysubsubsection{\texorpdfstring{InitVext()}{InitVext()}}
 {\footnotesize\ttfamily \label{classBEConeComponent_a696f61899ad843d4a2e9346f6499019c} 
 \doxymbox{\hyperlink{classVext}{Vext}} BECone\+Component::\+\+Init\+Vext (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the external potential $V_{ext}$. 
 
 
 
@@ -466,6 +553,10 @@ Implements \doxymbox{\hyperlink{classOneComponentGPSolver_aca6bf12fef3178f85a8ae
 \doxysubsubsection{\texorpdfstring{p}{p}}
 {\footnotesize\ttfamily \label{classBEConeComponent_af4b3884e8fb75644bc4130bbb1f5e6d2} 
 \doxymbox{\hyperlink{classParams}{Params}} BECone\+Component::\+p}
+
+
+
+\doxylink{classParams}{Params} object that stores all input parameters. 
 
 
 
