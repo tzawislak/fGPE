@@ -1,0 +1,49 @@
+\chapter{f\+GPE — A Fast Gross–\+Pitaevskii Equation Solver }
+\hypertarget{index}{}\label{index}\index{fGPE — A Fast Gross–Pitaevskii Equation Solver@{fGPE — A Fast Gross–Pitaevskii Equation Solver}}
+\label{index_md_gpe_2README}%
+\Hypertarget{index_md_gpe_2README}%
+
+
+version:\+ 0.\+3
+
+f\+GPE is a high-\/performance solver for the {\bfseries{Gross–\+Pitaevskii equation (GPE)}}, designed for fast and accurate simulation of Bose–\+Einstein condensates.
+
+The solver can be extended to user-\/specific Hamiltonians that include e.\+g. dipolar interactions of soft-\/core potential.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Features}{Features}}\label{index_autotoc_md2}
+
+\begin{DoxyItemize}
+\item ⚡ {\bfseries{High-\/performance GPE integration}} using optimized numerical schemes ~\newline
+
+\item 🧮 Supports {\bfseries{imaginary-\/time evolution}} and {\bfseries{real-\/time dynamics}} ~\newline
+
+\item 📦 Modular architecture for extending potentials ~\newline
+
+\item 📈 Stable for long-\/time simulations thanks to RK4 integration algorithm.
+\item 🔧 Easy configuration via input files
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{Solvers}{Solvers}}\label{index_autotoc_md4}
+\hypertarget{index_autotoc_md5}{}\doxysubsection{\texorpdfstring{Imaginary-\/time evolution}{Imaginary-\/time evolution}}\label{index_autotoc_md5}
+The stationary solution of a given problem is found by minimizing the energy of a system defined with user-\/defined (or predefined) energy density functional $\mathcal{E}$.\hypertarget{index_autotoc_md6}{}\doxysubsection{\texorpdfstring{Real-\/time evolution}{Real-\/time evolution}}\label{index_autotoc_md6}
+The solver integrates the {\bfseries{time-\/dependent Gross–\+Pitaevskii equation}}:\+
+
+$ i\hbar \frac{\partial \psi}{\partial t} = \left( -\frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r}) + g|\psi|^2 \right)\psi $
+
+Includes options for:\+
+
+
+\begin{DoxyItemize}
+\item Harmonic, box, or custom potentials ~\newline
+
+\item Interaction strengths ~\newline
+
+\item Normalized wavefunctions ~\newline
+
+\item 1D, 2D, or 3D domains (depending on your implementation)
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md8}{}\doxysection{\texorpdfstring{Build Instructions}{Build Instructions}}\label{index_autotoc_md8}

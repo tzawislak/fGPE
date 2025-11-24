@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['addnoise_0',['addNoise',['../classPsi.html#a940169ded4f5894264a299e942e0d3cc',1,'Psi']]],
+  ['addopticallattice_1',['addOpticalLattice',['../classVext.html#a8c071a61f9bcebd244c55a1ec3f78f4c',1,'Vext']]],
+  ['addprotocolpotential_2',['addProtocolPotential',['../classVext.html#ad8ec9d395a7c2ab1a06795c5f28f7c86',1,'Vext']]],
+  ['addweightedprotocolpotential_3',['addWeightedProtocolPotential',['../classVext.html#a6e19e8b7923101880be2f370239dc0e2',1,'Vext']]],
+  ['alg_5faddomegalz_4',['alg_addOmegaLz',['../classBaseHamiltonian.html#a7a9c008f4be885af216ff87590cbd751',1,'BaseHamiltonian']]],
+  ['alg_5faddvpx_5',['alg_addVPx',['../classBaseHamiltonian.html#a66c62ede9861d8a380602268f3ae73e3',1,'BaseHamiltonian']]],
+  ['alg_5fcalc2observables_6',['alg_calc2Observables',['../classBaseHamiltonian.html#a04512e52d6b637049e43d7fc3679ffdc',1,'BaseHamiltonian']]],
+  ['alg_5fcalccos_7',['alg_calcCos',['../classBEConeComponent.html#a649624755da1cb1951ffc17691a69aff',1,'BEConeComponent::alg_calcCos()'],['../classBECtwoComponent.html#afe1b6f568abebc592f5d814f0b198d74',1,'BECtwoComponent::alg_calcCos(double *_avgcos, cufftDoubleComplex *_psi)'],['../classBECtwoComponent.html#ae7bfdfb9069a4fcba6363c150e46574d',1,'BECtwoComponent::alg_calcCos(double *_avgcos, cufftDoubleComplex *_psi1, cufftDoubleComplex *_psi2, int sign)']]],
+  ['alg_5fcalchpsi_8',['alg_calcHpsi',['../classBEConeComponent.html#a3e6be3911d8d502553c9c608cf47d562',1,'BEConeComponent::alg_calcHpsi()'],['../classBECtwoComponent.html#a081cafd92e70482d803060e9bbb074d5',1,'BECtwoComponent::alg_calcHpsi()'],['../classSingleTemplate.html#a126232a72981a8ad1bf5fbdfd4f4802d',1,'SingleTemplate::alg_calcHpsi()'],['../classOneComponentGPSolver.html#a2939af5bfc25d6bfcb8a67b4579e5749',1,'OneComponentGPSolver::alg_calcHpsi()'],['../classTwoComponentGPSolver.html#a5bd38ad507a2ac61b8f0685587430083',1,'TwoComponentGPSolver::alg_calcHpsi()']]],
+  ['alg_5fcalchpsimu_9',['alg_calcHpsiMU',['../classBEConeComponent.html#a5a15c38352faf09a01a85bf9b2b5cb60',1,'BEConeComponent::alg_calcHpsiMU()'],['../classBECtwoComponent.html#a810b686877ddb21f62255aa2ea120f03',1,'BECtwoComponent::alg_calcHpsiMU()'],['../classSingleTemplate.html#a69df2c68f5d1ebdda37ef3e5d26b37fe',1,'SingleTemplate::alg_calcHpsiMU()'],['../classOneComponentGPSolver.html#a908ad3b3d948fd3c4292e607063d65d5',1,'OneComponentGPSolver::alg_calcHpsiMU()'],['../classTwoComponentGPSolver.html#aa5341b5a9032fdec5b8258217edd83c8',1,'TwoComponentGPSolver::alg_calcHpsiMU()']]],
+  ['alg_5fcalcnorm_10',['alg_calcNorm',['../classBaseHamiltonian.html#aa962e19e3c9026d8568fe196fe39cc75',1,'BaseHamiltonian']]],
+  ['alg_5fcalcpx_11',['alg_calcPx',['../classBaseHamiltonian.html#a39df95011eda65a8b27d1b0d5ce48d52',1,'BaseHamiltonian']]],
+  ['alg_5flaplace_12',['alg_Laplace',['../classBaseHamiltonian.html#a3057c0408ae20a220f4cf777e0bcd386',1,'BaseHamiltonian']]],
+  ['alg_5fupdatepsi_13',['alg_updatePsi',['../classBaseHamiltonian.html#a04fb4c96811568553a9d510ee0915398',1,'BaseHamiltonian']]],
+  ['alg_5fupdatewavefunctions_14',['alg_updateWavefunctions',['../classBaseHamiltonian.html#a647a9daaa79b71ca483c6d3b26d950f1',1,'BaseHamiltonian']]],
+  ['appendarray_15',['AppendArray',['../parallel_8hpp.html#abde90d7436caed4c9c08bdc4652000de',1,'AppendArray(cufftDoubleComplex *v2, cufftDoubleComplex a, cufftDoubleComplex *v1, int N):&#160;parallel.cu'],['../parallel_8hpp.html#a20485969425a17fa114d379fa7140c92',1,'AppendArray(cufftDoubleComplex *vout, double a, cufftDoubleComplex *v1, int N):&#160;parallel.cu'],['../parallel_8cu.html#aa069e2d399eba228b88668dca85bc232',1,'AppendArray(cufftDoubleComplex *vout, cufftDoubleComplex a, cufftDoubleComplex *v1, int N):&#160;parallel.cu'],['../parallel_8cu.html#a20485969425a17fa114d379fa7140c92',1,'AppendArray(cufftDoubleComplex *vout, double a, cufftDoubleComplex *v1, int N):&#160;parallel.cu']]]
+];

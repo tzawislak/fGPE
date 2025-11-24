@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['getbool_0',['getBool',['../classInputVariables.html#a7db0b1c7eea97fafa4aa2b76a0beee4f',1,'InputVariables::getBool()'],['../classParamsBase.html#a572f6ec19369fa687be03ecf02907212',1,'ParamsBase::getBool()']]],
+  ['getbools_1',['getBools',['../classInputVariables.html#a885a38c8580fde9e512ee07954aeec9f',1,'InputVariables']]],
+  ['getdistribution_2',['getDistribution',['../classPsi.html#a2d7eb12f4671b49ac1de0bf943a2c6a0',1,'Psi']]],
+  ['getdouble_3',['getDouble',['../classInputVariables.html#a162383d983f219fef8fba243fada178f',1,'InputVariables::getDouble()'],['../classParamsBase.html#af062932bfe6d341f814a516af67c6afa',1,'ParamsBase::getDouble()']]],
+  ['getdoubles_4',['getDoubles',['../classInputVariables.html#afa17c9509aba0f6f3d0d071f5e2e3d3b',1,'InputVariables']]],
+  ['getgenerator_5',['getGenerator',['../classPsi.html#a4c49988ab48a65585fda135f736b9ea9',1,'Psi']]],
+  ['getint_6',['getInt',['../classInputVariables.html#aadc50664f4d4ac7c6d9eadbc52f9b4e3',1,'InputVariables::getInt()'],['../classParamsBase.html#a72ead9375a47e83e9a416a3e87efe918',1,'ParamsBase::getInt()']]],
+  ['getints_7',['getInts',['../classInputVariables.html#af9bbd99d2bc8a3f31b2c81e270c9178c',1,'InputVariables']]],
+  ['getiv_8',['getIV',['../classParamsBase.html#af6aa21fba8c5be708b16c0cdc8919d01',1,'ParamsBase']]],
+  ['getoutput_9',['getOutput',['../classBaseHamiltonian.html#aa093ea4675e2ec317c29a9cb04a0b127',1,'BaseHamiltonian']]],
+  ['getprefix_10',['getPrefix',['../classOutput.html#a57ead7781dc366067890a4d6d0beeac0',1,'Output']]],
+  ['getpsi_11',['getPsi',['../classOneComponentGPSolver.html#a9215407df2a869da6ed75abb97c18087',1,'OneComponentGPSolver::getPsi()'],['../classPsi.html#a0200e4af4366d5a9cd4350414189fe29',1,'Psi::getPsi()'],['../classTwoComponentGPSolver.html#a848d0079da677fb9427ed906426a7c62',1,'TwoComponentGPSolver::getPsi()']]],
+  ['getstring_12',['getString',['../classInputVariables.html#a0b3194e6079cd533c67cf4df83fa3208',1,'InputVariables::getString()'],['../classParamsBase.html#a4afd06bdce812380086bcfe84d67caf6',1,'ParamsBase::getString()']]],
+  ['getstrings_13',['getStrings',['../classInputVariables.html#a3f14822eea925833729e85d16cac2bda',1,'InputVariables']]],
+  ['getvariable_14',['getVariable',['../classInputVariables.html#a8ee273605662d5757bd0a74b05009470',1,'InputVariables']]],
+  ['getvariables_15',['getVariables',['../classInputVariables.html#a22ccb49fc9a334fa003085ef6d560575',1,'InputVariables']]],
+  ['getvext_16',['getVext',['../classOneComponentGPSolver.html#aa51a2bce62f6bb2507462c0a7f1e74e0',1,'OneComponentGPSolver::getVext()'],['../classTwoComponentGPSolver.html#ab23c3065563a81da8735e568ebea8e55',1,'TwoComponentGPSolver::getVext()'],['../classVext.html#a7e0725a8381fe689fb94cf83db28f597',1,'Vext::getVext()']]],
+  ['getx_17',['getX',['../classPsi.html#ac78e0e5f3726029e96c19b3921f23bb0',1,'Psi::getX()'],['../classVext.html#a5936b80e7f632d9536dc7b6ac3df982e',1,'Vext::getX()']]],
+  ['gety_18',['getY',['../classPsi.html#aa9a75db3ab23fcf71ef3191ae7c5b252',1,'Psi::getY()'],['../classVext.html#a6ab6fabbe71366dfbc00fda7a0915cd9',1,'Vext::getY()']]],
+  ['getz_19',['getZ',['../classPsi.html#aa15d18ff2cf779acc1d2bcd9e6499491',1,'Psi::getZ()'],['../classVext.html#a0136926a37be160897700348aebc3014',1,'Vext::getZ()']]],
+  ['gridsize_20',['gridSize',['../classCuda.html#a6d69ef3ba9e9528eb977df07129e665a',1,'Cuda']]],
+  ['gross–pitaevskii_20equation_20solver_21',['fGPE — A Fast Gross–Pitaevskii Equation Solver',['../index.html',1,'']]]
+];

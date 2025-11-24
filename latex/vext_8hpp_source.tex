@@ -1,0 +1,48 @@
+\doxysection{vext.\+hpp}
+\hypertarget{vext_8hpp_source}{}\label{vext_8hpp_source}\index{vext.hpp@{vext.hpp}}
+\doxymbox{\hyperlink{vext_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_vext\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_vext\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{params_8hpp}{params.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{params2_8hpp}{params2.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{parallel_8hpp}{parallel.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{header_8hpp}{header.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cmath>}\ \ \textcolor{comment}{//\ For\ pow}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classVext_a1625a5817b8a2415ab28b4a170e70c5b}{Vext}}\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}\ *vext;}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classVext_a502de3db02d11bded4cac411abad6dba}{initTube}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classParamsBase}{ParamsBase}}\ \&p,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&type);}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classVext_ac0e2839bf82148b2a7931f16e55d7f98}{initHarmonic}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classParamsBase}{ParamsBase}}\ \&p,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&type);}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classVext_adb80d36e2897fac062bdba6818ab5bb9}{initBox}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classParamsBase}{ParamsBase}}\ \&p,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&type);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classVext_ac879884619453d273cabef26758e2697}{initVoid}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classParamsBase}{ParamsBase}}\ \&p,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&type);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \doxymbox{\hyperlink{classVext_a1625a5817b8a2415ab28b4a170e70c5b}{Vext}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classParams}{Params}}\ \&p,\ \textcolor{keyword}{const}\ std::string\ \&type);}
+\DoxyCodeLine{00021\ \ \ \ \ \doxymbox{\hyperlink{classVext_a1625a5817b8a2415ab28b4a170e70c5b}{Vext}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classParams2}{Params2}}\ \&p,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&type);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \doxymbox{\hyperlink{classVext_ae04d7a0e246b18392ba008448f7c0b3b}{\string~Vext}}()\ \{\ free(vext);\ \};}
+\DoxyCodeLine{00024\ \ \ \ \ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}\ *\doxymbox{\hyperlink{classVext_a7e0725a8381fe689fb94cf83db28f597}{getVext}}()\ \{\ \textcolor{keywordflow}{return}\ vext;\ \};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classVext_a18f6e9bad01061495f11083bca23769c}{readVext}}(\textcolor{keyword}{const}\ std::string\&\ prefix,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\&\ length);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classVext_ad8ec9d395a7c2ab1a06795c5f28f7c86}{addProtocolPotential}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classParamsBase}{ParamsBase}}\ \&p,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&type,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}=1);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classVext_a6e19e8b7923101880be2f370239dc0e2}{addWeightedProtocolPotential}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classParams2}{Params2}}\ \&p,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&type);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classVext_a8c071a61f9bcebd244c55a1ec3f78f4c}{addOpticalLattice}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classParamsBase}{ParamsBase}}\ \&p,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&type);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{classVext_a196451cc9467540804d46eadc08d4a6d}{iX}}(\textcolor{keywordtype}{int}\ index,\ \textcolor{keywordtype}{int}\ NX,\ \textcolor{keywordtype}{int}\ NY)\ \{\ \textcolor{keywordflow}{return}\ index\ \%\ NX;\ \};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{classVext_a623e75d173147919015b83f4f6129430}{iY}}(\textcolor{keywordtype}{int}\ index,\ \textcolor{keywordtype}{int}\ NX,\ \textcolor{keywordtype}{int}\ NY)\ \{\ \textcolor{keywordflow}{return}\ (index\ /\ NX)\ \%\ NY;\ \};}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{classVext_ae0992fe35b45a85767277ccf74b3a030}{iZ}}(\textcolor{keywordtype}{int}\ index,\ \textcolor{keywordtype}{int}\ NX,\ \textcolor{keywordtype}{int}\ NY)\ \{\ \textcolor{keywordflow}{return}\ index\ /\ (NX\ *\ NY);\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{classVext_a5936b80e7f632d9536dc7b6ac3df982e}{getX}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classParamsBase}{ParamsBase}}\ \&p,\ \textcolor{keywordtype}{int}\ i);}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{classVext_a6ab6fabbe71366dfbc00fda7a0915cd9}{getY}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classParamsBase}{ParamsBase}}\ \&p,\ \textcolor{keywordtype}{int}\ i);}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{classVext_a0136926a37be160897700348aebc3014}{getZ}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classParamsBase}{ParamsBase}}\ \&p,\ \textcolor{keywordtype}{int}\ i);}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

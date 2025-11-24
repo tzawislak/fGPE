@@ -1,0 +1,62 @@
+\doxysection{input\+\_\+variables.\+hpp}
+\hypertarget{input__variables_8hpp_source}{}\label{input__variables_8hpp_source}\index{input\_variables.hpp@{input\_variables.hpp}}
+\doxymbox{\hyperlink{input__variables_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_input\_\_variables}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_input\_\_variables}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <typeinfo>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classInputVariables_a9229978e791dead200f6fd99d3b94445}{InputVariables}}\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ std::map<std::string,\ std::string>\ variables;}
+\DoxyCodeLine{00019\ \ \ \ \ std::map<std::string,\ std::string>\ strings;}
+\DoxyCodeLine{00020\ \ \ \ \ std::map<std::string,\ double>\ doubles;}
+\DoxyCodeLine{00021\ \ \ \ \ std::map<std::string,\ bool>\ bools;}
+\DoxyCodeLine{00022\ \ \ \ \ std::map<std::string,\ int>\ ints;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ std::string\ \ trim(\textcolor{keyword}{const}\ std::string\ \&str);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{bool}\ isCommentOrEmpty(\textcolor{keyword}{const}\ std::string\ \&line)\ ;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ processLine(\textcolor{keyword}{const}\ std::string\ \&line);}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ convertTypes();}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ isInteger(\textcolor{keyword}{const}\ std::string\ \&str);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{bool}\ isDouble(\textcolor{keyword}{const}\ std::string\ \&str);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \doxymbox{\hyperlink{classInputVariables_a9229978e791dead200f6fd99d3b94445}{InputVariables}}()\{\};}
+\DoxyCodeLine{00035\ \ \ \ \ \doxymbox{\hyperlink{classInputVariables_a9229978e791dead200f6fd99d3b94445}{InputVariables}}(\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classInputVariables}{InputVariables}}\ \&other);}
+\DoxyCodeLine{00036\ \ \ \ \ \doxymbox{\hyperlink{classInputVariables}{InputVariables}}\&\ \doxymbox{\hyperlink{classInputVariables_a5562283cb65172e4fc79869d5f816256}{operator=}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classInputVariables}{InputVariables}}\&\ other);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \doxymbox{\hyperlink{classInputVariables_a9229978e791dead200f6fd99d3b94445}{InputVariables}}(\textcolor{keyword}{const}\ std::string\ filename);}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classInputVariables_adfd81546f04802563aff6c647a2ae7aa}{readFile}}(\textcolor{keyword}{const}\ std::string\ \&filename);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classInputVariables_a2e35cc7b0d0fdf24445dad3fc7691b64}{printVariables}}(\textcolor{keyword}{const}\ std::string\ \_name)\ \textcolor{keyword}{const}\ ;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ std::string\ \doxymbox{\hyperlink{classInputVariables_a8ee273605662d5757bd0a74b05009470}{getVariable}}(\textcolor{keyword}{const}\ std::string\ \&varName)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{classInputVariables_aadc50664f4d4ac7c6d9eadbc52f9b4e3}{getInt}}(\textcolor{keyword}{const}\ std::string\ \&varName)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{classInputVariables_a162383d983f219fef8fba243fada178f}{getDouble}}(\textcolor{keyword}{const}\ std::string\ \&varName)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ \ \ \ \ std::string\ \doxymbox{\hyperlink{classInputVariables_a0b3194e6079cd533c67cf4df83fa3208}{getString}}(\textcolor{keyword}{const}\ std::string\ \&varName)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{classInputVariables_a7db0b1c7eea97fafa4aa2b76a0beee4f}{getBool}}(\textcolor{keyword}{const}\ std::string\ \&varName)\ \textcolor{keyword}{const};\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ std::map<std::string,\ std::string>\ \doxymbox{\hyperlink{classInputVariables_a22ccb49fc9a334fa003085ef6d560575}{getVariables}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ variables;\ \};}
+\DoxyCodeLine{00049\ \ \ \ \ std::map<std::string,\ std::string>\ \doxymbox{\hyperlink{classInputVariables_a3f14822eea925833729e85d16cac2bda}{getStrings}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ strings;\ \};}
+\DoxyCodeLine{00050\ \ \ \ \ std::map<std::string,\ double>\ \doxymbox{\hyperlink{classInputVariables_afa17c9509aba0f6f3d0d071f5e2e3d3b}{getDoubles}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ doubles;\ \};}
+\DoxyCodeLine{00051\ \ \ \ \ std::map<std::string,\ bool>\ \doxymbox{\hyperlink{classInputVariables_a885a38c8580fde9e512ee07954aeec9f}{getBools}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ bools;\ \};}
+\DoxyCodeLine{00052\ \ \ \ \ std::map<std::string,\ int>\ \doxymbox{\hyperlink{classInputVariables_af9bbd99d2bc8a3f31b2c81e270c9178c}{getInts}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ ints;\ \};}
+\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif\ }}
+
+\end{DoxyCode}

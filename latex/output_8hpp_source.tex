@@ -1,0 +1,55 @@
+\doxysection{output.\+hpp}
+\hypertarget{output_8hpp_source}{}\label{output_8hpp_source}\index{output.hpp@{output.hpp}}
+\doxymbox{\hyperlink{output_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_output\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_output\_\_}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{input__variables_8hpp}{input\_variables.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{header_8hpp}{header.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{params_8hpp}{params.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{params2_8hpp}{params2.hpp}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classOutput_ac10b2109d908768dca2a10a015a31884}{Output}}\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00013\ \ \ \ \ std::string\ prefix;}
+\DoxyCodeLine{00014\ \ \ \ \ FILE*\ status;}
+\DoxyCodeLine{00015\ \ \ \ \ FILE*\ status\_real;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ std::string\ \doxymbox{\hyperlink{classOutput_a57ead7781dc366067890a4d6d0beeac0}{getPrefix}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ prefix;\ \};}
+\DoxyCodeLine{00019\ \ \ \ \ \doxymbox{\hyperlink{classOutput_ac10b2109d908768dca2a10a015a31884}{Output}}(\textcolor{keyword}{const}\ std::string\&\ prefix);}
+\DoxyCodeLine{00020\ \ \ \ \ \doxymbox{\hyperlink{classOutput_ac10b2109d908768dca2a10a015a31884}{Output}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classOutput}{Output}}\&\ other);}
+\DoxyCodeLine{00021\ \ \ \ \ \doxymbox{\hyperlink{classOutput}{Output}}\&\ \doxymbox{\hyperlink{classOutput_a2743821df2c762759f68f78ddaa809d7}{operator=}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classOutput}{Output}}\&\ other);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a8c89c2990093dde16b5a181916946aa3}{WriteVariable2WTXT}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&value,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *unit);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a8c89c2990093dde16b5a181916946aa3}{WriteVariable2WTXT}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&value,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *unit);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a902ab06c49920c765b77d33d2f09a904}{WriteWtxt}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classParams}{Params}}\ \&p,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&ncycle);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a1a62758a0096e076b1d9810ccb10d827}{WriteWtxt\_2c}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classParams2}{Params2}}\ \&p,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&ncycle);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a8d48826f18792454b03bdb232f4ad9c3}{WriteInputFile}}();}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a228133881f940f0cecf3c16e99a41070}{WritePsi}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}\ *psi,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ length,\ \textcolor{keyword}{const}\ std::string\ number=\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a39082125b46005877b146502c8d4cfc5}{WritePsiInit}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}\ *psi,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ length,\ \textcolor{keyword}{const}\ std::string\ number=\textcolor{stringliteral}{"{}"{}}\ );}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_ac57546c9e22f405cbd2a815dbbd161c2}{WritePsiFinal}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}\ *psi,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ length,\ \textcolor{keyword}{const}\ std::string\ number=\textcolor{stringliteral}{"{}"{}}\ );}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a65695ebaa878c0f3b53640e96b5663e6}{WriteVext}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}\ *vext,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ length,\ \textcolor{keyword}{const}\ std::string\ number=\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a0cc3507c7fd95dd2cca690c654fa63e0}{CreateStatusFile}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ header);}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a958650c7bf676bd44beb544b1ea71bbc}{CreateRealStatusFile}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ header);}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_abf9d62747809453b27210d339a58ec2b}{CloseStatusFile}}();}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a9658ab9dee090802200ea171b8d98e3e}{CloseRealStatusFile}}();}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a52d9cb8ebb2602e9ea6b9e753735d57b}{WriteStatus}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ line);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a4236b5ab8fb4aca4ca213b698b2f3755}{WriteStatusReal}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ line);}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a2649bb42163d13f284c828863de61edb}{WriteObservable}}(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a1d2cb918f4bd4a36a60ade11e3794af8}{Write3DMatrix}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \ *matrix,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ length,\ \textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mode\ =\ \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOutput_a1d2cb918f4bd4a36a60ade11e3794af8}{Write3DMatrix}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}\ *matrix,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ length,\ \textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mode\ =\ \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{00046\ \ \ \ \ \doxymbox{\hyperlink{classOutput_a61d0840daf98bea49e4dc471f235eeab}{\string~Output}}();}
+\DoxyCodeLine{00047\ \};\ \ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

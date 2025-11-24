@@ -1,0 +1,92 @@
+\doxysection{one\+Component\+GPSolver.\+hpp}
+\hypertarget{oneComponentGPSolver_8hpp_source}{}\label{oneComponentGPSolver_8hpp_source}\index{oneComponentGPSolver.hpp@{oneComponentGPSolver.hpp}}
+\doxymbox{\hyperlink{oneComponentGPSolver_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_one\_component\_GP\_solver\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_one\_component\_GP\_solver\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{psi_8hpp}{psi.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{vext_8hpp}{vext.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{output_8hpp}{output.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{baseHamiltonian_8hpp}{baseHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Derived\ class}}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classOneComponentGPSolver_ad2a46a5b56f069d62cb4d1200a8daf0d}{OneComponentGPSolver}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{classBaseHamiltonian_a3d0b3460673f948928d9b8ffc6df3435}{BaseHamiltonian}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00013\ \ \ \ \ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}*\ \doxymbox{\hyperlink{classOneComponentGPSolver_a352eb582dde8daddc7b31857cf6f0136}{psi}};}
+\DoxyCodeLine{00014\ \ \ \ \ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}*\ \doxymbox{\hyperlink{classOneComponentGPSolver_abfb6566059505a297830f938fc1dde81}{vext}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \doxymbox{\hyperlink{classParams}{Params}}\ \doxymbox{\hyperlink{classOneComponentGPSolver_a2c8ea11f13f55d17b26e24ad53094b3c}{p}};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ variables\ used\ during\ \ time\ evolutions}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{classOneComponentGPSolver_a4a18c2342b6e7f79a2aa8cb4b58eeb00}{PARS}}[32]\ =\ \{0.0\};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{enum}\ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353dece}{Variables}}\ \{\ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353decea31390b57158a13bdf5314ac61bff1d7d}{T}},\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ current\ time}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353deceab97a8e9ff25cf00559e50d2b60920f03}{EN}},\ \ \ \ \ \ \ \ \textcolor{comment}{//\ current\ energy}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353decea1f61229fcafb1d94d5b03c5abbfd5b31}{MU}},\ \ \ \ \ \ \ \ \textcolor{comment}{//\ current\ chemical\ potential}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353decea3311753644efd9420ad772ead8accb22}{NORM}},\ \ \ \ \ \ \textcolor{comment}{//\ current\ norm}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353decea4efb9eadf8c76e541670b5047d6f52d4}{PX}},\ \ \ \ \ \ \ \ \textcolor{comment}{//\ current\ momentum\ along\ the\ x\ axis}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353decea9f84f182eff62d66b122acf8dc4a98c2}{LZ}},\ \ \ \ \ \ \ \ \textcolor{comment}{//\ current\ angular\ momentum\ along\ the\ z\ axis}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353decea98ef6b245ce4a7072dd8f96ec7c624ba}{EN\_PREV}},\ \ \ \textcolor{comment}{//\ energy\ in\ the\ previous\ iteration\ step}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353decea9a148b788863dd3e6f1013c146a552b3}{AVG\_TIME}},\ \ \textcolor{comment}{//\ stores\ the\ total\ (real)\ time\ of\ the\ simulation}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353deceae2fd9af8f34e1f43752c3e46fcb5eb8a}{ITER}},\ \ \ \ \ \ \textcolor{comment}{//\ number\ of\ completed\ iterations}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353decea92111297d4280e4c06a67f61d10a98b5}{ITER\_TIME}},\ \textcolor{comment}{//\ time\ needed\ for\ the\ full\ iteration\ step}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353decea4a9823daab6f97f39415af4fce7dae0b}{EN\_0}},\ \ \ \ \ \ \textcolor{comment}{//\ initial\ energy}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353decea19c6cb528825ebfac7ecd8a1b55b13b8}{MU\_0}},\ \ \ \ \ \ \textcolor{comment}{//\ initial\ chemical\ potential}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353deceac25d2b8742b54c4e77feab44ee0eddc4}{NCYCLES}},\ \ \ \textcolor{comment}{//\ number\ of\ intermediate\ wavefunctions\ written\ to\ the\ .wdat\ file}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353decea7e734930a7e115abdf89512990d5daf9}{AUX1}},\ \ \ \ \ \ \textcolor{comment}{//\ auxilliary\ variables,\ use\ it\ to\ store\ any\ double\ you\ wish}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353decea854f8bd6c42d33485dc2f0ebfe04a3fa}{AUX2}},}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353deceacb530d4595caf55e0722de61e41c8e86}{AUX3}},}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353deceabd666740b20eb0af816eaa1358ea7364}{AUX4}},}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad13244911289b08178cb172ce353decea297ffcca6443a608d819999cddd1314c}{AUX5}}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ ;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ Constructor\ to\ initialize\ the\ two\ pointers}}
+\DoxyCodeLine{00043\ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_ad2a46a5b56f069d62cb4d1200a8daf0d}{OneComponentGPSolver}}(\doxymbox{\hyperlink{classParams}{Params}}\ \&\doxymbox{\hyperlink{classOneComponentGPSolver_a2c8ea11f13f55d17b26e24ad53094b3c}{p}});}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}*\ \doxymbox{\hyperlink{classOneComponentGPSolver_a9215407df2a869da6ed75abb97c18087}{getPsi}}()\ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classOneComponentGPSolver_a352eb582dde8daddc7b31857cf6f0136}{psi}};\ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \doxymbox{\hyperlink{header_8hpp_a1c1b16cc02d518bbe753449171ab7033}{complex}}*\ \doxymbox{\hyperlink{classOneComponentGPSolver_aa51a2bce62f6bb2507462c0a7f1e74e0}{getVext}}()\ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classOneComponentGPSolver_abfb6566059505a297830f938fc1dde81}{vext}};\ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOneComponentGPSolver_abb2077e48c32493a380ada1dbf3df538}{runImagTimeEvol}}();}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOneComponentGPSolver_a2b87506417cbba2cc7d5c0ba117b3e16}{runRealTimeEvol}}();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ functions,\ which\ have\ to\ be\ overriden\ }}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOneComponentGPSolver_a2939af5bfc25d6bfcb8a67b4579e5749}{alg\_calcHpsi}}()\ =\ 0;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOneComponentGPSolver_a908ad3b3d948fd3c4292e607063d65d5}{alg\_calcHpsiMU}}()\ =\ 0;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOneComponentGPSolver_acfc6d036e172ad714587cdbbfbefdb63}{call\_IM\_init}}()\ =\ 0;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOneComponentGPSolver_a2bcd126debc2a301f6360c1485704590}{call\_IM\_loop\_before\_step}}()\ =\ 0;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOneComponentGPSolver_a28330d33f6a978e9db6be9afb6207ed9}{call\_IM\_loop\_after\_step}}()\ =\ 0;}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOneComponentGPSolver_a0a9b8fb24451b6ee3ef742b687391780}{call\_IM\_loop\_convergence}}()\ =\ 0;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOneComponentGPSolver_ad4b22163a96e58bd00258030f307f246}{call\_IM\_end}}()\ =\ 0;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOneComponentGPSolver_aa87aca5820b682d45c50e9fc34307308}{call\_RE\_init}}()\ =\ 0;}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOneComponentGPSolver_aca6bf12fef3178f85a8aeef2447694d8}{call\_RE\_loop\_before\_step}}()\ =\ 0;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOneComponentGPSolver_a28aa1725f1856c344d974e012781beea}{call\_RE\_loop\_after\_step}}()\ =\ 0;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classOneComponentGPSolver_ad8c924c08399864fbf5f83314c348091}{call\_RE\_end}}()\ =\ 0;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ Destructor}}
+\DoxyCodeLine{00074\ \ \ \ \ \doxymbox{\hyperlink{classOneComponentGPSolver_a8d60b98283a2c31f8e9b2e7b56765d60}{\string~OneComponentGPSolver}}()\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classOneComponentGPSolver_a352eb582dde8daddc7b31857cf6f0136}{psi}});}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classOneComponentGPSolver_abfb6566059505a297830f938fc1dde81}{vext}});\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classBaseHamiltonian_aa64ab93a3d87c53433bf8550a3a0541e}{kx}});}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classBaseHamiltonian_a6f3df2519ce84e5f458d509b3a6d561b}{ky}});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classBaseHamiltonian_a716d1299427d6abe2127d422439c31e3}{kz}});}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classBaseHamiltonian_acbe3172aec5ce557b245c090be3729f4}{x}});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classBaseHamiltonian_a9b99976857a892c9ecd8caa08d397fb3}{y}});}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ free(\doxymbox{\hyperlink{classBaseHamiltonian_a76b7e612157624caae7e55491c40b774}{z}});}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
