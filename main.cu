@@ -14,6 +14,8 @@
 // Two-component headers
 #include "hamiltonians/BEC_twoComponent.hpp"
 
+// User-defined headers:
+
 
 int main(int argc, char* argv[]) {
 
