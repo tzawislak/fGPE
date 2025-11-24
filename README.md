@@ -22,14 +22,14 @@ The solver can be extended to user-specific Hamiltonians that include e.g. dipol
 ## Solvers
  
 ### Imaginary-time evolution
-The stationary solution of a given problem is found by minimizing the energy of a system defined with user-defined (or predefined) energy density functional \f$\mathcal{E}\f$.
+The stationary solution of a given problem is found by minimizing the energy of a system defined with user-defined (or predefined) energy density functional \[\mathcal{E}\].
 
 
 
 ### Real-time evolution
 The solver integrates the **time-dependent Gross–Pitaevskii equation**:
 
-\f$ i\hbar \frac{\partial \psi}{\partial t} = \left( -\frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r}) + g|\psi|^2 \right)\psi \f$
+\[ i\hbar \frac{\partial \psi}{\partial t} = \left( -\frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r}) + g|\psi|^2 \right)\psi \]
 
 Includes options for:
 
