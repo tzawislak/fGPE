@@ -1,4 +1,5 @@
-outprefix       "/g100/home/userexternal/tzawisla/t/output/cpptest1_"
+hamiltonian     "bec"
+outprefix       "./output/test1_"
 treal           false
 read_vext       false
 vprefix         "../traps/thr_ring_256.wdat"
@@ -17,7 +18,7 @@ nseed           1
 aseed           0.01
 
 a               100.4
-add				 0.0
+
 omx             0.0
 omy             150.0
 omz             150.0

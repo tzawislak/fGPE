@@ -33,3 +33,6 @@
 typedef std::complex<double> complex;
 typedef cufftDoubleComplex cufftDoubleComplex;
 #endif // INDEX_MACRO_HPP
+
+
+#define CUDA_13

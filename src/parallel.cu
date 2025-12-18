@@ -136,14 +136,25 @@ void Cuda::PrintGPUInfo()
                   << deviceProp.maxGridSize[0] << ", "
                   << deviceProp.maxGridSize[1] << ", "
                   << deviceProp.maxGridSize[2] << "]" << std::endl;
-        std::cout << "  Clock rate: " << deviceProp.clockRate / 1000 << " MHz" << std::endl;
         std::cout << "  Total constant memory: " << deviceProp.totalConstMem / 1024 << " KB" << std::endl;
         std::cout << "  Multi-Processor Count: " << deviceProp.multiProcessorCount << std::endl;
         std::cout << "  L2 Cache Size: " << deviceProp.l2CacheSize / 1024 << " KB" << std::endl;
-        std::cout << "  Memory Clock Rate: " << deviceProp.memoryClockRate / 1000 << " MHz" << std::endl;
         std::cout << "  Memory Bus Width: " << deviceProp.memoryBusWidth << " bits" << std::endl;
-        std::cout << "  Peak Memory Bandwidth: " 
-                  << 2.0 * deviceProp.memoryClockRate * (deviceProp.memoryBusWidth / 8) / 1.0e6 << " GB/s" << std::endl;
+
+#ifdef CUDA_13
+        int clockRateKHz;
+        int memoryRateKHz;
+        cudaDeviceGetAttribute(&clockRateKHz, cudaDevAttrClockRate, 0); 
+        cudaDeviceGetAttribute(&memoryRateKHz, cudaDevAttrMemoryClockRate, 0);
+
+        std::cout << "  Clock rate: " << clockRateKHz / 1000 << " MHz" << std::endl;
+        std::cout << "  Memory Clock Rate: " << memoryRateKHz / 1000 << " MHz" << std::endl;
+        std::cout << "  Peak Memory Bandwidth: " << 2.0 * memoryRateKHz * (deviceProp.memoryBusWidth / 8) / 1.0e6 << " GB/s" << std::endl;
+#else
+        std::cout << "  Clock rate: " << deviceProp.clockRate << " MHz" << std::endl;
+        std::cout << "  Memory Clock Rate: " << deviceProp.memoryClockRate / 1000 << " MHz" << std::endl;
+        std::cout << "  Peak Memory Bandwidth: " << 2.0 * deviceProp.memoryClockRate * (deviceProp.memoryBusWidth / 8) / 1.0e6 << " GB/s" << std::endl;   
+#endif
     }
 }
 

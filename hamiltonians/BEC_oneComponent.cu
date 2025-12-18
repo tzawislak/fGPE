@@ -12,19 +12,12 @@ BEConeComponent::BEConeComponent(Params &par): OneComponentGPSolver(par)
         Define parameters entering your Hamiltonian
     */
     h_params[0] = p.a; // init a
-    h_params[1] = p.a*1.02; // 1 final a
-    h_params[2] = p.a; // 2 final a
-    h_params[3] = 1; // 1 time 
-    h_params[4] = 1000; // 2 time
-    h_params[5] = 2000; // 3 time 
     CCE(cudaMemcpy(this->d_h_params, h_params, NO_HAMIL_PARAMS * sizeof(double), cudaMemcpyHostToDevice), "CUDA error at memcpy: d_h_params");
     
 
 
 
-    //
     // choose the type of time evolution
-    //
     if( p.getBool("treal"))
     {
         std::cout << "# Running real time evolution" << std::endl;
@@ -38,17 +31,14 @@ BEConeComponent::BEConeComponent(Params &par): OneComponentGPSolver(par)
 }
 
    
-//
+
 // Initialize your wavefunction
-// 
 Psi BEConeComponent::InitPsi()
 {
     // You can access init params from this->p object
     Psi psi_(p, "");
     
-    /*
-        BEGIN:: Manipulate your wavefunction
-    */
+    // BEGIN:: Manipulate your wavefunction
 
     // imprint vortex 
     if( p.getBool("tpi_vortex") )
@@ -61,10 +51,7 @@ Psi BEConeComponent::InitPsi()
 
 
 
-    /*
-        END:: Manipulate your wavefunction
-    */
-
+    // END:: Manipulate your wavefunction
     // CRUCIAL:: copy the wavefunction to psi pointer
     std::memcpy(this->psi, psi_.getPsi(), p.Npoints * sizeof(complex));
     return psi_;
@@ -72,16 +59,12 @@ Psi BEConeComponent::InitPsi()
 
 
 
-
-//
 // Initialize your external potential
-//
 Vext BEConeComponent::InitVext()
 {
     Vext vext_(p, "");
-    /*
-        BEGIN:: Manipulate your external potential
-    */
+    // BEGIN:: Manipulate your external potential
+    
 
     // the protocol
     if( p.getBool("tvseed") )
@@ -89,16 +72,11 @@ Vext BEConeComponent::InitVext()
         vext_.addProtocolPotential(p, 0); 
     }
 
-    // optical lattice
-    if( p.getBool("topt") )
-    { 
-        vext_.addOpticalLattice(p, 0); 
-    }
+    
 
     output.WriteVext( vext_.getVext(), p.Npoints);
-    /*
-        END:: Manipulate your external potential
-    */
+    // END:: Manipulate your external potential
+
 
     std::memcpy(this->vext, vext_.getVext(), p.Npoints * sizeof(complex));
     return vext_;
@@ -134,7 +112,6 @@ void BEConeComponent::alg_calcHpsiMU(){
 
 
 
-
 void BEConeComponent::alg_calcCos(double *_avgcos, cufftDoubleComplex* _psi ){
     CalcAverageCos<<<gridSize, noThreads>>>( _psi, this->d_x, this->d_partial, 2*p.XMAX[0], p.NX[0], p.Npoints);
     CCE(cudaGetLastError(), "Calculate Average Cos Kernel launch failed");
@@ -153,6 +130,7 @@ __global__ void BECHamiltonian( double time, cufftDoubleComplex* psi, cufftDoubl
     int ix = blockIdx.x * blockDim.x + threadIdx.x;
     double rX=0.0;
     double rY=0.0;
+    
     /* PARAMETERS */
     //double a = prms[0];
     double a = d_quench_as( time, prms );

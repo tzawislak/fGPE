@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
 
         if (hamiltonian == "bec") 
         {
-            std::cout << "BEC hamiltonian" << std::endl;
+            std::cout << "# BEC hamiltonian" << std::endl;
             BEConeComponent bec(params);
         } 
         else 
@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
 
         if (hamiltonian == "2bec") 
         {
-            std::cout << "BEC hamiltonian" << std::endl;
+            std::cout << "# 2BEC hamiltonian" << std::endl;
             BECtwoComponent bec(params2);
         }
         else

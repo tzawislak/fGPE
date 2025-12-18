@@ -24,15 +24,7 @@ Params& Params::operator=(const Params& other){
     return *this;
 }
 
-void Params::RedefineLatticeOL(const Params *par)
-{
-    std::cout << "Old numerical domain lengths: \nLX: " 
-              << 2*this->XMAX[0] << "\nLY: " 
-              << 2*this->XMAX[1] << "\nLZ: "
-              << 2*this->XMAX[2] << std::endl;
-    
 
-}
 
 void Params::RedefineLatticeSoft(const Params *par)
 {
