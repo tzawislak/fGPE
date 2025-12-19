@@ -1,6 +1,8 @@
 #include "parallel.hpp"                                                                     
 
-
+/*
+    @brief CUDA Error-handling function
+*/
 void CCE(cudaError_t error, const char* msg) {
     if (error != cudaSuccess) {
         std::cerr << "Error: " << msg << " (" << cudaGetErrorString(error) << ")\n";
@@ -185,132 +187,26 @@ __global__ void Laplace( cufftDoubleComplex* v1, double* kx,  double* ky, double
     int iY = (idx / NX) % NY;
     int iZ = idx / (NX*NY);
     
-    if ((idx < N) && (iX < NX) && (iY < NY) && (iZ < NZ)) {
-        // Perform element-wise complex multiplication
-        result[idx].x = v1[idx].x * (kx[iX]*kx[iX] + ky[iY]*ky[iY] + kz[iZ]*kz[iZ]);
-        result[idx].y = v1[idx].y * (kx[iX]*kx[iX] + ky[iY]*ky[iY] + kz[iZ]*kz[iZ]); 
+    if ((idx < N) && (iX < NX) && (iY < NY) && (iZ < NZ)) 
+    {
+        result[idx] = v1[idx] * (kx[iX]*kx[iX] + ky[iY]*ky[iY] + kz[iZ]*kz[iZ]);
     }
 }
 
-__global__ void ScalarMultiply( double* vout, double a, int N){
-    int ix = blockIdx.x * blockDim.x + threadIdx.x;
-    if (ix < N) {
-        vout[ix] *= a ;
-    }
-}
-
-__global__ void ScalarMultiply( double* vout, double* vin, double a, int N){
-    int ix = blockIdx.x * blockDim.x + threadIdx.x;
-    if (ix < N) {
-        vout[ix] = a * vin[ix] ;
-    }
-}
-
-__global__ void ScalarMultiply( cufftDoubleComplex* vout, double a, int N){
-    int ix = blockIdx.x * blockDim.x + threadIdx.x;
-    if (ix < N) {
-        vout[ix].x *= a ;
-        vout[ix].y *= a ;
-    }
-}
-
-__global__ void ScalarMultiply( cufftDoubleComplex* vout, cufftDoubleComplex* v1, double a, int N){
-    int ix = blockIdx.x * blockDim.x + threadIdx.x;
-    if (ix < N) {
-        vout[ix].x = a * v1[ix].x;
-        vout[ix].y = a * v1[ix].y;
-    }
-}
-
-__global__ void ScalarMultiply( cufftDoubleComplex* vout, cufftDoubleComplex* v1, cufftDoubleComplex a, int N){
-    int ix = blockIdx.x * blockDim.x + threadIdx.x;
-    if (ix < N) {
-        vout[ix].x = (a.x * v1[ix].x - a.y*v1[ix].y);
-        vout[ix].y = (a.y * v1[ix].x + a.x*v1[ix].y);
-    }
-}
-
-__global__ void AppendArray( cufftDoubleComplex* vout, cufftDoubleComplex a, cufftDoubleComplex* v1, int N){
-    int ix = blockIdx.x * blockDim.x + threadIdx.x;
-    if (ix < N) {
-        vout[ix].x +=  (a.x*v1[ix].x - a.y*v1[ix].y);
-        vout[ix].y +=  (a.y*v1[ix].x + a.x*v1[ix].y);
-    }
-}
-
-__global__ void AppendArray( cufftDoubleComplex* vout, double a, cufftDoubleComplex* v1, int N){
-    int ix = blockIdx.x * blockDim.x + threadIdx.x;
-    if (ix < N) {
-        vout[ix].x +=  (a*v1[ix].x);
-        vout[ix].y +=  (a*v1[ix].y);
-    }
-}
 
 __global__ void SumArrays( cufftDoubleComplex* vout, cufftDoubleComplex* v2, cufftDoubleComplex a, cufftDoubleComplex* v1, int N){
     int ix = blockIdx.x * blockDim.x + threadIdx.x;
     if (ix < N) {
-        vout[ix].x = v2[ix].x + (a.x * v1[ix].x - a.y*v1[ix].y);
-        vout[ix].y = v2[ix].y + (a.y * v1[ix].x + a.x*v1[ix].y);
+        vout[ix] = v2[ix] + a*v1[ix];
     }
 }
 
 
-__global__ void MultiplyArrays(cufftDoubleComplex* a, cufftDoubleComplex* b, cufftDoubleComplex* result, int N) {
-    int idx = blockIdx.x * blockDim.x + threadIdx.x;
-    if (idx < N) {
-        // Complex multiplication: (a + bi) * (c + di) = (ac - bd) + (ad + bc)i
-        result[idx].x = a[idx].x * b[idx].x - a[idx].y * b[idx].y;
-        result[idx].y = a[idx].x * b[idx].y + a[idx].y * b[idx].x;
-    }
-}
-
-// !!!!!!!!!!!!!!!!!!!! NOT READY !!!!!!!!!!!!!!!!!!!!!!
-__global__ void MultiplyArraysX(cufftDoubleComplex* a, double* b, cufftDoubleComplex* result, int N, int NX) {
-    int idx = blockIdx.x * blockDim.x + threadIdx.x;
-    int iX = idx % NX;
-
-    if ( (idx < N) && (iX < NX) ) {
-        result[idx].x = a[idx].x * b[iX];
-        result[idx].y = a[idx].y * b[iX];
-    }
-}
-
-__global__ void MultiplyArraysY(cufftDoubleComplex* a, double* b, cufftDoubleComplex* result, int N, int NX, int NY) {
-    int idx = blockIdx.x * blockDim.x + threadIdx.x;
-    int iX = idx % NX;
-    int iY = (idx / NX) % NY;
-
-    if ( (idx < N) && (iX < NX) && (iY < NY) ) {
-        result[idx].x = a[idx].x * b[iY];
-        result[idx].y = a[idx].y * b[iY];
-    }
-}
-
-
-
-
-__global__ void MultiplyArrays(double* a, double* b, double* result, int N) {
-    int idx = blockIdx.x * blockDim.x + threadIdx.x;
-    if (idx < N) {
-        // Complex multiplication: (a + bi) * (c + di) = (ac - bd) + (ad + bc)i
-        result[idx] = a[idx] * b[idx];
-    }
-}
-
-__global__ void SquareArray( cufftDoubleComplex *in, cufftDoubleComplex *out, int N) {
-    int idx = blockIdx.x * blockDim.x + threadIdx.x;
-    if (idx < N) {
-        out[idx].x = in[idx].x*in[idx].x + in[idx].y*in[idx].y;
-        out[idx].y = 0;
-    }
-}
-
-__global__ void SquareArray( cufftDoubleComplex *in, double *out, int N) {
-    int idx = blockIdx.x * blockDim.x + threadIdx.x;
-    if (idx < N) {
-        out[idx] = in[idx].x*in[idx].x + in[idx].y*in[idx].y;
-    }
-}
+// ------------------------
+//
+//     RK4 ALGO KERNELS
+//
+// ------------------------
 
 __global__ void CalcK( cufftDoubleComplex* k, cufftDoubleComplex* hpsi, double dt, int N){
     int ix = blockIdx.x * blockDim.x + threadIdx.x;
@@ -319,7 +215,6 @@ __global__ void CalcK( cufftDoubleComplex* k, cufftDoubleComplex* hpsi, double d
         k[ix].y = -1.0 * dt * hpsi[ix].x;
     }
 }
-
 
 __global__ void UpdateRKStep( cufftDoubleComplex* psi, cufftDoubleComplex* psi_old, cufftDoubleComplex* k, double sc, int N){
     int ix = blockIdx.x * blockDim.x + threadIdx.x;
@@ -337,35 +232,6 @@ __global__ void UpdateRKStep( cufftDoubleComplex* psi, cufftDoubleComplex* psi_o
     }
 }
 
-/**
- * @brief Sums all RK4 steps to a new wavefunction for a spin mixture
- *
- * @param psi New wavefunction (type: (cufftDoubleComplex*, cufftDoubleComplex*) )
- * @param psi_old Old wavefunction (type: (cufftDoubleComplex*, cufftDoubleComplex*) )
- * @param hpsi Last H|psi> to be added as the fourth step of RK (type: cufftDoubleComplex*)
- * 
- * @note Here h12 is meant to be -\hbar\Omega/2 -- a real number. To introduce other coupling, one needs
- *       to replace the double h12 with a complex arrays (one for h12 and the other for h21)
- * @warning Warnings about misuse, performance issues, or other concerns.
- * @pre Precondition that must hold true before calling the function.
- * @post Postcondition that will be true after calling the function.
- */
-/*
-__global__ void UpdateRKStep( 
-    cufftDoubleComplex* psi1, cufftDoubleComplex* psi1_old, cufftDoubleComplex* psi2, cufftDoubleComplex* psi2_old,
-    cufftDoubleComplex* h11psi1, cufftDoubleComplex* h22psi2, double h12, cufftDoubleComplex nIdt, int N)
-{
-    int ix = blockIdx.x * blockDim.x + threadIdx.x;
- 
-    if (ix < N) {
-        psi1[ix].x = psi1_old[ix].x +    nIdt.x*(h11psi1[ix].x+h12*psi2_old[ix].x) - nIdt.y*(h11psi1[ix].y+h12*psi2_old[ix].y) ;
-        psi1[ix].y = psi1_old[ix].y +    nIdt.x*(h11psi1[ix].y+h12*psi2_old[ix].y) + nIdt.y*(h11psi1[ix].x+h12*psi2_old[ix].x) ;
-
-        psi2[ix].x = psi2_old[ix].x +    nIdt.x*(h22psi2[ix].x+h12*psi1_old[ix].x) - nIdt.y*(h22psi2[ix].y+h12*psi1_old[ix].y) ;
-        psi2[ix].y = psi2_old[ix].y +    nIdt.x*(h22psi2[ix].y+h12*psi1_old[ix].y) + nIdt.y*(h22psi2[ix].x+h12*psi1_old[ix].x) ;
-    }
-}
-*/
 
 
 /**
@@ -414,19 +280,6 @@ __global__ void BECVPx( cufftDoubleComplex* v1, double* kx, cufftDoubleComplex* 
     }
 }
 
-__global__ void BECOmegaLz( cufftDoubleComplex* v1, double* kx, double* ky, cufftDoubleComplex* result, int N, int NX, int NY) {
-    int idx = blockIdx.x * blockDim.x + threadIdx.x;
-    int iX = idx % NX;
-    int iY = (idx / NX) % NY;
-    
-    if ( (idx < N) && (iX < NX) && (iY < NY)) {
-        // kx \rho - ky \rho
-        result[idx].x = kx[iX] * v1[idx].x - ky[iY] * v1[idx].x;
-        result[idx].y = kx[iX] * v1[idx].y - ky[iY] * v1[idx].y; 
-    }
-}
-
-
 __global__ void BECUpdatePsi( cufftDoubleComplex* psi, cufftDoubleComplex* newpsi,  cufftDoubleComplex* oldpsi, cufftDoubleComplex* hpsi, double mu, double dt, double beta, int N ){
 
     int ix = blockIdx.x * blockDim.x + threadIdx.x;
@@ -438,6 +291,27 @@ __global__ void BECUpdatePsi( cufftDoubleComplex* psi, cufftDoubleComplex* newps
 }
 
 
+
+// ------------------------
+//
+//     DIPOLAR KERNELS
+//
+// ------------------------
+/*
+    @brief Calculates the mean-field dipole-dipole interaction potential
+    @param kx x-component of the momentum space
+    @param ky y-component of the momentum space
+    @param kz z-component of the momentum space
+    @param vtilde momentum-space DDI potential
+    @param a_dd dipolar length
+    @param d_x x-component of dipole-orientation vector
+    @param d_y y-component of dipole-orientation vector
+    @param d_z z-component of dipole-orientation vector
+    @param N number of grid points
+    @param NX number of grid points along X
+    @param NY number of grid points along Y
+    @param NZ number of grid points along Z
+*/
 __global__ void DipoleDipoleInteraction( double* kx,  double* ky, double* kz, cufftDoubleComplex* vtilde, double a_dd, double d_x, double d_y, double d_z, int N, int NX, int NY, int NZ) 
 {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
@@ -466,7 +340,23 @@ __global__ void DipoleDipoleInteraction( double* kx,  double* ky, double* kz, cu
     }
 }
 
-
+// ------------------------
+//
+//   SOFT_CORE KERNELS
+//
+// ------------------------
+/*
+    @brief Calculates the mean-field soft-core interaction potential in 1D
+    @param kx x-component of the momentum space
+    @param ky y-component of the momentum space
+    @param kz z-component of the momentum space
+    @param vtilde momentum-space soft-core potential
+    @param N number of grid points
+    @param NX number of grid points along X
+    @param NY number of grid points along Y
+    @param NZ number of grid points along Z
+    @param _d_h_params an array of user-specific parameters (where the relevant constants are stored)
+*/
 __global__ void SoftCoreInteraction_1D( double* kx,  double* ky, double* kz, cufftDoubleComplex* vtilde, int N, int NX, int NY, int NZ, double* _d_h_params) 
 {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
@@ -495,6 +385,18 @@ __global__ void SoftCoreInteraction_1D( double* kx,  double* ky, double* kz, cuf
     }
 }
 
+/*
+    @brief Calculates the mean-field soft-core interaction potential in 2D
+    @param kx x-component of the momentum space
+    @param ky y-component of the momentum space
+    @param kz z-component of the momentum space
+    @param vtilde momentum-space soft-core potential
+    @param N number of grid points
+    @param NX number of grid points along X
+    @param NY number of grid points along Y
+    @param NZ number of grid points along Z
+    @param _d_h_params an array of user-specific parameters (where the relevant constants are stored)
+*/
 __global__ void SoftCoreInteraction_2D( double* kx,  double* ky, double* kz, cufftDoubleComplex* vtilde, int N, int NX, int NY, int NZ, double* _d_h_params) 
 {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
@@ -523,6 +425,18 @@ __global__ void SoftCoreInteraction_2D( double* kx,  double* ky, double* kz, cuf
     }
 }
 
+/*
+    @brief Calculates the mean-field soft-core interaction potential in 3D
+    @param kx x-component of the momentum space
+    @param ky y-component of the momentum space
+    @param kz z-component of the momentum space
+    @param vtilde momentum-space soft-core potential
+    @param N number of grid points
+    @param NX number of grid points along X
+    @param NY number of grid points along Y
+    @param NZ number of grid points along Z
+    @param _d_h_params an array of user-specific parameters (where the relevant constants are stored)
+*/
 __global__ void SoftCoreInteraction_3D( double* kx,  double* ky, double* kz, cufftDoubleComplex* vtilde, int N, int NX, int NY, int NZ, double* _d_h_params) 
 {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
@@ -565,7 +479,12 @@ cufftDoubleComplex complexSqrt(cufftDoubleComplex z) {
 
 
 
-
+/*
+    @brief Calculate the norm of a given wavefunction
+    @param input the $\psi$
+    @param output the output
+    @param N number of grid points
+*/
 __global__ void NormalizePsi(cufftDoubleComplex *input, double *output, int N) {
     // Allocate shared memory
     __shared__ double sharedData[NTHREADS];
@@ -595,6 +514,7 @@ __global__ void NormalizePsi(cufftDoubleComplex *input, double *output, int N) {
         output[blockIdx.x] = sharedData[0];
     }
 }
+
 
 /*
  *  this function is user-specific
@@ -630,70 +550,16 @@ __global__ void CalcAverageCos(cufftDoubleComplex *psi, double* x, double *outpu
 }
 
 
-__global__ void CalculateRelativePhase(cufftDoubleComplex *psi1, cufftDoubleComplex *psi2, double *output, int N) {
-    __shared__ double sharedData[NTHREADS];
 
-    int tid = threadIdx.x;
-    int globalIdx = blockIdx.x * blockDim.x + tid;
-    
-    // Load elements into shared memory
-    if (globalIdx < N) {
-        sharedData[tid] = atan2(psi1[globalIdx].y, psi1[globalIdx].x) - atan2(psi2[globalIdx].y, psi2[globalIdx].x);
-    } else {
-        sharedData[tid] = 0.0;  
 
-    }
-    __syncthreads();
+/*
+    @brief Calculates any observable $\langle \psi | \hat{O} | \psi \rangle $
 
-    // Perform reduction in shared memory
-    for (int stride = blockDim.x / 2; stride > 0; stride /= 2) {
-        if (tid < stride) {
-            sharedData[tid] += sharedData[tid + stride];
-        }
-        __syncthreads();
-    }
-
-    // Write the result of this block to the output array
-    if (tid == 0) {
-        output[blockIdx.x] = sharedData[0];
-    }
-}
-
-__global__ void CalculateDszDt(cufftDoubleComplex *psi1, cufftDoubleComplex *psi2, double *output, int N) {
-    __shared__ double sharedData[NTHREADS];
-
-    int tid = threadIdx.x;
-    int gid = blockIdx.x * blockDim.x + tid;
-    double phir=0.0;
-    double n1=0.0;
-    double n2=0.0;
-
-    // Load elements into shared memory
-    if (gid < N) {
-        phir = atan2(psi1[gid].y, psi1[gid].x) - atan2(psi2[gid].y, psi2[gid].x);
-        n1   = psi1[gid].x*psi1[gid].x + psi1[gid].y*psi1[gid].y;
-        n2   = psi2[gid].x*psi2[gid].x + psi2[gid].y*psi2[gid].y;
-        sharedData[tid] = sqrt(n1*n2)*sin(phir);
-    } else {
-        sharedData[tid] = 0.0;  
-
-    }
-    __syncthreads();
-
-    // Perform reduction in shared memory
-    for (int stride = blockDim.x / 2; stride > 0; stride /= 2) {
-        if (tid < stride) {
-            sharedData[tid] += sharedData[tid + stride];
-        }
-        __syncthreads();
-    }
-
-    // Write the result of this block to the output array
-    if (tid == 0) {
-        output[blockIdx.x] = sharedData[0];
-    }
-}
-
+    @param psi the wavefunction
+    @param Opsi result of $\hat{O}|\psi\rangle$
+    @param output the output array
+    @param N the length of psi
+*/
 __global__ void CalculateObservable(cufftDoubleComplex *psi, cufftDoubleComplex *Opsi, double *output, int N) {
     __shared__ double sharedData[NTHREADS];
 
@@ -723,6 +589,16 @@ __global__ void CalculateObservable(cufftDoubleComplex *psi, cufftDoubleComplex 
     }
 }
 
+/*
+    @brief Calculates any observables $\langle \psi | \hat{O_1} | \psi \rangle $ and $\langle \psi | \hat{O_2} | \psi \rangle $ at once.
+
+    @param psi the wavefunction
+    @param O1psi result of $\hat{O}_1|\psi\rangle$
+    @param output1 the output array
+    @param O2psi result of $\hat{O}_2|\psi\rangle$
+    @param output2 the output array
+    @param N the length of psi
+*/
 __global__ void Calculate2Observables(cufftDoubleComplex *psi, cufftDoubleComplex *O1psi, double *output1, cufftDoubleComplex *O2psi, double *output2, int N){
     __shared__ cufftDoubleComplex sharedData[NTHREADS];
 
@@ -759,10 +635,12 @@ __global__ void Calculate2Observables(cufftDoubleComplex *psi, cufftDoubleComple
 
 
 
-
+/*
+    @brief Sum reduction kernel used to sum all elements in an array in parallel    
+*/
 __global__ void sumReductionKernel(double *input, double *output, int n) {
 // Shared memory to store partial sums
-    extern __shared__ double sharedData[];
+    __shared__ double sharedData[NTHREADS];
 
     // Calculate the global thread ID
     int tid = threadIdx.x;
@@ -800,6 +678,21 @@ __global__ void sumReductionKernel(double *input, double *output, int n) {
 //
 // ---------------------
 
+/*
+    @brief calculates Laplacian $\nabla \psi_i$ for $i=1,2$ simultaneously. Used in 2-component codes.
+
+    @param v1 psi_1
+    @param v2 psi_2
+    @param kx x-component in the momentum-space 
+    @param ky y-component in the momentum-space 
+    @param kz z-component in the momentum-space 
+    @param result1 stores $\nabla \psi_1$
+    @param result2 stores $\nabla \psi_2$
+    @param N $NX\times NY\times NZ$
+    @param NX number of grid points in x-direction
+    @param NY number of grid points in y-direction
+    @param NZ number of grid points in z-direction
+*/
 __global__ void Laplace_2( cufftDoubleComplex* v1, cufftDoubleComplex* v2, double* kx,  double* ky, double* kz, cufftDoubleComplex* result1, cufftDoubleComplex* result2, int N, int NX, int NY, int NZ) {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
     int iX = idx % NX;
@@ -819,10 +712,22 @@ __global__ void Laplace_2( cufftDoubleComplex* v1, cufftDoubleComplex* v2, doubl
 
 
 
+/*
+    @brief User-defined function to calculate $\langle \cos(x) \rangle$
 
+    @param psi1 psi_1
+    @param psi2 psi_2
+    @param x array of the real space along the x-direction
+    @param output stores the output of the calculation
+    @param L actual length of the system
+    @param NX number of grid points in x-direction
+    @param N $NX\times NY\times NZ$
+    @param sign determines the state $\psi = \psi_1 \pm \psi_2$ with which the average cosine is calculated
+
+*/
 __global__ void CalcAverageCos( cufftDoubleComplex *psi1, cufftDoubleComplex *psi2, double* x, double *output, double L, int NX, int N, int sign) 
 {
-    extern __shared__ double sharedData[NTHREADS];
+    __shared__ double sharedData[NTHREADS];
 
     int tid = threadIdx.x;
     int idx = blockIdx.x * blockDim.x + tid;
@@ -854,6 +759,71 @@ __global__ void CalcAverageCos( cufftDoubleComplex *psi1, cufftDoubleComplex *ps
 }
 
 
+// user-specific
+__global__ void CalculateRelativePhase(cufftDoubleComplex *psi1, cufftDoubleComplex *psi2, double *output, int N) {
+    __shared__ double sharedData[NTHREADS];
+
+    int tid = threadIdx.x;
+    int globalIdx = blockIdx.x * blockDim.x + tid;
+    
+    // Load elements into shared memory
+    if (globalIdx < N) {
+        sharedData[tid] = atan2(psi1[globalIdx].y, psi1[globalIdx].x) - atan2(psi2[globalIdx].y, psi2[globalIdx].x);
+    } else {
+        sharedData[tid] = 0.0;  
+
+    }
+    __syncthreads();
+
+    // Perform reduction in shared memory
+    for (int stride = blockDim.x / 2; stride > 0; stride /= 2) {
+        if (tid < stride) {
+            sharedData[tid] += sharedData[tid + stride];
+        }
+        __syncthreads();
+    }
+
+    // Write the result of this block to the output array
+    if (tid == 0) {
+        output[blockIdx.x] = sharedData[0];
+    }
+}
 
 
+// user-specific
+__global__ void CalculateDszDt(cufftDoubleComplex *psi1, cufftDoubleComplex *psi2, double *output, int N) 
+{
+    __shared__ double sharedData[NTHREADS];
+
+    int tid = threadIdx.x;
+    int gid = blockIdx.x * blockDim.x + tid;
+    double phir=0.0;
+    double n1=0.0;
+    double n2=0.0;
+
+    // Load elements into shared memory
+    if (gid < N) {
+        phir = atan2(psi1[gid].y, psi1[gid].x) - atan2(psi2[gid].y, psi2[gid].x);
+        n1   = psi1[gid].x*psi1[gid].x + psi1[gid].y*psi1[gid].y;
+        n2   = psi2[gid].x*psi2[gid].x + psi2[gid].y*psi2[gid].y;
+        sharedData[tid] = sqrt(n1*n2)*sin(phir);
+    } else {
+        sharedData[tid] = 0.0;  
+
+    }
+    __syncthreads();
+
+    // Perform reduction in shared memory
+    for (int stride = blockDim.x / 2; stride > 0; stride /= 2) {
+        if (tid < stride) {
+            sharedData[tid] += sharedData[tid + stride];
+        }
+        __syncthreads();
+    }
+
+    // Write the result of this block to the output array
+    if (tid == 0) {
+        output[blockIdx.x] = sharedData[0];
+    }
+}
 

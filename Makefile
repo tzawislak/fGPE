@@ -2,7 +2,7 @@
 CXX = nvcc 
 
 # Compiler flags
-CXXFLAGS = -Ihpp -std=c++17 -lcufft -O3 -Wno-deprecated-gpu-targets
+CXXFLAGS = -Ihpp -std=c++20 -lcufft -O3 -Wno-deprecated-gpu-targets
 
 # Target executable
 TARGET = gpe

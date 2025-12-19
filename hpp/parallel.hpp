@@ -114,35 +114,19 @@ public:
 
 };
 
+__host__ __device__ cufftDoubleComplex complexSqrt(cufftDoubleComplex z);
+
+// 1-COMPONEN KERNELS
 __global__ void Laplace( cufftDoubleComplex* v1, double* kx,  double* ky, double* kz, cufftDoubleComplex* result, int N, int NX, int NY, int NZ);
-__global__ void Laplace_2( cufftDoubleComplex* v1, cufftDoubleComplex* v2, double* kx,  double* ky, double* kz, cufftDoubleComplex* result1, cufftDoubleComplex* result2, int N, int NX, int NY, int NZ); 
-
-__global__ void BECVPx( cufftDoubleComplex* v1, double* kx, cufftDoubleComplex* result, int N, int NX);
-__global__ void BECOmegaLz( cufftDoubleComplex* v1, double* kx, double* ky, cufftDoubleComplex* result, int N, int NX, int NY);
-
-cufftDoubleComplex complexSqrt(cufftDoubleComplex z);
-
 __global__ void NormalizePsi(cufftDoubleComplex *input, double *output, int N);
 __global__ void CalculateObservable(cufftDoubleComplex *psi, cufftDoubleComplex *Opsi, double *output, int N);
-__global__ void Calculate2Observables(cufftDoubleComplex *psi, cufftDoubleComplex *O1psi, double *output1, cufftDoubleComplex *O2psi, double *output2, int N);
-__global__ void CalcAverageCos(cufftDoubleComplex *psi1, cufftDoubleComplex *psi2, double* x, double *output, double L, int NX, int N, int sign=1) ;
-__global__ void CalcAverageCos(cufftDoubleComplex *psi, double* x, double *output, double L, int NX, int N) ;
-
-__global__ void ScalarMultiply( double* v1, double a, int N);
-__global__ void ScalarMultiply( double* vout, double* vin, double a, int N);
-__global__ void ScalarMultiply( cufftDoubleComplex* v1, double a, int N);
-__global__ void ScalarMultiply( cufftDoubleComplex* vin, cufftDoubleComplex* vout, double a, int N);
-__global__ void ScalarMultiply( cufftDoubleComplex* vin, cufftDoubleComplex* vout, cufftDoubleComplex a, int N);
-__global__ void AppendArray( cufftDoubleComplex* v2, cufftDoubleComplex a, cufftDoubleComplex* v1, int N);
-__global__ void AppendArray( cufftDoubleComplex* vout, double a, cufftDoubleComplex* v1, int N);
-__global__ void SquareArray( cufftDoubleComplex* in, cufftDoubleComplex* out, int N);
-__global__ void SquareArray( cufftDoubleComplex *in, double *out, int N);
-__global__ void MultiplyArrays(cufftDoubleComplex* a, cufftDoubleComplex* b, cufftDoubleComplex* result, int N);
-__global__ void MultiplyArrays(double* a, double* b, double* result, int N);
-__global__ void MultiplyArraysX(cufftDoubleComplex* a, double* b, cufftDoubleComplex* result, int N, int NX);
-__global__ void MultiplyArraysY(cufftDoubleComplex* a, double* b, cufftDoubleComplex* result, int N, int NX, int NY);
-
 __global__ void SumArrays( cufftDoubleComplex* vout, cufftDoubleComplex* v2, cufftDoubleComplex a, cufftDoubleComplex* v1, int N);
+// GENERAL BUT USER-SPECIFIC
+__global__ void CalcAverageCos(cufftDoubleComplex *psi, double* x, double *output, double L, int NX, int N) ;
+__global__ void BECVPx( cufftDoubleComplex* v1, double* kx, cufftDoubleComplex* result, int N, int NX);
+
+
+// RK4 algorithm-specific kernels
 __global__ void SumRK4( cufftDoubleComplex* psi_out, cufftDoubleComplex* psi_in, cufftDoubleComplex* k1, cufftDoubleComplex* k2, cufftDoubleComplex* k3, cufftDoubleComplex* k4, int N);
 __global__ void CalcK( cufftDoubleComplex* k, cufftDoubleComplex* hpsi, double dt, int N);
 __global__ void UpdateRKStep( cufftDoubleComplex* psi, cufftDoubleComplex* psi_old, cufftDoubleComplex* k, double sc, int N);
@@ -150,14 +134,92 @@ __global__ void UpdateRKStep( cufftDoubleComplex* psi, cufftDoubleComplex* psi_o
 __global__ void FinalRKStep( cufftDoubleComplex* psi, cufftDoubleComplex* psi_old, cufftDoubleComplex* _k, cufftDoubleComplex* hpsi, cufftDoubleComplex nIdt, int N);
 __global__ void BECUpdatePsi( cufftDoubleComplex* psi, cufftDoubleComplex* newpsi,  cufftDoubleComplex* oldpsi, cufftDoubleComplex* hpsi, double mu, double dt, double beta, int N );
 
-__global__ void sumReductionKernel(double *input, double *output, int size);
 
+// DIPOLAR
 __global__ void DipoleDipoleInteraction( double* kx,  double* ky, double* kz, cufftDoubleComplex* vdd, double a_dd, double d_x, double d_y, double d_z, int N, int NX, int NY, int NZ) ;
+// SOFT CORE
 __global__ void SoftCoreInteraction_1D( double* kx,  double* ky, double* kz, cufftDoubleComplex* vtilde, int N, int NX, int NY, int NZ, double* params);
 __global__ void SoftCoreInteraction_2D( double* kx,  double* ky, double* kz, cufftDoubleComplex* vtilde, int N, int NX, int NY, int NZ, double* params);
 __global__ void SoftCoreInteraction_3D( double* kx,  double* ky, double* kz, cufftDoubleComplex* vtilde, int N, int NX, int NY, int NZ, double* params);
+
+
+
+
+
+// 2-COMPONENT KERNELS
+__global__ void Laplace_2( cufftDoubleComplex* v1, cufftDoubleComplex* v2, double* kx,  double* ky, double* kz, cufftDoubleComplex* result1, cufftDoubleComplex* result2, int N, int NX, int NY, int NZ); 
+__global__ void Calculate2Observables(cufftDoubleComplex *psi, cufftDoubleComplex *O1psi, double *output1, cufftDoubleComplex *O2psi, double *output2, int N);
+__global__ void CalcAverageCos(cufftDoubleComplex *psi1, cufftDoubleComplex *psi2, double* x, double *output, double L, int NX, int N, int sign=1) ;
+
 __global__ void CalculateRelativePhase(cufftDoubleComplex *psi1, cufftDoubleComplex *psi2, double *output, int N) ;
 __global__ void CalculateDszDt(cufftDoubleComplex *psi1, cufftDoubleComplex *psi2, double *output, int N);
+
+
+
+/*
+    Generic functions for parallel operations
+*/
+__global__ void sumReductionKernel(double *input, double *output, int size);
+
+
+/* @brief parallel scalar multiplication
+ */
+template <typename T, typename S>
+__global__ void ScalarMultiply(T* vout, const T* vin, S a, int N)
+{
+    int ix = blockIdx.x * blockDim.x + threadIdx.x;
+    if (ix < N) {
+        vout[ix] = static_cast<T>(a * vin[ix]);
+    }
+}
+
+/* @brief parallel scalar multiplication inplace
+ */
+template <typename T, typename S>
+__global__ void ScalarMultiply(T* vout, S a, int N)
+{
+    int ix = blockIdx.x * blockDim.x + threadIdx.x;
+    if (ix < N) {
+        vout[ix] *= a;
+    }
+}
+
+
+/* @brief parallel multiplication of an array and a scalar
+
+    vout[] += a * vin[]
+ */
+template <typename T, typename S>
+__global__ void AppendArray(T* vout,  S a, const T* vin, int N)
+{
+    int ix = blockIdx.x * blockDim.x + threadIdx.x;
+    if (ix < N) {
+        vout[ix] += static_cast<T>(a * vin[ix]);
+    }
+}
+
+/* @brief parallel dot product
+ */
+template<typename T>
+__global__ void MultiplyArrays(const T* a, const T* b, T* result, int N)
+{
+    int ix = blockIdx.x * blockDim.x + threadIdx.x;
+    if (ix < N) {
+        result[ix] = a[ix] * b[ix];
+    }
+}
+
+/* @brief parallel square
+ */
+template<typename T, typename S>
+__global__ void SquareArray( const T* in, S* out, int N)
+{
+    int ix = blockIdx.x * blockDim.x + threadIdx.x;
+    if (ix < N) {
+        out[ix] =  in[ix]*in[ix] ;
+    }
+}
+
 
 
 #endif
