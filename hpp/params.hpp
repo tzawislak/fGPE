@@ -4,7 +4,10 @@
 #include "header.hpp"
 #include "input_variables.hpp"
 
-
+/**
+* @brief base of the Params and Params2 classes
+* 
+*/
 class ParamsBase{
 protected:
 
@@ -50,7 +53,17 @@ public:
 
 
 
-
+/**
+* @brief A class for storing parsed input parameters for single-component Hamiltonian simulations.
+* 
+* Access:
+* get an integer from the input file: Params::getInt(std::string &name)
+* get a  double  from the input file: Params::getDouble(std::string &name)
+* get a bool     from the input file: Params::getBool(std::string &name)
+* get a string   from the input file: Params::getString(std::string &name)
+* 
+* @param iv InputVariables reference with parsed input parameters
+*/
 class Params : public ParamsBase {
 private:
     

@@ -27,9 +27,9 @@ omz             150.0
 xmax            48.0
 ymax            8.5
 zmax            8.5
-nx              32
-ny              16
-nz              16
+nx              256
+ny              128
+nz              128
 
 dt              0.0040
 niter           40000

@@ -2,7 +2,7 @@
 
 
 
-
+// 1 COMPONENT
 Vext::Vext(const Params &p, const std::string &type)
 {
     vext = (complex*) malloc( p.Npoints *sizeof(complex) );
@@ -18,19 +18,19 @@ Vext::Vext(const Params &p, const std::string &type)
 
         if ( result && abs(p.omega[0]) < 1E-6 )
         {
-            std::cout << " Initializing tubular Vext..." << std::endl;
+            std::cout << "# Initializing tubular Vext..." << std::endl;
             initTube(p, 0);
         }
         else
         {
-            std::cout << " Initializing harmonic Vext..." << std::endl;
+            std::cout << "# Initializing harmonic Vext..." << std::endl;
             initHarmonic(p, 0);
         }
     }
 }
 
 
-
+// 2COMPONENT
 Vext::Vext(const Params2 &p, const int &type)
 {
     vext = (complex*) malloc( p.Npoints *sizeof(complex) );
@@ -118,6 +118,8 @@ void Vext::initVoid(const ParamsBase &p, const int &type)
     }
 }
 
+
+// user-specific
 void Vext::addWeightedProtocolPotential(const Params2 &p, const int &type)
 {
     const double n1 = p.npart1 / p.V;
@@ -147,6 +149,7 @@ void Vext::addWeightedProtocolPotential(const Params2 &p, const int &type)
 
 }
 
+// user-specific
 void Vext::addProtocolPotential(const ParamsBase &p, const int &type, const int sign)
 {
  
@@ -162,6 +165,7 @@ void Vext::addProtocolPotential(const ParamsBase &p, const int &type, const int 
     }
 }
 
+// user-specific
 void Vext::addOpticalLattice(const ParamsBase &p, const int &type)
 {
     double L = 2*p.XMAX[0];

@@ -1,12 +1,10 @@
 #include "input_variables.hpp"
 
 InputVariables::InputVariables(const std::string filename){
-    std::cout << "Reading " << filename << std::endl;
+    std::cout << "#INFO   Reading " << filename << std::endl;
     readFile(filename);
 
     convertTypes();
-
-    // now extract variables which are important for numerical domain
 }
 
 InputVariables::InputVariables( const InputVariables &other){

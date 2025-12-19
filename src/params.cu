@@ -25,7 +25,13 @@ Params& Params::operator=(const Params& other){
 }
 
 
+/*  This function redefines the numerical domain 
+    for periodic structures in soft-core BECs.
+    Makes sure the lattice is not strained by 
+    an inappropriate ratios of x,y,z dimensions.
 
+    Do not use if soft-core potential is not selected 
+*/
 void Params::RedefineLatticeSoft(const Params *par)
 {
     std::cout << "Old numerical domain lengths: \nLX: " 

@@ -11,7 +11,9 @@
 
 #include <memory>
 
-
+/**
+* @brief Input variables' parser class
+*/
 class InputVariables {
 
 private:

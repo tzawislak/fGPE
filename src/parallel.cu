@@ -37,7 +37,7 @@ Cuda::Cuda(const int *NX, int nth, bool _is2comp) : isTwoComponent(_is2comp), si
 
     if(this->isTwoComponent)
     {
-        std::cout << "Allocating memory for the second component..." << std::endl;
+        std::cout << "# Allocating memory for the second component..." << std::endl;
         // Allocate memory for the second component
         CCE(cudaMalloc((void**)&d_psi2_old,  size * sizeof(cufftDoubleComplex)), "CUDA malloc: d_psi2_old");
         CCE(cudaMalloc((void**)&d_psi2,      size * sizeof(cufftDoubleComplex)), "CUDA malloc: d_psi2");
@@ -96,7 +96,7 @@ Cuda::Cuda(const int *NX, int nth, bool _is2comp) : isTwoComponent(_is2comp), si
             break;
 
         default:
-            std::cerr << "Dimension has to be 1, 2 or 3." << std::endl;
+            std::cerr << "#ERROR   Dimension has to be 1, 2 or 3." << std::endl;
             break;
     }
 
@@ -111,17 +111,17 @@ void Cuda::PrintGPUInfo()
     int deviceCount = 0;
     cudaError_t error = cudaGetDeviceCount(&deviceCount);
     if (error != cudaSuccess) {
-        std::cerr << "Error retrieving CUDA device count: " << cudaGetErrorString(error) << std::endl;
+        std::cerr << "#ERROR   Error retrieving CUDA device count: " << cudaGetErrorString(error) << std::endl;
         return;
     }
 
-    std::cout << "Number of CUDA devices: " << deviceCount << std::endl;
+    std::cout << "#INFO   Number of CUDA devices: " << deviceCount << std::endl;
 
     for (int device = 0; device < deviceCount; ++device) {
         cudaDeviceProp deviceProp;
         cudaGetDeviceProperties(&deviceProp, device);
-
-        std::cout << "\nDevice " << device << " - " << deviceProp.name << ":" << std::endl;
+        std::cout << "**************************************************************" <<std::endl;
+        std::cout << "Device " << device << " - " << deviceProp.name << ":" << std::endl;
         std::cout << "  Compute capability: " << deviceProp.major << "." << deviceProp.minor << std::endl;
         std::cout << "  Total Global Memory: " << deviceProp.totalGlobalMem / (1024 * 1024) << " MB" << std::endl;
         std::cout << "  Shared memory per block: " << deviceProp.sharedMemPerBlock / 1024 << " KB" << std::endl;
@@ -155,6 +155,8 @@ void Cuda::PrintGPUInfo()
         std::cout << "  Memory Clock Rate: " << deviceProp.memoryClockRate / 1000 << " MHz" << std::endl;
         std::cout << "  Peak Memory Bandwidth: " << 2.0 * deviceProp.memoryClockRate * (deviceProp.memoryBusWidth / 8) / 1.0e6 << " GB/s" << std::endl;   
 #endif
+        std::cout << "**************************************************************" <<std::endl;
+
     }
 }
 

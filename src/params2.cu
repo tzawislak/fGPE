@@ -8,7 +8,6 @@ Params2::Params2( const InputVariables &iv ) {
 }
 
 
-
 Params2::Params2(const Params2& other){
     this->iv = other.getIV();
     InitializeParams(&other);

@@ -133,6 +133,7 @@ public:
 * @return h_mu vector \f$\mathcal{H}|\psi\rangle\f$
 */
 __global__ void BECHamiltonian  ( double time, cufftDoubleComplex* psi, cufftDoubleComplex* KEpsi,  cufftDoubleComplex* vext, cufftDoubleComplex* h_en, cufftDoubleComplex* h_mu, int N, double* a);
+
 /**
 * @brief CUDA kernel that specifies the hamiltonian of the system \f$\mathcal{H}\f$.
 * 
@@ -148,6 +149,7 @@ __global__ void BECHamiltonian  ( double time, cufftDoubleComplex* psi, cufftDou
 * @return h_mu vector \f$\mathcal{H}|\psi\rangle\f$
 */
 __global__ void BECHamiltonianMU( double time, cufftDoubleComplex* psi, cufftDoubleComplex* KEpsi,  cufftDoubleComplex* vext, cufftDoubleComplex* h_mu, int N, double* a);
+
 /**
 * @brief Example: a CUDA kernel that can be called from the Hamiltonian CUDA kernels
 * 

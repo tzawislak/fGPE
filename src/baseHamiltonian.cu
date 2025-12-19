@@ -8,13 +8,13 @@ BaseHamiltonian::BaseHamiltonian(ParamsBase* par): pars(par), Cuda(par->NX, NTHR
     // choose the reduction scheme 
     if ( this->gridSize%this->noThreads==0 ) 
     {
-        std::cout << "Grid: " << gridSize << " noThreads: " << noThreads << " running with GPU support for reduction kernels." << std::endl;
+        std::cout << "#INFO   Grid: " << gridSize << " noThreads: " << noThreads << " running with GPU support for reduction kernels." << std::endl;
         this->reduction = &BaseHamiltonian::_parallel_reduction;
         this->reduction2 = &BaseHamiltonian::_parallel_reduction2;
     }
     else 
     {
-        std::cout << "Grid: " << gridSize << " noThreads: " << noThreads << " running without GPU support for reduction kernels." << std::endl;
+        std::cout << "#INFO   Grid: " << gridSize << " noThreads: " << noThreads << " running without GPU support for reduction kernels." << std::endl;
 
         this->reduction = &BaseHamiltonian::_simple_reduction;
         this->reduction2 = &BaseHamiltonian::_simple_reduction2;

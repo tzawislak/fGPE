@@ -3,25 +3,26 @@
 
 
 
-
+// 1 COMPONENT
 Psi::Psi(const Params &p, const std::string &type) : generator( p.getInt("rndseed")), distribution(-1.0,1.0){
     
     this->psi = (complex*)malloc( p.Npoints * sizeof(complex) );
 
-    // decide what type of initial wavefunction to construct
-    std::cout << p.getBool("read_psi") << std::endl;
-    if ( p.getBool("read_psi") ) {
-        std::cout << "Reading initial wavefunction from: " << p.inpath << std::endl;
+    // decide what type of initial wavefunction to construct    
+    if ( p.getBool("read_psi") ) 
+    {
+        std::cout << "# Reading initial wavefunction from: " << p.inpath << std::endl;
         readPsi(p.inpath, p.Npoints);
     }else{
         // check if there should be periodic boundary conditions somewhere:
         bool result = std::any_of(p.omega, p.omega + 3, [](double x) { return std::abs(x) < 1E-6; });
 
-        if ( result && abs(p.omega[0]) < 1E-6 ){
-            std::cout << " Initializing tubular psi_init..." << std::endl;
+        if ( result && abs(p.omega[0]) < 1E-6 )
+        {
+            std::cout << "# Initializing tubular psi_init..." << std::endl;
             initTube(p, 0);
         }else{
-            std::cout << " Initializing harmonic psi_init..." << std::endl;
+            std::cout << "# Initializing harmonic psi_init..." << std::endl;
             initHarmonic(p, 0);
         }
         normalize(p);
@@ -39,22 +40,21 @@ Psi& Psi::operator=(const Psi &other){
 }
 
 Psi::Psi(const Psi& obj) {
-    std::cout << "Copy constructor called\n";
     this->psi = obj.getPsi();
     this->generator = obj.getGenerator();
     this->distribution = obj.getDistribution();
 }
 
-// 2 COMPONENT
 
+// 2 COMPONENT
 Psi::Psi(const ParamsBase &p, const int &type) : generator( p.getInt("rndseed")+type), distribution(-1.0,1.0){
     
     this->psi = (complex*)malloc( p.Npoints * sizeof(complex) );
 
     // decide what type of initial wavefunction to construct
-
-    if ( p.getBool("read_psi") ) {
-        std::cout << "Reading initial wavefunction from: " << p.inpath << std::endl;
+    if ( p.getBool("read_psi") ) 
+    {
+        std::cout << "# Reading initial wavefunction from: " << p.inpath << std::endl;
         readPsi( p.inpath+std::to_string(type), p.Npoints);
 
     }else{
@@ -62,11 +62,12 @@ Psi::Psi(const ParamsBase &p, const int &type) : generator( p.getInt("rndseed")+
 
         bool result = std::any_of(omega, omega + 3, [](double x) { return std::abs(x) < 1E-6; });
 
-        if ( result && abs(omega[0]) < 1E-6 ){
-            std::cout << " Initializing tubular psi_init..." << std::endl;
+        if ( result && abs(omega[0]) < 1E-6 )
+        {
+            std::cout << "# Initializing tubular psi_init..." << std::endl;
             initTube(p, type);
         }else{
-            std::cout << " Initializing harmonic psi_init..." << std::endl;
+            std::cout << "# Initializing harmonic psi_init..." << std::endl;
             initHarmonic(p, type);
         }
         normalize(p, type);
@@ -75,7 +76,7 @@ Psi::Psi(const ParamsBase &p, const int &type) : generator( p.getInt("rndseed")+
     
 }
 
-
+// initializes a tube init wavefunction along the x-axis
 void Psi::initTube(const ParamsBase &p, const int &type){
 
     double rrnd = p.getDouble("rand_pct");
@@ -95,6 +96,7 @@ void Psi::initTube(const ParamsBase &p, const int &type){
     }
 }
 
+// initializes a 3D Gaussian
 void Psi::initHarmonic(const ParamsBase &p, const int &type){
 
     double rrnd = p.getDouble("rand_pct");
@@ -113,6 +115,7 @@ void Psi::initHarmonic(const ParamsBase &p, const int &type){
     }
 }
 
+// empty init
 void Psi::initVoid(const ParamsBase &p, const int &type){
 
     double rrnd = p.getDouble("rand_pct");
@@ -148,7 +151,7 @@ double Psi::getZ(const ParamsBase &p, int i)
 
 
 
-
+// imprint Ncirc quanta of circulation in the phase pattern
 void Psi::imprintVortexTube(const ParamsBase &p, const double &Ncirc){
 
     double xLen = 2*p.XMAX[0];
@@ -160,7 +163,7 @@ void Psi::imprintVortexTube(const ParamsBase &p, const double &Ncirc){
     }
 }
 
-
+// add a random noise to the wavefunction
 void Psi::addNoise(complex &noise_amp, const int &length){
 
     for (int i = 0; i < length; ++i)
@@ -343,6 +346,7 @@ void Psi::force3DBCCLattice( const ParamsBase &p, const double& amp, const doubl
  }
 
 
+// normalize the wavefunction
 
 void Psi::normalize(const ParamsBase &p, const int &type){
     double norm=0;
@@ -370,7 +374,7 @@ void Psi::normalize(const ParamsBase &p, const int &type){
 }
 
 
-
+// reads the initial wavefunction from the prefix file
 void Psi::readPsi(const std::string& prefix, const int& length){
 
     std::string end = "psi_final.wdat";
