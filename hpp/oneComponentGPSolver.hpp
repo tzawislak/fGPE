@@ -72,14 +72,15 @@ public:
 
     // Destructor
     ~OneComponentGPSolver() override {
-        free(psi);
-        free(vext); 
-        free(kx);
-        free(ky);
-        free(kz);
-        free(x);
-        free(y);
-        free(z);
+        cudaDeviceSynchronize();
+        cudaFreeHost(psi);
+        cudaFreeHost(vext); 
+        cudaFreeHost(kx);
+        cudaFreeHost(ky);
+        cudaFreeHost(kz);
+        cudaFreeHost(x);
+        cudaFreeHost(y);
+        cudaFreeHost(z);
     }
 };
 

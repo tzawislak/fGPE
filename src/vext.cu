@@ -29,7 +29,6 @@ Vext::Vext(const Params &p, const std::string &type)
     }
 }
 
-
 // 2COMPONENT
 Vext::Vext(const Params2 &p, const int &type)
 {

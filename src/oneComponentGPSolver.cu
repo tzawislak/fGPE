@@ -6,13 +6,16 @@ OneComponentGPSolver::OneComponentGPSolver(Params &par): BaseHamiltonian(&par) {
     //
     // initialize the wavefunction array, the user will define it in derived class
     // 
-    this->psi = (complex*)malloc( p.Npoints * sizeof(complex) );
+    //this->psi = (complex*)malloc( p.Npoints * sizeof(complex) );
+    CCE( cudaMallocHost((void**) &this->psi, p.Npoints * sizeof(complex)), "CUDA error: psi cudaMallocHost" );
     
 
     //
     // initialize the external potential
     // 
-    this->vext = (complex*)malloc( p.Npoints * sizeof(complex) );
+    //this->vext = (complex*)malloc( p.Npoints * sizeof(complex) );
+    CCE( cudaMallocHost((void**) &this->vext, p.Npoints * sizeof(complex)), "CUDA error: vext cudaMallocHost" );
+
    
 }
 

@@ -24,9 +24,13 @@ BaseHamiltonian::BaseHamiltonian(ParamsBase* par): pars(par), Cuda(par->NX, NTHR
 
 void BaseHamiltonian::InitializeSpace()
 {
-    this->x = (double*)malloc( pars->NX[0] * sizeof(double) );
-    this->y = (double*)malloc( pars->NX[1] * sizeof(double) );
-    this->z = (double*)malloc( pars->NX[2] * sizeof(double) );
+    //this->x = (double*)malloc( pars->NX[0] * sizeof(double) );
+    //this->y = (double*)malloc( pars->NX[1] * sizeof(double) );
+    //this->z = (double*)malloc( pars->NX[2] * sizeof(double) );
+    CCE( cudaMallocHost((void**) &this->x, pars->NX[0]  * sizeof(double)) , "CUDA error: x cudaMallocHost" );
+    CCE( cudaMallocHost((void**) &this->y, pars->NX[1]  * sizeof(double)) , "CUDA error: y cudaMallocHost" );
+    CCE( cudaMallocHost((void**) &this->z, pars->NX[2]  * sizeof(double)) , "CUDA error: z cudaMallocHost" );
+
 
     if (pars->DIM==1)
     {
@@ -57,9 +61,12 @@ void BaseHamiltonian::InitializeKspace()
 {
     const double *DKX = pars->DKX;
     
-    this->kx = (double*)malloc( pars->NX[0] * sizeof(double) );
-    this->ky = (double*)malloc( pars->NX[1] * sizeof(double) );
-    this->kz = (double*)malloc( pars->NX[2] * sizeof(double) );
+    //this->kx = (double*)malloc( pars->NX[0] * sizeof(double) );
+    //this->ky = (double*)malloc( pars->NX[1] * sizeof(double) );
+    //this->kz = (double*)malloc( pars->NX[2] * sizeof(double) );
+    CCE( cudaMallocHost((void**) &this->kx, pars->NX[0]  * sizeof(double)) , "CUDA error: kx cudaMallocHost" );
+    CCE( cudaMallocHost((void**) &this->ky, pars->NX[1]  * sizeof(double)) , "CUDA error: ky cudaMallocHost" );
+    CCE( cudaMallocHost((void**) &this->kz, pars->NX[2]  * sizeof(double)) , "CUDA error: kz cudaMallocHost" );
     
     for(int ik=0; ik <= pars->NX[0]/2; ++ik){               kx[ik] = (ik)*DKX[0];}
     for(int ik=pars->NX[0]/2 + 1; ik < pars->NX[0]; ++ik){  kx[ik] = -pars->KXMAX[0] + (ik-(pars->NX[0]/2))*DKX[0];}

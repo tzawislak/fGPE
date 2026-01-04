@@ -1,5 +1,6 @@
 #include "parallel.hpp"                                                                     
 
+
 /*
     @brief CUDA Error-handling function
 */

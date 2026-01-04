@@ -65,6 +65,8 @@ public:
     // Constructor: Allocate memory on the device
     Cuda(): isTwoComponent(false), size(0), noThreads(NTHREADS) {};
     Cuda(const int *NX, int nth,  bool _is2comp);
+    Cuda(const Cuda&) = delete;
+    Cuda& operator=(const Cuda&) = delete;
 
     void PrintGPUInfo();
     
