@@ -144,7 +144,7 @@ void Cuda::PrintGPUInfo()
         std::cout << "  L2 Cache Size: " << deviceProp.l2CacheSize / 1024 << " KB" << std::endl;
         std::cout << "  Memory Bus Width: " << deviceProp.memoryBusWidth << " bits" << std::endl;
 
-#ifdef CUDA_13
+#if __CUDACC_VER_MAJOR__ >= 13
         int clockRateKHz;
         int memoryRateKHz;
         cudaDeviceGetAttribute(&clockRateKHz, cudaDevAttrClockRate, 0); 

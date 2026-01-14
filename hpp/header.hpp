@@ -88,8 +88,6 @@ inline cufftDoubleComplex& operator+=(cufftDoubleComplex& a, cufftDoubleComplex 
 
 
 
-// uncomment if you use an older CUDA version
-#define CUDA_13
 
 
 
