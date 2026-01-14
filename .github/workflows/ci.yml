@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - run: nvcc -V  
-      
+
       - name: Check out code
         uses: actions/checkout@v3
 
@@ -27,5 +27,6 @@ jobs:
         run: |
           make -j$(nproc)
       
-      - run: echo "Status: ${{ job.status }}."
+      - run: |
+          echo "Status: ${{ job.status }}."
 
