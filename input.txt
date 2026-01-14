@@ -1,5 +1,5 @@
 hamiltonian     "bec"
-outprefix       "./output/test1_"
+outprefix       "output/dtest1_"
 treal           false
 read_vext       false
 vprefix         "../traps/thr_ring_256.wdat"

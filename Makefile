@@ -43,3 +43,8 @@ create_dirs:
 .PHONY: clean
 clean:
 	rm -rf $(OBJ_DIR) $(TARGET)
+
+# run tests 
+.PHONY: test
+test:
+	.tests/gpu-mem-test.sh

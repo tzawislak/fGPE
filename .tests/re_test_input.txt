@@ -1,11 +1,11 @@
-hamiltonian     "bec"
-outprefix       "/g100/home/userexternal/tzawisla/t/output/R_cpptest1_"
+hamiltonian		"bec"
+outprefix       "/home/tzawislak/Desktop/PhD/work/numerics/fGPE/.tests/../output/.tests/re_test_"
 treal           true
 read_vext       false
 vprefix         "../traps/thr_ring_256.wdat"
 
 read_psi        true
-inprefix        "/g100/home/userexternal/tzawisla/t/output/cpptest1_"
+inprefix        "/home/tzawislak/Desktop/PhD/work/numerics/fGPE/.tests/../output/.tests/im_test_"
 
 t2component     false
 
@@ -17,7 +17,6 @@ tvseed          false
 nseed           1 
 aseed           0.01
 
-
 a               100.4
 
 omx             0.0
@@ -27,12 +26,12 @@ omz             150.0
 xmax            48.0
 ymax            8.5
 zmax            8.5
-nx              512
+nx              256
 ny              64
 nz              64
 
 dt              0.004
-niter           40000
+niter           10
 epsilon_e       1E-10
 
 itmod           1500000
@@ -42,13 +41,11 @@ time0           0.0
 rand_pct        0.00
 crand_pct       0.00
 
-
 trotate         false
 omega           0.0
 
 tpi_vortex      false
 api_prc         0.0
-
 
 beta            0.90
 rndseed         367
