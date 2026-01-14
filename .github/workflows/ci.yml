@@ -1,4 +1,4 @@
-name: CI
+name: CI - CUDA Build
 
 on:
   push:
@@ -11,9 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: nvidia/cuda:12.2.0-devel-ubuntu22.04
+
     steps:
+      - name: Check out code
       - uses: actions/checkout@v3
 
+      - name: Install dependencies
+        run: |
+          apt update
+          apt install -y build-essential cmake 
 
       - name: Install CUDA
         uses: Jimver/cuda-toolkit@v0.2.29
@@ -22,6 +28,6 @@ jobs:
 
       - name: Build
         run: |
-          make 
+          make j$(nproc)
 
 
