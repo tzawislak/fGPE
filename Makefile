@@ -2,7 +2,8 @@
 CXX = nvcc 
 
 # Compiler flags
-CXXFLAGS = -Ihpp -std=c++20 -lcufft -O3 -Wno-deprecated-gpu-targets
+CXXFLAGS = -Ihpp -std=c++20 -O3 -Wno-deprecated-gpu-targets
+LDFLAGS = -lcufft
 
 # Target executable
 TARGET = gpe
@@ -26,7 +27,7 @@ OBJS = $(patsubst %.cu, $(OBJ_DIR)/%.o, $(ALL_SRCS))
 
 # Rule to build the final executable
 $(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^
 
 # Rule to compile .cpp files into .o files
 $(OBJ_DIR)/%.o: %.cu | create_dirs

@@ -23,11 +23,17 @@ public:
 
     double *kx, *ky, *kz;
     explicit BaseHamiltonian(ParamsBase* par);
+    BaseHamiltonian() = delete;
+    BaseHamiltonian( BaseHamiltonian& ) = delete;
+    BaseHamiltonian& operator=( const BaseHamiltonian& ) = delete;
+    BaseHamiltonian( BaseHamiltonian&& ) = delete;
+    BaseHamiltonian& operator=( const BaseHamiltonian&& ) = delete;
+
     Output getOutput() { return output;  }
 
-    inline int iX(int index ) { return index % pars->NX[0]; };
-    inline int iY(int index ) { return (index / pars->NX[0]) % pars->NX[1]; };
-    inline int iZ(int index ) { return index / (pars->NX[0]*pars->NX[1]); };
+    inline int iX(int index ) { return (index % pars->NX[0]); };
+    inline int iY(int index ) { return ((index / pars->NX[0]) % pars->NX[1]); };
+    inline int iZ(int index ) { return (index / (pars->NX[0]*pars->NX[1])); };
 
     void InitializeKspace();
     void InitializeSpace();

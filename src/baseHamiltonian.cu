@@ -24,9 +24,6 @@ BaseHamiltonian::BaseHamiltonian(ParamsBase* par): pars(par), Cuda(par->NX, NTHR
 
 void BaseHamiltonian::InitializeSpace()
 {
-    //this->x = (double*)malloc( pars->NX[0] * sizeof(double) );
-    //this->y = (double*)malloc( pars->NX[1] * sizeof(double) );
-    //this->z = (double*)malloc( pars->NX[2] * sizeof(double) );
     CCE( cudaMallocHost((void**) &this->x, pars->NX[0]  * sizeof(double)) , "CUDA error: x cudaMallocHost" );
     CCE( cudaMallocHost((void**) &this->y, pars->NX[1]  * sizeof(double)) , "CUDA error: y cudaMallocHost" );
     CCE( cudaMallocHost((void**) &this->z, pars->NX[2]  * sizeof(double)) , "CUDA error: z cudaMallocHost" );
@@ -51,19 +48,12 @@ void BaseHamiltonian::InitializeSpace()
     cudaMemcpy(d_x, this->x, pars->NX[0] * sizeof(double), cudaMemcpyHostToDevice);
     cudaMemcpy(d_y, this->y, pars->NX[1] * sizeof(double), cudaMemcpyHostToDevice);
     cudaMemcpy(d_z, this->z, pars->NX[2] * sizeof(double), cudaMemcpyHostToDevice);
-    //output.Write3DMatrix( x, pars->NX[0], "x.wdat" );
-    //output.Write3DMatrix( y, pars->NX[1], "y.wdat" );
-    //output.Write3DMatrix( z, pars->NX[2], "z.wdat" );
-
 }
 
 void BaseHamiltonian::InitializeKspace()
 {
     const double *DKX = pars->DKX;
     
-    //this->kx = (double*)malloc( pars->NX[0] * sizeof(double) );
-    //this->ky = (double*)malloc( pars->NX[1] * sizeof(double) );
-    //this->kz = (double*)malloc( pars->NX[2] * sizeof(double) );
     CCE( cudaMallocHost((void**) &this->kx, pars->NX[0]  * sizeof(double)) , "CUDA error: kx cudaMallocHost" );
     CCE( cudaMallocHost((void**) &this->ky, pars->NX[1]  * sizeof(double)) , "CUDA error: ky cudaMallocHost" );
     CCE( cudaMallocHost((void**) &this->kz, pars->NX[2]  * sizeof(double)) , "CUDA error: kz cudaMallocHost" );
@@ -89,10 +79,6 @@ void BaseHamiltonian::InitializeKspace()
     cudaMemcpy(d_ky, this->ky, pars->NX[1] * sizeof(double), cudaMemcpyHostToDevice);
     cudaMemcpy(d_kz, this->kz, pars->NX[2] * sizeof(double), cudaMemcpyHostToDevice);
 
-
-//    output.Write3DMatrix( kx, pars->NX[0], "kx.wdat" );
-//    output.Write3DMatrix( ky, pars->NX[1], "ky.wdat" );
-//    output.Write3DMatrix( kz, pars->NX[2], "kz.wdat" );
 }   
 
 

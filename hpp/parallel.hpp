@@ -63,10 +63,14 @@ public:
 
 
     // Constructor: Allocate memory on the device
-    Cuda(): isTwoComponent(false), size(0), noThreads(NTHREADS) {};
+    Cuda() = delete;
     Cuda(const int *NX, int nth,  bool _is2comp);
     Cuda(const Cuda&) = delete;
     Cuda& operator=(const Cuda&) = delete;
+
+    Cuda(Cuda&&) = delete;
+    Cuda& operator=(Cuda&&) = delete;
+
 
     void PrintGPUInfo();
     
@@ -118,7 +122,7 @@ public:
 
 __host__ __device__ cufftDoubleComplex complexSqrt(cufftDoubleComplex z);
 
-// 1-COMPONEN KERNELS
+// 1-COMPONENT KERNELS
 __global__ void Laplace( cufftDoubleComplex* v1, double* kx,  double* ky, double* kz, cufftDoubleComplex* result, int N, int NX, int NY, int NZ);
 __global__ void NormalizePsi(cufftDoubleComplex *input, double *output, int N);
 __global__ void CalculateObservable(cufftDoubleComplex *psi, cufftDoubleComplex *Opsi, double *output, int N);
@@ -192,7 +196,7 @@ __global__ void ScalarMultiply(T* vout, S a, int N)
     vout[] += a * vin[]
  */
 template <typename T, typename S>
-__global__ void AppendArray(T* vout,  S a, const T* vin, int N)
+__global__ void AppendArray(T* vout, const S a, const T* vin, int N)
 {
     int ix = blockIdx.x * blockDim.x + threadIdx.x;
     if (ix < N) {
