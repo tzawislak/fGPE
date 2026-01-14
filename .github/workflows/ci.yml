@@ -20,9 +20,9 @@ jobs:
           sudo apt install -y build-essential cmake 
 
       - name: Install CUDA
-        uses: NVIDIA/setup-cuda@v2
+        uses: Jimver/cuda-toolkit@v0.2.29
         with:
-          version: 12.2
+          version: 12.5
 
       - name: Build
         run: |
