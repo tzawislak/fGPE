@@ -218,11 +218,13 @@ void BaseHamiltonian::alg_addVPx(cufftDoubleComplex* _d_psi, cufftDoubleComplex*
 
 // normalizes the wavefunction
 void BaseHamiltonian::alg_updateWavefunctions(double norm, cufftDoubleComplex* _d_psi_old, cufftDoubleComplex* _d_psi, cufftDoubleComplex* _d_psi_new){
-
+    // This memory transfer can be replaced by a "smart" pointer switching (even/odd iteration would use different memory addresses for old/current psi)
     CCE(cudaMemcpy( _d_psi_old, _d_psi, pars->Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at malloc: psi_old");
 
     ScalarMultiply<<<gridSize, noThreads>>>( _d_psi, _d_psi_new, norm, pars->Npoints);
     CCE(cudaGetLastError(), "Scalar Multiply Kernel launch failed");
+
+
 
 }
 

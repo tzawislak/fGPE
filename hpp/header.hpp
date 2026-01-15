@@ -19,7 +19,7 @@
 // Macro to calculate the 1D index from 3D coordinates (x, y, z)
 #define ID(x, y, z, NX, NY) ((z) * (NX) * (NY) + (y) * (NX) + (x))
 
-#define NTHREADS 1024
+#define NTHREADS 256
 #define NO_HAMIL_PARAMS 32
 
 // undefine to enforce each particle number conservation separately
