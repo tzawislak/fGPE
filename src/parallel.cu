@@ -123,6 +123,7 @@ void Cuda::PrintGPUInfo()
     for (int device = 0; device < deviceCount; ++device) {
         cudaDeviceProp deviceProp;
         cudaGetDeviceProperties(&deviceProp, device);
+
         std::cout << "**************************************************************" <<std::endl;
         std::cout << "Device " << device << " - " << deviceProp.name << ":" << std::endl;
         std::cout << "  Compute capability: " << deviceProp.major << "." << deviceProp.minor << std::endl;
@@ -143,6 +144,8 @@ void Cuda::PrintGPUInfo()
         std::cout << "  Multi-Processor Count: " << deviceProp.multiProcessorCount << std::endl;
         std::cout << "  L2 Cache Size: " << deviceProp.l2CacheSize / 1024 << " KB" << std::endl;
         std::cout << "  Memory Bus Width: " << deviceProp.memoryBusWidth << " bits" << std::endl;
+        std::cout << "  Number of asynchronous engines:  " << deviceProp.asyncEngineCount << std::endl;
+
 
 #if __CUDACC_VER_MAJOR__ >= 13
         int clockRateKHz;
@@ -187,10 +190,11 @@ __global__ void Laplace( cufftDoubleComplex* v1, double* kx,  double* ky, double
     int iX = idx % NX;
     int iY = (idx / NX) % NY;
     int iZ = idx / (NX*NY);
+    double scale = 19.739208802/N ; // 0.5*(2*pi)^2/N
     
     if ((idx < N) && (iX < NX) && (iY < NY) && (iZ < NZ)) 
     {
-        result[idx] = v1[idx] * (kx[iX]*kx[iX] + ky[iY]*ky[iY] + kz[iZ]*kz[iZ]);
+        result[idx] = scale*v1[idx] * (kx[iX]*kx[iX] + ky[iY]*ky[iY] + kz[iZ]*kz[iZ]);
     }
 }
 

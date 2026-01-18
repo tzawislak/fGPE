@@ -22,7 +22,7 @@
 #define NTHREADS 256
 #define NO_HAMIL_PARAMS 32
 
-// undefine to enforce each particle number conservation separately
+// 2bec: undefine to enforce each particle number conservation separately
 //#define PROPER_2BEC_NORMALIZATION 1 
 
 #define pi 3.141592653589793

@@ -123,7 +123,13 @@ public:
 __host__ __device__ cufftDoubleComplex complexSqrt(cufftDoubleComplex z);
 
 // 1-COMPONENT KERNELS
-__global__ void Laplace( cufftDoubleComplex* v1, double* kx,  double* ky, double* kz, cufftDoubleComplex* result, int N, int NX, int NY, int NZ);
+__global__ void Laplace( cufftDoubleComplex* v1, 
+                         double* __restrict__ kx,
+                         double* __restrict__ ky,
+                         double* __restrict__ kz,
+                         cufftDoubleComplex* result,
+                         int N, int NX, int NY, int NZ);
+
 __global__ void NormalizePsi(cufftDoubleComplex *input, double *output, int N);
 __global__ void CalculateObservable(cufftDoubleComplex *psi, cufftDoubleComplex *Opsi, double *output, int N);
 __global__ void SumArrays( cufftDoubleComplex* vout, cufftDoubleComplex* v2, cufftDoubleComplex a, cufftDoubleComplex* v1, int N);
@@ -142,11 +148,30 @@ __global__ void BECUpdatePsi( cufftDoubleComplex* psi, cufftDoubleComplex* newps
 
 
 // DIPOLAR
-__global__ void DipoleDipoleInteraction( double* kx,  double* ky, double* kz, cufftDoubleComplex* vdd, double a_dd, double d_x, double d_y, double d_z, int N, int NX, int NY, int NZ) ;
+__global__ void DipoleDipoleInteraction( double* __restrict__ kx,  
+                                         double* __restrict__ ky, 
+                                         double* __restrict__ kz, 
+                                         cufftDoubleComplex* __restrict__ vdd, 
+                                         double a_dd, double d_x, double d_y, double d_z, int N, int NX, int NY, int NZ) ;
+
 // SOFT CORE
-__global__ void SoftCoreInteraction_1D( double* kx,  double* ky, double* kz, cufftDoubleComplex* vtilde, int N, int NX, int NY, int NZ, double* params);
-__global__ void SoftCoreInteraction_2D( double* kx,  double* ky, double* kz, cufftDoubleComplex* vtilde, int N, int NX, int NY, int NZ, double* params);
-__global__ void SoftCoreInteraction_3D( double* kx,  double* ky, double* kz, cufftDoubleComplex* vtilde, int N, int NX, int NY, int NZ, double* params);
+__global__ void SoftCoreInteraction_1D( double* __restrict__ kx,  
+                                        double* __restrict__ ky, 
+                                        double* __restrict__ kz, 
+                                        cufftDoubleComplex* __restrict__ vtilde,
+                                        int N, int NX, int NY, int NZ, double* params);
+
+__global__ void SoftCoreInteraction_2D( double* __restrict__ kx, 
+                                        double* __restrict__ ky, 
+                                        double* __restrict__ kz, 
+                                        cufftDoubleComplex* __restrict__ vtilde,
+                                         int N, int NX, int NY, int NZ, double* params);
+
+__global__ void SoftCoreInteraction_3D( double* __restrict__ kx,  
+                                        double* __restrict__ ky, 
+                                        double* __restrict__ kz, 
+                                        cufftDoubleComplex* __restrict__ vtilde, 
+                                        int N, int NX, int NY, int NZ, double* params);
 
 
 

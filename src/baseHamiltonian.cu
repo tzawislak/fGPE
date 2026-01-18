@@ -93,10 +93,6 @@ void BaseHamiltonian::alg_Laplace(cufftDoubleComplex* _d_psi, cufftDoubleComplex
     CCE(cudaGetLastError(), "Laplace kernel launch failed");
 
     if( cufftExecZ2Z(planBackward, _d_hpsi, _d_hpsi, CUFFT_INVERSE) != CUFFT_SUCCESS) { std::cerr << "CUFFT error: Inverse FFT failed" << std::endl; }
-
-    ScalarMultiply<<<gridSize, noThreads>>>( _d_hpsi, 0.5*std::pow(2*pi, 2)/(pars->Npoints), pars->Npoints);
-
-    CCE(cudaGetLastError(), "Scalar Multiply Kernel launch failed");
 }
 
 
