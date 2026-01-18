@@ -185,13 +185,13 @@ void Cuda::PrintGPUInfo()
  * @param NY number of mesh points in $y$ direction (type: int)
  * @param NZ number of mesh points in $z$ direction (type: int)
  */
-__global__ void Laplace( cufftDoubleComplex* v1, double* kx,  double* ky, double* kz, cufftDoubleComplex* result, int N, int NX, int NY, int NZ) {
+__global__ void Laplace( cufftDoubleComplex* v1, const double* __restrict__ kx,  const double* __restrict__ ky, const double* __restrict__ kz, cufftDoubleComplex* result, int N, int NX, int NY, int NZ) {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
     int iX = idx % NX;
     int iY = (idx / NX) % NY;
     int iZ = idx / (NX*NY);
     double scale = 19.739208802/N ; // 0.5*(2*pi)^2/N
-    
+
     if ((idx < N) && (iX < NX) && (iY < NY) && (iZ < NZ)) 
     {
         result[idx] = scale*v1[idx] * (kx[iX]*kx[iX] + ky[iY]*ky[iY] + kz[iZ]*kz[iZ]);
