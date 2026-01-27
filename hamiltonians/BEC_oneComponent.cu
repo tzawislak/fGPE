@@ -12,7 +12,7 @@ BEConeComponent::BEConeComponent(Params &par): OneComponentGPSolver(par)
         Define parameters entering your Hamiltonian
     */
     h_params[0] = p.a; // init a
-    CCE(cudaMemcpy(this->d_h_params, h_params, NO_HAMIL_PARAMS * sizeof(double), cudaMemcpyHostToDevice), "CUDA error at memcpy: d_h_params");
+    CCE(cudaMemcpyAsync(this->d_h_params, h_params, NO_HAMIL_PARAMS * sizeof(double), cudaMemcpyHostToDevice, stream), "CUDA error at memcpy: d_h_params");
     
 
 
@@ -93,7 +93,7 @@ void BEConeComponent::alg_calcHpsi(){
 
     this->alg_Laplace(this->d_psi, this->d_hpsi);
 
-    BECHamiltonian<<<gridSize, noThreads>>>( PARS[T],this->d_psi, this->d_hpsi, this->d_vext, this->d_hpsi_en, this->d_hpsi, p.Npoints, this->d_h_params);
+    BECHamiltonian<<<gridSize, noThreads, 0, stream>>>( PARS[T],this->d_psi, this->d_hpsi, this->d_vext, this->d_hpsi_en, this->d_hpsi, p.Npoints, this->d_h_params);
 
     if( p.getBool("trotate") )
     {
@@ -106,14 +106,14 @@ void BEConeComponent::alg_calcHpsiMU(){
 
     this->alg_Laplace(this->d_psi, this->d_hpsi);
 
-    BECHamiltonianMU<<<gridSize, noThreads>>>( PARS[T], this->d_psi, this->d_hpsi, this->d_vext, this->d_hpsi, p.Npoints, this->d_h_params);
+    BECHamiltonianMU<<<gridSize, noThreads, 0, stream>>>( PARS[T], this->d_psi, this->d_hpsi, this->d_vext, this->d_hpsi, p.Npoints, this->d_h_params);
     CCE(cudaGetLastError(), "BEC Hamiltonian Kernel launch failed");
 }
 
 
 
 void BEConeComponent::alg_calcCos(double *_avgcos, cufftDoubleComplex* _psi ){
-    CalcAverageCos<<<gridSize, noThreads>>>( _psi, this->d_x, this->d_partial, 2*p.XMAX[0], p.NX[0], p.Npoints);
+    CalcAverageCos<<<gridSize, noThreads, 0, stream>>>( _psi, this->d_x, this->d_partial, 2*p.XMAX[0], p.NX[0], p.Npoints);
     CCE(cudaGetLastError(), "Calculate Average Cos Kernel launch failed");
 
     (this->*reduction)(_avgcos);
@@ -235,7 +235,7 @@ void BEConeComponent::call_IM_loop_after_step()
 
     if( (iteration+1)%p.itmod == 0 ){
         // TODO: function to execute when....
-        CCE(cudaMemcpy(this->psi, this->d_psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyDeviceToHost), "CUDA error at malloc: psi");
+        CCE(cudaMemcpyAsync(this->psi, this->d_psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyDeviceToHost, streamData), "CUDA error at malloc: psi");
         output.WritePsi(this->psi, p.Npoints);
     }
 }
@@ -373,7 +373,8 @@ void BEConeComponent::call_RE_loop_after_step()
 
     //  Save the wavefunction every p.itmod iteration
     if( ((int)PARS[ITER]+1)%p.itmod == 0 ){
-        CCE(cudaMemcpy(this->psi, this->d_psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyDeviceToHost), "CUDA error at malloc: psi");
+        CCE(cudaMemcpyAsync(this->psi, this->d_psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyDeviceToHost, streamData), "CUDA error at malloc: psi");
+        cudaStreamSynchronize(streamData);
         output.WritePsi(this->psi, p.Npoints);
         PARS[NCYCLES]++;
     }

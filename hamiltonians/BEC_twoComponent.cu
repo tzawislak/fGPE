@@ -128,7 +128,7 @@ void BECtwoComponent::alg_calcHpsi(){
         this->alg_addVPx( this->d_psi2, this->d_psi2_new, this->d_hpsi2, this->d_hpsi2_en, 2*pi*p.getDouble("omega")/(p.omho2*p.aho2) );
     }
 
-    BECHamiltonian_2<<<gridSize, noThreads>>>( this->d_psi, this->d_psi2, this->d_hpsi, this->d_hpsi2, this->d_vext, this->d_vext2, this->d_hpsi_en, this->d_hpsi2_en, p.Npoints, this->d_h_params);
+    BECHamiltonian_2<<<gridSize, noThreads, 0, stream>>>( this->d_psi, this->d_psi2, this->d_hpsi, this->d_hpsi2, this->d_vext, this->d_vext2, this->d_hpsi_en, this->d_hpsi2_en, p.Npoints, this->d_h_params);
     CCE(cudaGetLastError(), "BEC 2 Hamiltonian Kernel launch failed");
 }
 
@@ -137,7 +137,7 @@ void BECtwoComponent::alg_calcHpsiMU(){
     this->alg_Laplace(this->d_psi, this->d_hpsi);
     this->alg_Laplace(this->d_psi2, this->d_hpsi2);
 
-    BECHamiltonianMU_2<<<gridSize, noThreads>>>( this->d_psi, this->d_psi2, this->d_hpsi, this->d_hpsi2, this->d_vext, this->d_vext2, p.Npoints, this->d_h_params);
+    BECHamiltonianMU_2<<<gridSize, noThreads, 0, stream>>>( this->d_psi, this->d_psi2, this->d_hpsi, this->d_hpsi2, this->d_vext, this->d_vext2, p.Npoints, this->d_h_params);
     CCE(cudaGetLastError(), "BEC 2 Hamiltonian Kernel launch failed");
 }
 
@@ -145,7 +145,7 @@ void BECtwoComponent::alg_calcHpsiMU(){
 
 
 void BECtwoComponent::alg_calcCos(double *_avgcos, cufftDoubleComplex* _psi ){
-    CalcAverageCos<<<gridSize, noThreads>>>( _psi, this->d_x, this->d_partial, 2*p.XMAX[0], p.NX[0], p.Npoints);
+    CalcAverageCos<<<gridSize, noThreads, 0, stream>>>( _psi, this->d_x, this->d_partial, 2*p.XMAX[0], p.NX[0], p.Npoints);
     CCE(cudaGetLastError(), "Calculate Average Cos Kernel launch failed");
 
     (this->*reduction)(_avgcos);
@@ -153,7 +153,7 @@ void BECtwoComponent::alg_calcCos(double *_avgcos, cufftDoubleComplex* _psi ){
 
 void BECtwoComponent::alg_calcCos(double *_avgcos, cufftDoubleComplex* _psi1, cufftDoubleComplex* _psi2, int sign )
 {
-    CalcAverageCos<<<gridSize, noThreads>>>( _psi1, _psi2, this->d_x, this->d_partial, 2*p.XMAX[0], p.NX[0], p.Npoints);
+    CalcAverageCos<<<gridSize, noThreads, 0, stream>>>( _psi1, _psi2, this->d_x, this->d_partial, 2*p.XMAX[0], p.NX[0], p.Npoints);
     CCE(cudaGetLastError(), "Calculate Average Cos Kernel launch failed");
 
     (this->*reduction)(_avgcos);

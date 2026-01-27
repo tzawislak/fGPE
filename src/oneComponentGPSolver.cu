@@ -29,9 +29,9 @@ void OneComponentGPSolver::runImagTimeEvol(){
     this->call_IM_init();
 
     // Copy the data to the Device
-    CCE(cudaMemcpy(this->d_vext, this->vext, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at malloc: vext");
-    CCE(cudaMemcpy(this->d_psi_old, this->psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at malloc: psi_old");
-    CCE(cudaMemcpy(this->d_psi, this->psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at malloc: psi");
+    CCE(cudaMemcpyAsync(this->d_vext, this->vext, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice, stream), "CUDA error at malloc: vext");
+    CCE(cudaMemcpyAsync(this->d_psi_old, this->psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice, stream), "CUDA error at malloc: psi_old");
+    CCE(cudaMemcpyAsync(this->d_psi, this->psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice, stream), "CUDA error at malloc: psi");
     
 
 
@@ -95,7 +95,7 @@ void OneComponentGPSolver::runImagTimeEvol(){
     }
 
     // copy the wavefunction back to the host
-    CCE(cudaMemcpy(this->psi, this->d_psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyDeviceToHost), "CUDA error at malloc: psi");
+    CCE(cudaMemcpyAsync(this->psi, this->d_psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyDeviceToHost, streamData), "CUDA error at malloc: psi");
     // TODO: copy also the vext
 
     // Execute code after the time evolution has finished
@@ -124,9 +124,9 @@ void OneComponentGPSolver::runRealTimeEvol(){
 
        
     // copy the data to the Device
-    CCE(cudaMemcpy(this->d_vext,    this->vext, p.Npoints *sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at malloc: vext");
-    CCE(cudaMemcpy(this->d_psi_old, this->psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at malloc: psi_old");
-    CCE(cudaMemcpy(this->d_psi,     this->psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at malloc: psi");
+    CCE(cudaMemcpyAsync(this->d_vext,    this->vext, p.Npoints *sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice, stream), "CUDA error at malloc: vext");
+    CCE(cudaMemcpyAsync(this->d_psi_old, this->psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice, stream), "CUDA error at malloc: psi_old");
+    CCE(cudaMemcpyAsync(this->d_psi,     this->psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice, stream), "CUDA error at malloc: psi");
 
     // rename an array pointer
     cufftDoubleComplex *d_k = this->d_psi_new;  
@@ -162,36 +162,36 @@ void OneComponentGPSolver::runRealTimeEvol(){
         
         */
 
-        CCE(cudaMemcpy(this->d_psi_old, this->d_psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at memcpy: psi_old");
+        CCE(cudaMemcpyAsync(this->d_psi_old, this->d_psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice, stream), "CUDA error at memcpy: psi_old");
         
         //
         // RK4 steps (I think the current implementation is only for time-independent H (see RK4 ) ---> Add another variable to PARS to keep the current time for the partial steps in RK4)
         // 
         this->alg_calcHpsiMU();
-        CCE(cudaMemcpy(d_k, this->d_hpsi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at memcpy: d_k");
-        UpdateRKStep<<<gridSize, noThreads>>>( this->d_psi, this->d_psi_old, this->d_hpsi, m05Idt, p.Npoints);
+        CCE(cudaMemcpyAsync(d_k, this->d_hpsi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice, stream), "CUDA error at memcpy: d_k");
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( this->d_psi, this->d_psi_old, this->d_hpsi, m05Idt, p.Npoints);
 
 
         PARS[T] = (iteration + 0.5)* dt; 
         this->alg_calcHpsiMU();
-        UpdateRKStep<<<gridSize, noThreads>>>( d_k, d_k, this->d_hpsi, 2.0 , p.Npoints);
-        UpdateRKStep<<<gridSize, noThreads>>>( this->d_psi, this->d_psi_old, this->d_hpsi, m05Idt, p.Npoints);
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( d_k, d_k, this->d_hpsi, 2.0 , p.Npoints);
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( this->d_psi, this->d_psi_old, this->d_hpsi, m05Idt, p.Npoints);
     
         this->alg_calcHpsiMU();
-        UpdateRKStep<<<gridSize, noThreads>>>( d_k, d_k, this->d_hpsi, 2.0 , p.Npoints);
-        UpdateRKStep<<<gridSize, noThreads>>>( this->d_psi, this->d_psi_old, this->d_hpsi, mIdt, p.Npoints);
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( d_k, d_k, this->d_hpsi, 2.0 , p.Npoints);
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( this->d_psi, this->d_psi_old, this->d_hpsi, mIdt, p.Npoints);
      
         PARS[T] = (iteration + 1)* dt; 
         this->alg_calcHpsi();
         // The last step of the RK4 is within FinalRKStep
-        FinalRKStep<<<gridSize, noThreads>>>( this->d_psi, this->d_psi_old, d_k, this->d_hpsi, mIdt, p.Npoints);
+        FinalRKStep<<<gridSize, noThreads, 0, stream>>>( this->d_psi, this->d_psi_old, d_k, this->d_hpsi, mIdt, p.Npoints);
     
         // Do not normalize the state after the real time evolution
         // TE should be unitary, so any divergence from the norm will point out 
         // the code's imprecision. 
         // 
         //this->alg_calcNorm(&PARS[NORM], this->d_psi);
-        //ScalarMultiply<<<gridSize, noThreads>>>( this->d_psi, std::pow( p.npart/PARS[NORM], 0.5), p.Npoints);
+        //ScalarMultiply<<<gridSize, noThreads, 0, stream>>>( this->d_psi, std::pow( p.npart/PARS[NORM], 0.5), p.Npoints);
         //CCE(cudaGetLastError(), "Scalar Multiply Kernel launch failed");
 
         auto end = std::chrono::high_resolution_clock::now();
@@ -208,7 +208,7 @@ void OneComponentGPSolver::runRealTimeEvol(){
     } // END of the real time evolution
 
 
-    CCE(cudaMemcpy(this->psi, this->d_psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyDeviceToHost), "CUDA error at malloc: psi");
+    CCE(cudaMemcpyAsync(this->psi, this->d_psi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyDeviceToHost, streamData), "CUDA error at malloc: psi");
     // TODO: copy also the vext
 
     // Execute code after the time evolution has finished

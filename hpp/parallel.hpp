@@ -11,6 +11,9 @@ void CCE(cudaError_t error, const char* msg) ;
 class Cuda {
 
 public:
+    cudaStream_t stream;
+    cudaStream_t streamData;
+
     cufftHandle planForward;
     cufftHandle planBackward;
     const int isTwoComponent;
@@ -75,21 +78,25 @@ public:
     void PrintGPUInfo();
     
     ~Cuda() {
-            
-        cudaFree(d_h_params);
-        cudaFree(d_partial);
-        cudaFree(d_partial2);
-        cudaFree(d_final);
-        cudaFree(d_final2);
+        cudaDeviceSynchronize();
+        
+        cudaStreamDestroy(stream);
+        cudaStreamDestroy(streamData);
+
+        cufftDestroy(planForward);
+        cufftDestroy(planBackward);
+
+        cudaFreeHost(d_h_params);
+        cudaFreeHost(d_partial);
+        cudaFreeHost(d_partial2);
+        cudaFreeHost(d_final);
+        cudaFreeHost(d_final2);
         free(h_final);
         free(h_final2);
 
         free(h_partialSums);
         free(h_partialSums2);
 
-
-        cufftDestroy(planForward);
-        cufftDestroy(planBackward);
         cudaFree(d_psi_old);
         cudaFree(d_psi);
         cudaFree(d_psi_new);

@@ -157,24 +157,24 @@ void TwoComponentGPSolver::runRealTimeEvol(){
         this->alg_calcHpsiMU();
         CCE(cudaMemcpy(d_k1, this->d_hpsi, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at memcpy: k_1");
         CCE(cudaMemcpy(d_k2, this->d_hpsi2, p.Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at memcpy: k_2");
-        UpdateRKStep<<<gridSize, noThreads>>>( this->d_psi,  this->d_psi_old,  this->d_hpsi,  m05Idt, p.Npoints);
-        UpdateRKStep<<<gridSize, noThreads>>>( this->d_psi2, this->d_psi2_old, this->d_hpsi2, m05Idt, p.Npoints);
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( this->d_psi,  this->d_psi_old,  this->d_hpsi,  m05Idt, p.Npoints);
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( this->d_psi2, this->d_psi2_old, this->d_hpsi2, m05Idt, p.Npoints);
 
         this->alg_calcHpsiMU();
-        UpdateRKStep<<<gridSize, noThreads>>>( d_k1, d_k1, this->d_hpsi,  2.0 , p.Npoints);
-        UpdateRKStep<<<gridSize, noThreads>>>( d_k2, d_k2, this->d_hpsi2, 2.0 , p.Npoints);
-        UpdateRKStep<<<gridSize, noThreads>>>( this->d_psi,  this->d_psi_old,  this->d_hpsi,  m05Idt, p.Npoints);
-        UpdateRKStep<<<gridSize, noThreads>>>( this->d_psi2, this->d_psi2_old, this->d_hpsi2, m05Idt, p.Npoints);
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( d_k1, d_k1, this->d_hpsi,  2.0 , p.Npoints);
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( d_k2, d_k2, this->d_hpsi2, 2.0 , p.Npoints);
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( this->d_psi,  this->d_psi_old,  this->d_hpsi,  m05Idt, p.Npoints);
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( this->d_psi2, this->d_psi2_old, this->d_hpsi2, m05Idt, p.Npoints);
     
         this->alg_calcHpsiMU();
-        UpdateRKStep<<<gridSize, noThreads>>>( d_k1, d_k1, this->d_hpsi,  2.0 , p.Npoints);
-        UpdateRKStep<<<gridSize, noThreads>>>( d_k2, d_k2, this->d_hpsi2, 2.0 , p.Npoints);
-        UpdateRKStep<<<gridSize, noThreads>>>( this->d_psi,  this->d_psi_old,  this->d_hpsi,  mIdt, p.Npoints);
-        UpdateRKStep<<<gridSize, noThreads>>>( this->d_psi2, this->d_psi2_old, this->d_hpsi2, mIdt, p.Npoints);
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( d_k1, d_k1, this->d_hpsi,  2.0 , p.Npoints);
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( d_k2, d_k2, this->d_hpsi2, 2.0 , p.Npoints);
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( this->d_psi,  this->d_psi_old,  this->d_hpsi,  mIdt, p.Npoints);
+        UpdateRKStep<<<gridSize, noThreads, 0, stream>>>( this->d_psi2, this->d_psi2_old, this->d_hpsi2, mIdt, p.Npoints);
      
         this->alg_calcHpsiMU();
-        FinalRKStep<<<gridSize, noThreads>>>( this->d_psi,  this->d_psi_old,  d_k1, this->d_hpsi,  mIdt, p.Npoints);
-        FinalRKStep<<<gridSize, noThreads>>>( this->d_psi2, this->d_psi2_old, d_k2, this->d_hpsi2, mIdt, p.Npoints);
+        FinalRKStep<<<gridSize, noThreads, 0, stream>>>( this->d_psi,  this->d_psi_old,  d_k1, this->d_hpsi,  mIdt, p.Npoints);
+        FinalRKStep<<<gridSize, noThreads, 0, stream>>>( this->d_psi2, this->d_psi2_old, d_k2, this->d_hpsi2, mIdt, p.Npoints);
 
         
         // Do not normalize the state after the real time evolution
@@ -183,7 +183,7 @@ void TwoComponentGPSolver::runRealTimeEvol(){
         // 
         //this->alg_calcNorm(&norm1, this->d_psi);
         //this->alg_calcNorm(&norm2, this->d_psi2);
-        //ScalarMultiply<<<gridSize, noThreads>>>( this->d_psi, std::pow( p.npart/norm, 0.5), p.Npoints);
+        //ScalarMultiply<<<gridSize, noThreads, 0, stream>>>( this->d_psi, std::pow( p.npart/norm, 0.5), p.Npoints);
         //CCE(cudaGetLastError(), "Scalar Multiply Kernel launch failed");
     
         

@@ -45,9 +45,9 @@ void BaseHamiltonian::InitializeSpace()
         for(int iz=0; iz < pars->NX[2]; ++iz){ z[iz] = -pars->XMAX[2] + (iz)*pars->DX[2] + 0.5*pars->DX[2];}
     }
 
-    cudaMemcpy(d_x, this->x, pars->NX[0] * sizeof(double), cudaMemcpyHostToDevice);
-    cudaMemcpy(d_y, this->y, pars->NX[1] * sizeof(double), cudaMemcpyHostToDevice);
-    cudaMemcpy(d_z, this->z, pars->NX[2] * sizeof(double), cudaMemcpyHostToDevice);
+    cudaMemcpyAsync(d_x, this->x, pars->NX[0] * sizeof(double), cudaMemcpyHostToDevice, stream);
+    cudaMemcpyAsync(d_y, this->y, pars->NX[1] * sizeof(double), cudaMemcpyHostToDevice, stream);
+    cudaMemcpyAsync(d_z, this->z, pars->NX[2] * sizeof(double), cudaMemcpyHostToDevice, stream);
 }
 
 void BaseHamiltonian::InitializeKspace()
@@ -75,9 +75,9 @@ void BaseHamiltonian::InitializeKspace()
         for(int ik=0; ik < pars->NX[2]; ++ik){ kz[ik] = 0;}
     }
 
-    cudaMemcpy(d_kx, this->kx, pars->NX[0] * sizeof(double), cudaMemcpyHostToDevice);
-    cudaMemcpy(d_ky, this->ky, pars->NX[1] * sizeof(double), cudaMemcpyHostToDevice);
-    cudaMemcpy(d_kz, this->kz, pars->NX[2] * sizeof(double), cudaMemcpyHostToDevice);
+    cudaMemcpyAsync(d_kx, this->kx, pars->NX[0] * sizeof(double), cudaMemcpyHostToDevice, stream);
+    cudaMemcpyAsync(d_ky, this->ky, pars->NX[1] * sizeof(double), cudaMemcpyHostToDevice, stream);
+    cudaMemcpyAsync(d_kz, this->kz, pars->NX[2] * sizeof(double), cudaMemcpyHostToDevice, stream);
 
 }   
 
@@ -88,7 +88,7 @@ void BaseHamiltonian::alg_Laplace(cufftDoubleComplex* _d_psi, cufftDoubleComplex
 
     if (cufftExecZ2Z(planForward, _d_psi, _d_hpsi, CUFFT_FORWARD) != CUFFT_SUCCESS) {   std::cerr << "CUFFT error: Forward FFT failed" << std::endl; }
 
-    Laplace<<<gridSize, noThreads>>>(_d_hpsi, d_kx, d_ky, d_kz, _d_hpsi, pars->Npoints, pars->NX[0], pars->NX[1], pars->NX[2]);
+    Laplace<<<gridSize, noThreads, 0, stream>>>(_d_hpsi, d_kx, d_ky, d_kz, _d_hpsi, pars->Npoints, pars->NX[0], pars->NX[1], pars->NX[2]);
     
     CCE(cudaGetLastError(), "Laplace kernel launch failed");
 
@@ -102,7 +102,7 @@ void BaseHamiltonian::alg_Laplace(cufftDoubleComplex* _d_psi, cufftDoubleComplex
 
 void BaseHamiltonian::alg_updatePsi(cufftDoubleComplex* _d_psi, cufftDoubleComplex* _d_psi_new, cufftDoubleComplex* _d_psi_old, cufftDoubleComplex* _d_hpsi, const double &mu, double &dt, double &beta){
     
-    BECUpdatePsi<<<gridSize, noThreads>>>( _d_psi, _d_psi_new, _d_psi_old, _d_hpsi, mu, dt, beta, pars->Npoints );
+    BECUpdatePsi<<<gridSize, noThreads, 0, stream>>>( _d_psi, _d_psi_new, _d_psi_old, _d_hpsi, mu, dt, beta, pars->Npoints );
     CCE(cudaGetLastError(), "Update psi Kernel launch failed");
 
 }
@@ -110,7 +110,7 @@ void BaseHamiltonian::alg_updatePsi(cufftDoubleComplex* _d_psi, cufftDoubleCompl
 
 
 void BaseHamiltonian::_simple_reduction(double* norm){
-    CCE(cudaMemcpy(h_partialSums, this->d_partial, gridSize * sizeof(double), cudaMemcpyDeviceToHost), "CUDA error: malloc at partial sums failed");
+    CCE(cudaMemcpyAsync(h_partialSums, this->d_partial, gridSize * sizeof(double), cudaMemcpyDeviceToHost, stream), "CUDA error: malloc at partial sums failed");
     double n = 0.0;
     for (int i = 0; i < gridSize; ++i) {
         n += h_partialSums[i];
@@ -124,8 +124,8 @@ void BaseHamiltonian::_simple_reduction(double* norm){
 
 
 void BaseHamiltonian::_simple_reduction2(double* _o1, double* _o2, double _norm){
-    CCE(cudaMemcpy(this->h_partialSums, this->d_partial, gridSize * sizeof(double), cudaMemcpyDeviceToHost), "CUDA error: malloc at partial sums failed");
-    CCE(cudaMemcpy(this->h_partialSums2, this->d_partial2, gridSize * sizeof(double), cudaMemcpyDeviceToHost), "CUDA error: malloc at partial sums failed");
+    CCE(cudaMemcpyAsync(this->h_partialSums, this->d_partial, gridSize * sizeof(double), cudaMemcpyDeviceToHost, stream), "CUDA error: malloc at partial sums failed");
+    CCE(cudaMemcpyAsync(this->h_partialSums2, this->d_partial2, gridSize * sizeof(double), cudaMemcpyDeviceToHost, stream), "CUDA error: malloc at partial sums failed");
     double o1=0.0;
     double o2=0.0;
     for (int i = 0; i < gridSize; ++i) {
@@ -138,9 +138,9 @@ void BaseHamiltonian::_simple_reduction2(double* _o1, double* _o2, double _norm)
 }
 
 void BaseHamiltonian::_parallel_reduction(double* norm){
-    sumReductionKernel<<<gridSize/noThreads, noThreads, noThreads * sizeof(double)>>>(this->d_partial, this->d_final, gridSize);
+    sumReductionKernel<<<gridSize/noThreads, noThreads, noThreads * sizeof(double), stream>>>(this->d_partial, this->d_final, gridSize);
     CCE(cudaGetLastError(), "Sum Reduction2 Kernel launch failed");
-    CCE(cudaMemcpy(h_final, this->d_final, gridSize/noThreads * sizeof(double), cudaMemcpyDeviceToHost), "CUDA error: malloc at partial sums failed");
+    CCE(cudaMemcpyAsync(h_final, this->d_final, gridSize/noThreads * sizeof(double), cudaMemcpyDeviceToHost, stream), "CUDA error: malloc at partial sums failed");
     double n = 0.0;
     for (int i = 0; i < gridSize/noThreads; ++i) {
         n += h_final[i];
@@ -150,13 +150,14 @@ void BaseHamiltonian::_parallel_reduction(double* norm){
 
 void BaseHamiltonian::_parallel_reduction2(double* _o1, double* _o2, double _norm){
 
-    sumReductionKernel<<<gridSize/noThreads, noThreads, noThreads * sizeof(double)>>>(this->d_partial, this->d_final, gridSize);
+    sumReductionKernel<<<gridSize/noThreads, noThreads, noThreads * sizeof(double), stream>>>(this->d_partial, this->d_final, gridSize);
     CCE(cudaGetLastError(), "Sum Reduction2 Kernel launch failed");
-    sumReductionKernel<<<gridSize/noThreads, noThreads, noThreads * sizeof(double)>>>(this->d_partial2, this->d_final2, gridSize);
+    CCE(cudaMemcpyAsync(this->h_final, this->d_final, gridSize/noThreads * sizeof(double), cudaMemcpyDeviceToHost, stream), "CUDA error: malloc at partial sums failed");
+
+    sumReductionKernel<<<gridSize/noThreads, noThreads, noThreads * sizeof(double), stream>>>(this->d_partial2, this->d_final2, gridSize);
     CCE(cudaGetLastError(), "Sum Reduction2 Kernel launch failed");
-    
-    CCE(cudaMemcpy(this->h_final, this->d_final, gridSize/noThreads * sizeof(double), cudaMemcpyDeviceToHost), "CUDA error: malloc at partial sums failed");
-    CCE(cudaMemcpy(this->h_final2, this->d_final2, gridSize/noThreads * sizeof(double), cudaMemcpyDeviceToHost), "CUDA error: malloc at partial sums failed");
+    CCE(cudaMemcpyAsync(this->h_final2, this->d_final2, gridSize/noThreads * sizeof(double), cudaMemcpyDeviceToHost, stream), "CUDA error: malloc at partial sums failed");
+
     double o1=0.0;
     double o2=0.0;
     for (int i = 0; i < gridSize/noThreads; ++i) {
@@ -171,7 +172,7 @@ void BaseHamiltonian::_parallel_reduction2(double* _o1, double* _o2, double _nor
 
 void BaseHamiltonian::alg_calcNorm(double *norm, cufftDoubleComplex* _d_psi){
     
-    NormalizePsi<<<gridSize, noThreads>>>(_d_psi, this->d_partial, pars->Npoints);
+    NormalizePsi<<<gridSize, noThreads, 0, stream>>>(_d_psi, this->d_partial, pars->Npoints);
     CCE(cudaGetLastError(), "Sum Reduction Kernel launch failed");
     
     (this->*reduction)(norm);
@@ -183,11 +184,11 @@ void BaseHamiltonian::alg_calcNorm(double *norm, cufftDoubleComplex* _d_psi){
 void BaseHamiltonian::alg_calcPx(double *px, cufftDoubleComplex* _d_psi, cufftDoubleComplex* _d_Pxpsi){
 
     if (cufftExecZ2Z(planForward, _d_psi, _d_Pxpsi, CUFFT_FORWARD) != CUFFT_SUCCESS) {   std::cerr << "CUFFT error: Forward FFT failed" << std::endl; }
-    BECVPx<<<gridSize, noThreads>>>(_d_Pxpsi, d_kx, _d_Pxpsi, pars->Npoints, pars->NX[0]);
+    BECVPx<<<gridSize, noThreads, 0, stream>>>(_d_Pxpsi, d_kx, _d_Pxpsi, pars->Npoints, pars->NX[0]);
     CCE(cudaGetLastError(), "Laplace kernel launch failed");
     if( cufftExecZ2Z(planBackward, _d_Pxpsi, _d_Pxpsi, CUFFT_INVERSE) != CUFFT_SUCCESS) { std::cerr << "CUFFT error: Inverse FFT failed" << std::endl; }
 
-    CalculateObservable<<<gridSize, noThreads>>>( _d_psi, _d_Pxpsi, this->d_partial, pars->Npoints);
+    CalculateObservable<<<gridSize, noThreads, 0, stream>>>( _d_psi, _d_Pxpsi, this->d_partial, pars->Npoints);
     CCE(cudaGetLastError(), "Sum Reduction Kernel launch failed");
     
     (this->*reduction)(px);
@@ -198,12 +199,12 @@ void BaseHamiltonian::alg_addVPx(cufftDoubleComplex* _d_psi, cufftDoubleComplex*
 
     if (cufftExecZ2Z(planForward, _d_psi, _d_aux, CUFFT_FORWARD) != CUFFT_SUCCESS) {   std::cerr << "CUFFT error: Forward FFT failed" << std::endl; }
 
-    BECVPx<<<gridSize, noThreads>>>(_d_aux, d_kx, _d_aux, pars->Npoints, pars->NX[0]);
+    BECVPx<<<gridSize, noThreads, 0, stream>>>(_d_aux, d_kx, _d_aux, pars->Npoints, pars->NX[0]);
     CCE(cudaGetLastError(), "Laplace kernel launch failed");
 
     if( cufftExecZ2Z(planBackward, _d_aux, _d_aux, CUFFT_INVERSE) != CUFFT_SUCCESS) { std::cerr << "CUFFT error: Inverse FFT failed" << std::endl; }
-    AppendArray<<<gridSize, noThreads>>>( _d_hpsi,    (-1)*_lm/pars->Npoints, _d_aux, pars->Npoints);
-    AppendArray<<<gridSize, noThreads>>>( _d_hpsi_en, (-1)*_lm/pars->Npoints, _d_aux, pars->Npoints);
+    AppendArray<<<gridSize, noThreads, 0, stream>>>( _d_hpsi,    (-1)*_lm/pars->Npoints, _d_aux, pars->Npoints);
+    AppendArray<<<gridSize, noThreads, 0, stream>>>( _d_hpsi_en, (-1)*_lm/pars->Npoints, _d_aux, pars->Npoints);
     
     CCE(cudaGetLastError(), "Scalar Multiply Kernel launch failed");
 
@@ -215,9 +216,9 @@ void BaseHamiltonian::alg_addVPx(cufftDoubleComplex* _d_psi, cufftDoubleComplex*
 // normalizes the wavefunction
 void BaseHamiltonian::alg_updateWavefunctions(double norm, cufftDoubleComplex* _d_psi_old, cufftDoubleComplex* _d_psi, cufftDoubleComplex* _d_psi_new){
     // This memory transfer can be replaced by a "smart" pointer switching (even/odd iteration would use different memory addresses for old/current psi)
-    CCE(cudaMemcpy( _d_psi_old, _d_psi, pars->Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice), "CUDA error at malloc: psi_old");
+    CCE(cudaMemcpyAsync( _d_psi_old, _d_psi, pars->Npoints * sizeof(cufftDoubleComplex), cudaMemcpyHostToDevice, stream), "CUDA error at malloc: psi_old");
 
-    ScalarMultiply<<<gridSize, noThreads>>>( _d_psi, _d_psi_new, norm, pars->Npoints);
+    ScalarMultiply<<<gridSize, noThreads, 0, stream>>>( _d_psi, _d_psi_new, norm, pars->Npoints);
     CCE(cudaGetLastError(), "Scalar Multiply Kernel launch failed");
 
 
@@ -228,7 +229,7 @@ void BaseHamiltonian::alg_updateWavefunctions(double norm, cufftDoubleComplex* _
 
 void BaseHamiltonian::alg_calc2Observables(double norm, double *_o1, double *_o2, cufftDoubleComplex* _d_psi, cufftDoubleComplex* _d_o1psi, cufftDoubleComplex* _d_o2psi ){
 
-    Calculate2Observables<<<gridSize, noThreads>>>( _d_psi, _d_o1psi, this->d_partial, _d_o2psi, this->d_partial2, pars->Npoints);
+    Calculate2Observables<<<gridSize, noThreads, 0, stream>>>( _d_psi, _d_o1psi, this->d_partial, _d_o2psi, this->d_partial2, pars->Npoints);
     CCE(cudaGetLastError(), "Chemical Potential and Energy Kernel launch failed");
  
     (this->*reduction2)(_o1, _o2, norm);

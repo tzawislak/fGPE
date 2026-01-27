@@ -314,7 +314,7 @@ void SingleTemplate::alg_calcHpsi(){
     // Calculate the kinetic energy
     this->alg_Laplace(this->d_psi, this->d_hpsi);
 
-    SingleTemplate_template<<<gridSize, noThreads>>>( this->d_psi, this->d_hpsi, this->d_vext, this->d_hpsi_en, this->d_hpsi, p.Npoints, this->d_h_params);
+    SingleTemplate_template<<<gridSize, noThreads, 0, stream>>>( this->d_psi, this->d_hpsi, this->d_vext, this->d_hpsi_en, this->d_hpsi, p.Npoints, this->d_h_params);
     
     CCE(cudaGetLastError(), "Hamiltonian Kernel launch failed");
 }
@@ -323,7 +323,7 @@ void SingleTemplate::alg_calcHpsiMU(){
     // Calculate kinetic energy term
     this->alg_Laplace(this->d_psi, this->d_hpsi);
 
-    SingleTemplateMU_template<<<gridSize, noThreads>>>( this->d_psi, this->d_hpsi, this->d_vext, this->d_hpsi, p.Npoints, this->d_h_params);
+    SingleTemplateMU_template<<<gridSize, noThreads, 0, stream>>>( this->d_psi, this->d_hpsi, this->d_vext, this->d_hpsi, p.Npoints, this->d_h_params);
     CCE(cudaGetLastError(), "BEC Hamiltonian Kernel launch failed");
 }
 

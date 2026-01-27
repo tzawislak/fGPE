@@ -15,14 +15,18 @@ Cuda::Cuda(const int *NX, int nth, bool _is2comp) : isTwoComponent(_is2comp), si
 
     PrintGPUInfo();
 
+    CCE( cudaStreamCreate(&stream), "CUDA error: Could not create stream");
+    CCE( cudaStreamCreate(&streamData), "CUDA error: Could not create stream");
+
     gridSize = ((size + noThreads - 1) / noThreads);
     // Hamiltonian parameters
-    CCE(cudaMalloc(&d_h_params, NO_HAMIL_PARAMS * sizeof(double)), "CUDA error: malloc d_h_params");
+    CCE(cudaMallocHost((void**)&d_h_params, NO_HAMIL_PARAMS * sizeof(double)), "CUDA error: malloc d_h_params");
     // an array for parrallel summation
-    CCE(cudaMalloc(&d_partial, gridSize * sizeof(double)), "CUDA error: malloc d_partial");
-    CCE(cudaMalloc(&d_partial2, gridSize * sizeof(double)), "CUDA error: malloc d_partial2");
-    CCE(cudaMalloc(&d_final, gridSize/noThreads * sizeof(double)), "CUDA error: malloc d_final");
-    CCE(cudaMalloc(&d_final2, gridSize/noThreads * sizeof(double)), "CUDA error: malloc d_final2");
+
+    CCE(cudaMallocHost((void**) &d_partial, gridSize * sizeof(double)), "CUDA error: malloc d_partial");
+    CCE(cudaMallocHost((void**) &d_partial2, gridSize * sizeof(double)), "CUDA error: malloc d_partial2");
+    CCE(cudaMallocHost((void**) &d_final, gridSize/noThreads * sizeof(double)), "CUDA error: malloc d_final");
+    CCE(cudaMallocHost((void**) &d_final2, gridSize/noThreads * sizeof(double)), "CUDA error: malloc d_final2");
     h_final = (double*) malloc( gridSize/noThreads * sizeof(double));
     h_final2 = (double*) malloc( gridSize/noThreads * sizeof(double));
 
@@ -102,6 +106,8 @@ Cuda::Cuda(const int *NX, int nth, bool _is2comp) : isTwoComponent(_is2comp), si
             std::cerr << "#ERROR   Dimension has to be 1, 2 or 3." << std::endl;
             break;
     }
+    cufftSetStream(planForward, stream);
+    cufftSetStream(planBackward, stream);
 
     
 }

@@ -14,7 +14,7 @@ npart           200000
 mass            86.9090
 
 tvseed          true
-nseed           1 
+nseed           1
 aseed           -0.01
 
 a               100.4
@@ -32,10 +32,10 @@ ny              64
 nz              64
 
 dt              0.0040
-niter           1
+niter           20
 epsilon_e       1E-7
 
-itmod           30000
+itmod           3
 itStatMod		 1
 time0           0.0
 
